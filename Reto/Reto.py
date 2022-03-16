@@ -1,3 +1,5 @@
+#este es el primer codigo que hice  para ponerme a praacticar todos los retos que no hice de min tic :)    fecha del commit 11: 10   16 /marzo /2022
+
 from os import system
 print("hOLA A MI PROYECTO PYTHON")
 
