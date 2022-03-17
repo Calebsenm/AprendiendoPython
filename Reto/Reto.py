@@ -6,28 +6,60 @@ print("hOLA A MI PROYECTO PYTHON")
 Usuario = 12345
 Contraseña = 54321
 catcha1 = 123 + 12
-catcha2 = 5*3+(2)/1
+catcha2 = 5*3/2+ (3*2)-10.5
 
 catcha3 = catcha2 + catcha1
 contador =  1
-Ingreso_Usuario = int(input("hola por favor ingresa tu usuario: "))
+contador2 =  3 
 
 while contador < 4:
-        
-    if Ingreso_Usuario == Usuario:
 
-        Ingreso_contraseña = int(input("ingresa tu contraseña: "))
+    #controla el las esecciones por si alguien escribe una letra
+    while True:
+        try:
+            
+            Ingreso_Usuario = int(input("hola por favor ingresa tu usuario: "))
+            break
+            
+        except ValueError:
+            print("Debes ingresar un numero el programa colapsa si no")
+
+    if Ingreso_Usuario == Usuario:
+        
+        while True:
+            try:
+                Ingreso_contraseña = int(input("ingresa tu contraseña: "))
+                break
+            
+            except ValueError:
+                print("Debes ingresar un numero el programa colapsa si no")
+        
 
         if Ingreso_contraseña == Contraseña:
 
             while True:
 
                 print("resuleva el siguiente catcha")
-
-                valor_catcha = int(input(f"resuleve la siguiente operacion: {catcha1} + {catcha2}: "))
+                while True:
+                    try:
+            
+                        valor_catcha = int(input(f"resuleve la siguiente operacion: {catcha1} + {catcha2}: "))
+                        break
+            
+                    except ValueError:
+                        print("Debes ingresar un numero el programa colapsa si no")
                 
                 if valor_catcha == catcha3:
                     print("inicio de secion con exito")
+
+                    #INICIO DEL RETO DOS DESPUES  LO DEBES DE TERMINAR
+
+
+
+                    exit()
+
+
+
 
 
                 else:
@@ -42,15 +74,16 @@ while contador < 4:
                         print("intentelo mueva mente")
                         contador = contador+1
         else:
-            System("cls")
+            system("cls")
             print("contraseña es incorrecta")
-            print(f"le quedan {contador} intentos")
+            print(f"le quedan {contador2-contador} intentos")
             contador = contador+1
 
     else:
-        System("cls")
+        
+        system("cls")
+        print(f"le quedan {contador2-contador} intentos")
         print("error el usuario  es incorrecto")
-        print(f"le quedan {contador} intentos")
         contador= contador +1
 
 
