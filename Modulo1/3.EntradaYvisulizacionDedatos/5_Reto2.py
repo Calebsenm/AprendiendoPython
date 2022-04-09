@@ -81,7 +81,7 @@ programado por defecto.
 
  El programa deberá limpiar la consola y mostrar
 completo y numerado el nuevo menú elegido. Al final 
-debe aparecer el mensaje “Elija una opción”.
+debe aparecer el mensaje “Elija una opción”.                                                Completado
 
 
 ################################################################
@@ -135,7 +135,8 @@ la ejecución del programa
 
 
 
-from os import system
+from operator import index
+from os import system, terminal_size
 print("HOLA A MI PROYECTO PYTHON")
 
 Usuario = 12345
@@ -147,11 +148,13 @@ catcha3 = catcha2 + catcha1
 contador =  1
 contador2 =  3 
 
-a = 0
+a = 1
 b = 0
 
-A = ["1","2","3","4","5","6","7"]
+
+A = [1,2,3,4,5,6,7]
 B = ["Cambiar contraseña","Ingresar coordenadas actuales","Ubicar zona wifi más cercana","Guardar archivo con ubicación cercana","Actualizar registros de zonas wifi desde archivo","Elegir opción de menú favorita","Cerrar sesión"]
+M = [1,2,3,4,5]
 
 
 
@@ -198,31 +201,73 @@ while contador < 4:
                         print("inicio de secion con exito")
 
                         #INICIO DEL RETO DOS DESPUES  LO DEBES DE TERMINAR
-                        system("cls")
-                        # while a <= 6:
-                        #     print(A[b],B[b])
-                        #     b = b + 1
-                        #     a = a + 1
+
+
+
+                        
                         system("cls")
                         for i in range(7):
                             print(A[i],B[i])
-                        DeccicionTomada = int(input("Ingresa una opcion: "))
+                        # DeccicionTomada = int(input("Ingresa una opcion: "))
+                        # #las deciciones  se cambian 
 
+                        DeccicionTomada1 = int(input("Ingresa una opcion: "))
+                        #las deciciones  se cambian 
 
-                        if DeccicionTomada == 0:
-                            break
-                        elif DeccicionTomada == 1:
-                            continue
-                        elif DeccicionTomada == 2:
-                            continue
-                        elif DeccicionTomada == 3:
-                            continue
-                        elif DeccicionTomada == 4:
-                            continue
-                        elif DeccicionTomada == 5:
-                            continue
-                        elif DeccicionTomada == 6:
+                        if DeccicionTomada1 == 1:
+                            DeccicionTomada = M[0] 
+                        if DeccicionTomada1 == 2:
+                            DeccicionTomada = M[1]
+                        if DeccicionTomada1 == 3:
+                            DeccicionTomada = M[2]
+                        if DeccicionTomada1 == 4:
+                            DeccicionTomada = M[3]
+                        if DeccicionTomada1 == 5:
+                            DeccicionTomada = M[4]
+                        if DeccicionTomada1 ==6:
+                            DeccicionTomada = A[5]
+                        if DeccicionTomada1 ==0:
+                            DeccicionTomad = A[6]
                         
+
+
+                        uno = 0
+                        if DeccicionTomada == 0:
+                            uno = B[6]
+                            print(f"Has elegido {uno}")
+                            break
+
+                        elif DeccicionTomada == 1:
+                            print("Has elegido cabiar contraseña")
+                            Cambiode_contraseña = input("Ingresa un numero ")
+
+                            
+                            
+                        elif DeccicionTomada == 2:
+                            print("Ingresar coordenadas actuales")
+                            Cambiode_contraseña = input("Ingresa un numero ")
+                            
+                        elif DeccicionTomada == 3:
+                            print("Ubicar zona wifi más cercana")
+                            Cambiode_contraseña = input("Ingresa un numero ")
+                            
+                            
+                        elif DeccicionTomada == 4:
+                            
+                            print("Guardar archivo con ubicación cercana")
+                            Cambiode_contraseña = input("Ingresa un numero ")
+
+                        elif DeccicionTomada == 5:
+                            
+                            print("Actualizar registros de zonas wifi desde archivo : ")
+                            Cambiode_contraseña = input("Ingresa un numero ")
+
+                        elif DeccicionTomada == 6:
+                            uno = B[5]
+                            print(f"Has elegido {uno}")
+                            
+
+                            #Ejecuta el cambio de la opcion favorita
                             print("Has ingresado a la opcion favorita")
                             Eleccion = int(input("Ingresa una opcion favorita: "))
 
@@ -240,23 +285,34 @@ while contador < 4:
                                     if adivinanza2 == correcto2:
                                         print("Las adivinansas son correctas")
 
-                                        dato1= ""
-                                        dato = 0
-                                        if Eleccion ==1:
-                                            dato,dato1 = 0,"Cambiar contraseña"
-                                        if Eleccion ==2:
-                                            dato,dato1 = 1,"Ingresar coordenadas actuales"
-                                        if Eleccion ==3:
-                                            dato,dato1= 2,"Ubicar zona wifi más cercana"
-                                        if Eleccion ==4:
-                                            dato,dato1 = 3,"Guardar archivo con ubicación cercana"
-                                        if Eleccion ==5:
-                                            dato,dato1 = 4,"Actualizar registros de zonas wifi desde archivo"
+                                        # dato1= ""
+                                        # dato = 0
+                                        # deciciones_de_cambio = 0
+
                                         
 
-                                        B[dato]= B[0]
-                                        B[0]=dato1
-                                        
+                                        # if Eleccion ==1:
+                                        #     dato,dato1 = 0,B[0]
+                                        # if Eleccion ==2:
+                                        #     dato,dato1 = 1,B[1]
+                                        # if Eleccion ==3:
+                                        #     dato,dato1 = 2,B[2]
+                                        # if Eleccion ==4:
+                                        #     dato,dato1 = 3,B[3]
+                                        # if Eleccion ==5:
+                                        #     dato,dato1 = 4,B[4]
+                                                                     
+
+
+                                        # B[dato]= B[0]
+                                        # B[0]=dato1
+                                        a = B[Eleccion-1]
+                                        B.remove(a)
+                                        B.insert(0,a)
+
+                                        M.remove(Eleccion)
+                                        M.insert(0,Eleccion)
+
                                 else:
                                     print("Error")
                                     print("La adivinansa uno esta equibocada")
@@ -271,17 +327,17 @@ while contador < 4:
                     
             
                     
-                else:
-                    print("Error catcha es incorrecto")
-                    contador + 1
-                    contadorDos = 1
-
-                    if contador ==3:
-                        print("ha lacanzado la maxima cantidad de intentos")
-                        break
                     else:
-                        print("intentelo mueva mente")
-                        contador = contador+1
+                        print("Error catcha es incorrecto")
+                        contador + 1
+                        contadorDos = 1
+
+                        if contador ==3:
+                            print("ha lacanzado la maxima cantidad de intentos")
+                            break
+                        else:
+                            print("intentelo mueva mente")
+                            contador = contador+1
         else:
             system("cls")
             print("contraseña es incorrecta")
