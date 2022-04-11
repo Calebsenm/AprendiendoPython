@@ -2,8 +2,10 @@
 """
 este es el primer codigo que hice
 para ponerme a praacticar todos los retos que no hice de min tic :)
-fecha del commit 11: 10   16 /marzo /2022
+fecha del commit       Desconocida
+Fecha de De finalizacion del reto N2 : 8:00 pm  / 10/abril/2022
 
+mas de 4 Dias Trababajando en el reto
 """
 #objetivos del reto 2                                       Fecha de creacion 7 / 04 / 2022  9:30 pm
 """
@@ -103,7 +105,7 @@ dentro del mismo menú, al momento de elegir una
 opción, el programa debe finalizar la ejecución de 
 manera inmediata y mostrar el mensaje “Error”.
  Recomendación: Disponer de una variable contador o 
-acumulador
+acumulador                                                                     listo :D
 ##################################################################
 RF04: El programa permite acceder a las opciones del menú
  Datos de ingreso: El usuario ingresa al sistema un número 
@@ -117,7 +119,7 @@ Ejemplo: “Usted ha elegido la opción 3”
  El programa debe finalizar la ejecución luego de 
 mostrar el mensaje de ingreso a una de las opciones 
 del menú
-###################################################
+###################################################                             listo :D
 
 RF05: El programa permite al usuario salir del menú.
  Datos de ingreso: El usuario ingresa al sistema el número 7 del 
@@ -137,6 +139,7 @@ la ejecución del programa
 
 from operator import index
 from os import system, terminal_size
+from re import U
 print("HOLA A MI PROYECTO PYTHON")
 
 Usuario = 12345
@@ -158,6 +161,10 @@ M = [1,2,3,4,5]
 
 
 
+Acumulador = 0
+
+
+# al cambiar algo dpor ejemplo 3 debe pasar a uno y el objeto en 1 debe pasar a 3
 
 while contador < 4:
 
@@ -213,58 +220,108 @@ while contador < 4:
 
                         DeccicionTomada1 = int(input("Ingresa una opcion: "))
                         #las deciciones  se cambian 
+                        
+                        
 
+                        
                         if DeccicionTomada1 == 1:
                             DeccicionTomada = M[0] 
+                            
+                           
                         if DeccicionTomada1 == 2:
                             DeccicionTomada = M[1]
+                            
+                            
+
                         if DeccicionTomada1 == 3:
                             DeccicionTomada = M[2]
+                            
+
                         if DeccicionTomada1 == 4:
                             DeccicionTomada = M[3]
+                            
+                            
+                            
                         if DeccicionTomada1 == 5:
                             DeccicionTomada = M[4]
+                            
+                            
+                            
                         if DeccicionTomada1 ==6:
                             DeccicionTomada = A[5]
                         if DeccicionTomada1 ==0:
-                            DeccicionTomad = A[6]
-                        
+                            DeccicionTomad = 0
+
 
 
                         uno = 0
-                        if DeccicionTomada == 0:
+                        if DeccicionTomada1 == 0 or DeccicionTomada1 == 7:
+
+                            
                             uno = B[6]
                             print(f"Has elegido {uno}")
-                            break
+                            Desicion_De_salida = input("Deseas si deseas salir ingresa si, si no deseas salir igresa no: ")
+                            
+                            if Desicion_De_salida == "si":
+                                print("Hasta pronto")
+                                exit()
+                                
+                            elif Desicion_De_salida == "no":
+                                continue
+                            else:
+                                print("Error")
+
+                        elif DeccicionTomada1 >7 or DeccicionTomada1< 0:
+                            print(" Error")
+                            Acumulador = Acumulador +1 
+                            if Acumulador >3:
+                                print("Error")
+                                exit()
+
 
                         elif DeccicionTomada == 1:
+                            
+                            print(f"Has elegido la opcion Numero {DeccicionTomada1}")
+
                             print("Has elegido cabiar contraseña")
                             Cambiode_contraseña = input("Ingresa un numero ")
 
                             
                             
                         elif DeccicionTomada == 2:
+                            
+                            print(f"Has elegido la opcion Numero {DeccicionTomada1}")
+
                             print("Ingresar coordenadas actuales")
                             Cambiode_contraseña = input("Ingresa un numero ")
                             
                         elif DeccicionTomada == 3:
+                           
+                            print(f"Has elegido la opcion Numero {DeccicionTomada1}")
                             print("Ubicar zona wifi más cercana")
                             Cambiode_contraseña = input("Ingresa un numero ")
                             
                             
                         elif DeccicionTomada == 4:
                             
+                            print(f"Has elegido la opcion Numero {DeccicionTomada1}")
+
+
                             print("Guardar archivo con ubicación cercana")
                             Cambiode_contraseña = input("Ingresa un numero ")
 
                         elif DeccicionTomada == 5:
                             
+                            print(f"Has elegido la opcion Numero {DeccicionTomada1}")
+
                             print("Actualizar registros de zonas wifi desde archivo : ")
                             Cambiode_contraseña = input("Ingresa un numero ")
 
+
+                        # si el usuario ingresa la opcion numero 6
                         elif DeccicionTomada == 6:
-                            uno = B[5]
-                            print(f"Has elegido {uno}")
+                            
+                            print(f"Has elegido la opcion Numero 6")
                             
 
                             #Ejecuta el cambio de la opcion favorita
@@ -285,27 +342,8 @@ while contador < 4:
                                     if adivinanza2 == correcto2:
                                         print("Las adivinansas son correctas")
 
-                                        # dato1= ""
-                                        # dato = 0
-                                        # deciciones_de_cambio = 0
-
                                         
-
-                                        # if Eleccion ==1:
-                                        #     dato,dato1 = 0,B[0]
-                                        # if Eleccion ==2:
-                                        #     dato,dato1 = 1,B[1]
-                                        # if Eleccion ==3:
-                                        #     dato,dato1 = 2,B[2]
-                                        # if Eleccion ==4:
-                                        #     dato,dato1 = 3,B[3]
-                                        # if Eleccion ==5:
-                                        #     dato,dato1 = 4,B[4]
-                                                                     
-
-
-                                        # B[dato]= B[0]
-                                        # B[0]=dato1
+                                        #elimina el dato seleccionado y lo coloca en la posicion numero 1
                                         a = B[Eleccion-1]
                                         B.remove(a)
                                         B.insert(0,a)
@@ -323,9 +361,11 @@ while contador < 4:
                                 exit()
     
                         elif DeccicionTomada == 7:
-                            continue
-                    
-            
+                            print(" has salido con exito")
+
+                        elif DeccicionTomada == 8:
+                            break
+
                     
                     else:
                         print("Error catcha es incorrecto")
