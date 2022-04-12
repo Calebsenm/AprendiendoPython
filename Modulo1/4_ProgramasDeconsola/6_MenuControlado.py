@@ -44,7 +44,8 @@ o a un ciclo for.
 
 
 
-el ejercicio empezo a desarrollarse a  las 10:25 pm  el 11/abril/2020
+el ejercicio empezo a desarrollarse a  las       10:25 pm  el 11/abril/2022
+Ejercicio terminado a las                        11:02 pm  el 11/abril/ 2022
 
 
 """
