@@ -200,74 +200,10 @@ Indice_de_lamatris2 = 0
 uno = 1
 operacion_definida = 0
 
+decicion_de_cierre  = 1
 
+recorrido = 0
 
-verfica_si_es_la_primera_vez_ingresada_opcion2  = 0
-
-#funcion que permite hacer el cambio de la sellecionada
-def CambioDeMatrix ():
-
-    decicion_de_cierre  = 1
-                             
-    while True:
-        
-        try:
-                                            
-            latitud = float(input(f"ingresa la  latitud N {decicion_de_cierre}:  "))
-            numero_de_letras = len(str(latitud))
-                                            
-            if latitud <= latitud_superior and latitud >= latitud_inferior  and numero_de_letras == 6 :
-                                                
-                print("las coordenadas entan dentro del rango")
-                longitud = float(input(f"Ingresa  la longitud N {decicion_de_cierre}:  "))
-                                                
-                numero_de_letras2 = len(str(longitud))
-
-                if longitud <= longitud_superior and longitud >= longitud_inferior and numero_de_letras2 == 7:
-                                                    
-                    print("Cordenadas dentro del rango")
-                    P [decicion_de_cierre-1][0] = latitud
-                    P [decicion_de_cierre-1][1] = longitud
-
-                                                    
-                    print(f"Coordenada [latitud][longitud] 1 : {P[0]}")
-                    print(f"Coordenada [latitud][longitud] 2 : {P[1]}")
-                    print(f"Coordenada [latitud][longitud] 3 : {P[2]}")
-                    break
-
-                else:
-                    system("cls")
-                    print("Error las corrdenadas entan fuera del rango ")   
-            else:
-                print("Error las coordenadas son incorrectras")
-        except ValueError:
-            print("Error")
-
-
-#esta es la funcion que permite hacer el cambio de la matrix 
-def FuncionIterativa():
-    decicion_de_cierre  = 1                                                   
-    while True:
-        holasi= 0
-        print(f"La coordenada 1 es la que está mas al {0}")
-        print(f"La coordenada 2 es la que está mas al {0}")
-        print(f"La coordenada 3 es la que está mas al {0}")
-
-        decicion_de_cierre = int(input("Presiona 0 para regresar al menú 0 Presione 1,2 o 3 para actuallizar la respectiva coordenada "))
-                                                                
-        if decicion_de_cierre == 0:
-            break
-        elif decicion_de_cierre == 1:
-            CambioDeMatrix()
-                                                                    
-        elif decicion_de_cierre == 2:
-            CambioDeMatrix()
-                                                                    
-        elif decicion_de_cierre == 3:
-            CambioDeMatrix()
-                                                                    
-        else:
-            print("la decicion no esta permitida")
 # al cambiar algo dpor ejemplo 3 debe pasar a uno y el objeto en 1 debe pasar a 3
 
 while contador < 4:
@@ -406,30 +342,89 @@ while contador < 4:
                             
                         elif DeccicionTomada == 2:
                             
-                            if verfica_si_es_la_primera_vez_ingresada_opcion2 > 0:
+                            print(f"Has elegido la opcion Numero {DeccicionTomada1}")
+                            print("Ingresar coordenadas actuales")
+                                
+                            if recorrido ==1:
+                                print("Estas son las coordenadas! ")
+
                                 print(f"Coordenada [latitud][longitud] 1 : {P[0]}")
                                 print(f"Coordenada [latitud][longitud] 2 : {P[1]}")
                                 print(f"Coordenada [latitud][longitud] 3 : {P[2]}")
-                                FuncionIterativa()
+
+                                while True:
+                                    holasi= 0
+                                    print(f"La coordenada 1 es la que está mas al {holasi}")
+                                    print(f"La coordenada 2 es la que está mas al {holasi2}")
+                                                        
+
+                                    decicion_de_cierre = int(input("Presiona 0 para regresar al menú 0 Presione 1,2 o 3 para actuallizar la respectiva coordenada "))
+                                                        
+                                    if decicion_de_cierre == 0:
+                                        break
+                                    elif decicion_de_cierre == 1:
+                                        CambioDeMatrix()
+                                                            
+                                    elif decicion_de_cierre == 2:
+                                        CambioDeMatrix()
+                                                            
+                                    elif decicion_de_cierre == 3:
+                                        CambioDeMatrix()
+                                                            
+                                    else:
+                                        print("la decicion no esta permitida")
 
 
-                            else:
-                                #variable que verifica la opcion de segunda buelta :D
-                                verfica_si_es_la_primera_vez_ingresada_opcion2 = verfica_si_es_la_primera_vez_ingresada_opcion2 + 1
 
-                                print(f"Has elegido la opcion Numero {DeccicionTomada1}")
-                                print("Ingresar coordenadas actuales")
-                                
-                                
+                            elif recorrido ==0:
+                                recorrido = 1
+                                #funcion que permite hacer el cambio de la sellecionada
+                                def CambioDeMatrix ():
+                                    
+                                    while True:
+                                        try:
+                                            
+                                            latitud = float(input(f"ingresa la  latitud N {decicion_de_cierre}:  "))
+                                            numero_de_letras = len(str(latitud))
+                                            
+                                            if latitud <= latitud_superior and latitud >= latitud_inferior  and numero_de_letras == 6 :
+                                                
+                                                print("las coordenadas entan dentro del rango")
+                                                longitud = float(input(f"Ingresa  la longitud N {decicion_de_cierre}:  "))
+                                                
+                                                numero_de_letras2 = len(str(longitud))
+
+                                                if longitud <= longitud_superior and longitud >= longitud_inferior and numero_de_letras2 == 7:
+                                                    
+                                                    print("Cordenadas dentro del rango")
+                                                    P [decicion_de_cierre-1][0] = latitud
+                                                    P [decicion_de_cierre-1][1] = longitud
+
+                                                    
+                                                    print(f"Coordenada [latitud][longitud] 1 : {P[0]}")
+                                                    print(f"Coordenada [latitud][longitud] 2 : {P[1]}")
+                                                    print(f"Coordenada [latitud][longitud] 3 : {P[2]}")
+                                                    break
+
+                                                else:
+                                                    system("cls")
+                                                    print("Error las corrdenadas entan fuera del rango ") 
+                                                    
+                                            else:
+                                                print("Error las coordenadas son incorrectras")
+                                        except ValueError:
+                                            print("Error")
 
                                 # pide las distintas coordenadas y las verfica y luego las ingresa a  la matris
                                 while True:
                                     try:
-
-                                        #este contrla la la opcion y rompe cuando y ase an ingresado las matrices
+                                        
+                                        #este contrla la laopcion y rompe cuando y ase an ingresado las matrices
                                         if uno ==3:
                                             break
-                                        latitud = float(input(f"ingresa la  latitud N {uno+1}:  "))
+                                        
+                                        latitud = float(input(f"ingresa la  latitud N {uno +1 }:  "))
+                                        
                                         numero_de_letras = len(str(latitud))
                                         
                                         if latitud <= latitud_superior and latitud >= latitud_inferior  and numero_de_letras == 6 :
@@ -437,7 +432,6 @@ while contador < 4:
                                             print("las coordenadas entan dentro del rango")
                                             longitud = float(input(f"Ingresa  la longitud N {uno +1}:  "))
                                             #esta variable actualiza los numeros de la opcion cuando se ingresan las corrdenadas
-                                            uno = uno + 1
                                             
                                             numero_de_letras2 = len(str(longitud))
 
@@ -455,7 +449,7 @@ while contador < 4:
                                                 print(f"Coordenada [latitud][longitud] 1 : {P[0]}")
                                                 print(f"Coordenada [latitud][longitud] 2 : {P[1]}")
                                                 print(f"Coordenada [latitud][longitud] 3 : {P[2]}")
-                                                
+                                                uno = uno + 1
 
                                                 
                                                 if Indice_de_lamatris2 == 3:
@@ -463,15 +457,63 @@ while contador < 4:
 
 
                                                 if operacion_definida ==1:
-                                                    FuncionIterativa()
-                                                    
+
+                                                    while True:
+                                                        holasi= ""
+                                                        holasi2 = ""
+                                                        a1 = P[0][0]
+                                                        b1 = P[0][1]
+
+                                                        a2 = P[1][0]
+                                                        b2 = P[1][1]
+
+                                                        a3 = P[2][0]
+                                                        b3 = P[2][0]
+
+                                                        Promedio_latitud = (a1+a2+b3) /3
+                                                        Promedio_longitud = (b1+b2+b3)/3
+
+                                                        if Promedio_latitud < 0:
+                                                            holasi = "Sur"
+                                                        elif Promedio_longitud <0:
+                                                            holasi = "Oeste"
+                                                        elif Promedio_latitud >0:
+                                                            holasi2 = "Norte"
+                                                        elif Promedio_longitud >0:
+                                                            holasi2 = "Este"
+                                                        
+
+                                                        print(f"La coordenada 1 es la que está mas al {holasi}")
+                                                        print(f"La coordenada 2 es la que está mas al {holasi2}")
+                                                       
+
+                                                        decicion_de_cierre = int(input("Presiona 0 para regresar al menú 0 Presione 1,2 o 3 para actuallizar la respectiva coordenada "))
+                                                        
+                                                        if decicion_de_cierre == 0:
+                                                            break
+                                                        elif decicion_de_cierre == 1:
+                                                            CambioDeMatrix()
+                                                            
+                                                        elif decicion_de_cierre == 2:
+                                                            CambioDeMatrix()
+                                                            
+                                                        elif decicion_de_cierre == 3:
+                                                            CambioDeMatrix()
+                                                            
+                                                        else:
+                                                            print("la decicion no esta permitida")
+                                                
                                             else:
                                                 system("cls")
-                                                print("Error las corrdenadas entan fuera del rango ")   
+                                                print("Error las corrdenadas entan fuera del rango ") 
+                                                uno  = uno - 1  
                                         else:
                                             print("Error las coordenadas son incorrectras")
                                     except ValueError:
                                         print("Error")
+                        
+
+                               
                                 
                         elif DeccicionTomada == 3:
                            

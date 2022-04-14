@@ -32,7 +32,36 @@ while True:
         break
     elif OP == 2:
         if recorrido ==1:
-            print("las contraseñas han sido gurdadas")
+            print("Estas son las coordenadas! ")
+
+            print(f"Coordenada [latitud][longitud] 1 : {P[0]}")
+            print(f"Coordenada [latitud][longitud] 2 : {P[1]}")
+            print(f"Coordenada [latitud][longitud] 3 : {P[2]}")
+
+            while True:
+                holasi= 0
+                print(f"La coordenada 1 es la que está mas al {holasi}")
+                print(f"La coordenada 2 es la que está mas al {holasi}")
+                                    
+
+                decicion_de_cierre = int(input("Presiona 0 para regresar al menú 0 Presione 1,2 o 3 para actuallizar la respectiva coordenada "))
+                                    
+                if decicion_de_cierre == 0:
+                    break
+                elif decicion_de_cierre == 1:
+                    CambioDeMatrix()
+                                        
+                elif decicion_de_cierre == 2:
+                    CambioDeMatrix()
+                                        
+                elif decicion_de_cierre == 3:
+                    CambioDeMatrix()
+                                        
+                else:
+                    print("la decicion no esta permitida")
+
+
+
         elif recorrido ==0:
             recorrido = 1
             #funcion que permite hacer el cambio de la sellecionada
@@ -65,7 +94,8 @@ while True:
 
                             else:
                                 system("cls")
-                                print("Error las corrdenadas entan fuera del rango ")   
+                                print("Error las corrdenadas entan fuera del rango ") 
+                                
                         else:
                             print("Error las coordenadas son incorrectras")
                     except ValueError:
@@ -137,7 +167,8 @@ while True:
                             
                         else:
                             system("cls")
-                            print("Error las corrdenadas entan fuera del rango ")   
+                            print("Error las corrdenadas entan fuera del rango ") 
+                            uno  = uno - 1  
                     else:
                         print("Error las coordenadas son incorrectras")
                 except ValueError:
