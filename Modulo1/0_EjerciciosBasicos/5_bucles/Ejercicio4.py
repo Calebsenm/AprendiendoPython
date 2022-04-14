@@ -8,9 +8,9 @@ desde ese número hasta cero separados por comas.
 12 / 04 / 2022  5:15
 
 """
+from os import system
 
-from tkinter import NUMERIC
-
+system("cls")
 
 Numero = int(input("ingresa un numero: "))
 
