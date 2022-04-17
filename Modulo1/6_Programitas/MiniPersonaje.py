@@ -14,6 +14,10 @@ y un diseño de un personaje, en el que se evidencie el uso de ASCII art.
 17 / 04 / 2022   6:41 PM :D
 
 """
+from os import system
+
+
+system("cls")
  
 print("  ___ ___ ___  ") 
 print(" / _ (_-</ _ \ ")
