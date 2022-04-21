@@ -144,7 +144,7 @@ def funcionDelmuñeco():
                        _________
                       |         |
                       |         |                            
-                    \\0/        |
+                     \\0/        |
                                 |
                                 |
                                 |
@@ -194,9 +194,9 @@ system("cls")
 
 M = [["colombia","brazil","ecuador","peru","venezuela"],
      ["tamarindo","aguacate","mandarina","banano","nispero"],
-     ["vallenato","opera","Rock","bachata","salsa"],
+     ["vallenato","opera","rock","bachata","salsa"],
      ["loro","ornitorrinco","hormiga","caballo","saltamontes"],
-     ["tomate","zanahoria","Berenjena","cebolla","pimentón"]
+     ["tomate","zanahoria","berenjena","cebolla","pimentón"]
     ]
 
 print("Bienvenido al juego del Ahorcado")
