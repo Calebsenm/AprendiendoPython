@@ -2,7 +2,7 @@
 Reto numero 4..
  
 se inicia el 21 /04/2022 a las 10:04 am 
-
+se terminó el 21/04/2022 a las  11:46 pm  hubo copia por que no pude entenderlo   :C
 
 
 """
