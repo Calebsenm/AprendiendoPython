@@ -52,6 +52,8 @@ while True:
     elif desicion == 4:
         system("cls")
 
+        
+       
         numero1 = int(input("Por favor ingresa un numero >>> "))
         numero2 = int(input("Por favor ingresa el siguiente numero >>"))
         operacion = math.log(numero1,numero2)    
@@ -143,6 +145,6 @@ while True:
 
         print(f"El numero decimal es >>> {Suma_lita}")
 
-        time.sleep(1111110)
+        time.sleep(10)
 
 
