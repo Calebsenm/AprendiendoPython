@@ -2,10 +2,10 @@
 Se inicia el 23:04 2022 a las 10:08 pm
 """
 
-
 from operator import index
 from os import system, terminal_size
 from re import U
+
 import time
 from math import asin, cos,sin,sqrt
 
@@ -326,7 +326,7 @@ while contador < 4:
                             print("Guardar archivo con ubicación cercana")
 
                             #Aqui inicia el reto numero 5 y final por Dios ya terminé
-                            if 0 in P[0]:
+                            if tiempo_moto == "":
                                 system("cls")
                                 print("Error De alistamiento")
                                 time.sleep(1)
@@ -334,41 +334,52 @@ while contador < 4:
 
                                 informacion = {
 
-                                            "actual" : [latitud,longitud],
-                                            "zonawifi": [Matriz[posicion1][0],Matriz[posicion1][1],Matriz[posicion1][2]],
-                                            "recorrido":[lista_distancias[posicion1],"Moto",tiempo_moto]
+                                            'actual' : [latitud,longitud],
+                                            'zonawifi': [Matriz[posicion1][0],Matriz[posicion1][1],Matriz[posicion1][2]],
+                                            'recorrido':[lista_distancias[posicion1],"Moto",tiempo_moto]
                                 }
-                                
+                                informacion={
+                                "actual":[latitud,longitud],
+                                "zonawifi":Matriz[posicion1],
+                                "recorrido":[round(lista_distancias[posicion1]),"moto",round(tiempo_moto)]
+                                }
                                 while True:
 
+                                    system("cls")
                                     print(informacion)
                                     DeccicionTomadas = int(input("Esta deacuerdo con la imfomacion a esportar >>  Presione 1 para comfirmar , 0 para ingresar al menú principal"))
 
                                     if DeccicionTomadas == 0:
                                         break
                                     elif DeccicionTomadas == 1:
+                                        print("Esportando archivo...")
+                                        
+                                        fichero=open("informacion.txt","w")
+                                        fichero.write(str(informacion))
+                                        fichero.close()
+                                        print("Exportando archivo")
 
 
-
-
+                                        time.sleep(5)
                             
-                        elif DeccicionTomada == 5:                            
-                            print(f"Has elegido la opcion Numero {DeccicionTomada1}")
-                            print("Actualizar registros de zonas wifi desde archivo : ")
+                        elif DeccicionTomada == 5:  
 
-
-
-
-
-
-
-
-
-
-
-
-
-                            Cambiode_contraseña = input("Ingresa un numero ")
+                            fichero=open("informacion.txt","r")
+                            i=0
+                            for linea in fichero.readlines():
+                                Matriz[i]=linea.strip().split(",")
+                                Matriz[i][0]=Matriz[i][0]
+                                Matriz[i][1]=Matriz[i][1]
+                                Matriz[i][2]=Matriz[i][2]
+                                i+=1
+                            fichero.close()
+                            print("Estas son las zonas wifi actualizadas")
+                            print(Matriz)
+                            while True:
+                                opsub=input("Datos de coordenadas para zonas wifi actualizados, presione 0 para regresar al menú principal")
+                                if opsub=="0":
+                                    break
+                           
                         # si el usuario ingresa la opcion numero 6
                         elif DeccicionTomada == 6:                            
                             print(f"Has elegido la opcion Numero 6")
