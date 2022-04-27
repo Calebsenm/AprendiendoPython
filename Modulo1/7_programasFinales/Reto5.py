@@ -1,5 +1,6 @@
 """
 Se inicia el 23:04 2022 a las 10:08 pm
+Se termina el 24:04 2022 a las 9:43 pm Terminé copiando no comprendi muy birn lo que devia desarrollar
 """
 
 from operator import index
