@@ -332,7 +332,7 @@ while contador < 4:
                                 print("Error De alistamiento")
                                 time.sleep(1)
                             if not 0 in P[0]:
-
+                                
                                 informacion = {
 
                                             'actual' : [latitud,longitud],
