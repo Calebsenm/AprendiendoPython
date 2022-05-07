@@ -5,8 +5,11 @@ en euros con dos decimales y muestre
 por pantalla el número de euros y el 
 número de céntimos del precio introducido.
 
+finikitado no tengo idea....
 """
 
 Precio = input("Ingresa un precio >> ")
 
-print(Precio[:Precio.find(".")], "Euros y ", Precio[Precio.find(".")+1: ])
+print(Precio[:Precio.find(".")], "Euros y ", Precio[Precio.find(".")+1: ],"centimos")
+
+

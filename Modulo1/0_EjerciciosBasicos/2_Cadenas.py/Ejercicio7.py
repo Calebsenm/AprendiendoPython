@@ -11,9 +11,6 @@ electrónico con el mismo nombre
 
 """
 
-
-
-
 correo_electronico = input("Ingresa tu correo electronico >> ")
 email = "@ceu.es."
 

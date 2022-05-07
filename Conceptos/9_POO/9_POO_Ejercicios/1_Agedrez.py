@@ -9,6 +9,8 @@ from numpy import sort
 from pygame import Color
 
 
+#todas las funciones importantes
+
 B = ["\u2659","\u2656","\u2655","\u2658","\u2654","\u2657"]
 N = ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 
@@ -58,14 +60,12 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
     #la funcion cambia la pocision de la ficha.... 
     def Funcion_ingresaFicha(ingreso,ingreso2,LLave):
-
         while True:
             print(jugador)
 
             Numero_fila2 = int(input(ingreso2))
             Letra_columna2 = input(ingreso)
             
-           
             #Funcion que cambia las opciones
             
             if Numero_fila2 == 8:
@@ -114,20 +114,16 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 Ficha2 = M[fila2][columna2]
 
                 #guarda la posicion de la ficha tomada
-                # LFicha.append(fila2)
-                # LFicha.append(columna2)
                 LFicha.append(Ficha2)
                 LFicha.pop(0)
-                # LFicha.remove(0)
                 
                 #verifica la ficha elegida y está bacia
                 if Ficha2 ==".":
                     print("La ficha no existe")
                 #verifica si ha ingresado una ficha contraria
-                
                 elif Ficha2 == Colorde_ficha[0] or Ficha2 == Colorde_ficha[1] or Ficha2 == Colorde_ficha[2] or Ficha2 == Colorde_ficha[3] and Ficha2 == Colorde_ficha[4] or Ficha2 == Colorde_ficha[5]:
                     print("Error de turno")
-
+                #coloca el punto de la posisicon donde se movia
                 else:
                     print(Ficha2)
                     M[fila2][columna2]="."
@@ -136,9 +132,47 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
             LLave1 = LLave
             if LLave1 == False:
-                # M[fila2][columna2] = M[fila2][columna2] 
-                M[fila2][columna2] = LFicha[0]
-                break
+                #esta llave activa si se puede hacer el movimiento o no 
+                llave_veryficacion = 0
+
+                def Algoritmo(La_ficha):
+                    #Aqui de de ir el algorimo que coloca las posibilidades de la ficha 
+                    #verifica que ficha es 
+                    
+
+                    if LFicha[0] == Colorde_ficha[0]:
+                        #peon
+                        Posicion_ficha = [fila2,columna2]
+
+                        #debes definir la posicion del peon y verificar que tien en frente
+                        #deves activar la funcion de cierre para que el cambio se efectue
+                        
+
+
+                        pass
+                    elif LFicha[0] == Colorde_ficha[1]:
+                        #Torre
+                        pass
+                    elif LFicha[0] == Colorde_ficha[2]:
+                        #Reina
+                        pass
+                    elif LFicha[0] == Colorde_ficha[3]:
+                        #caballo
+                        pass
+                    elif LFicha[0] == Colorde_ficha[4]:
+                        #reY
+                        pass
+                    elif LFicha[0] == Colorde_ficha[5]:
+                        #Arfil 
+                        pass
+                    
+                Algoritmo(LFicha[0])
+
+                #coloca el la ficha en la posicion colocada
+                if llave_veryficacion == True:
+
+                    M[fila2][columna2] = LFicha[0]
+                    break
     #Se pasqa por parametros las occiones y una llave que activa la opcion de eleccion o la opcion de colocar fica 
     Funcion_ingresaFicha("Ingrese La letra de la ficha >> ","Ingrese EL numero de la ficha >> ",True)
     #trae la posicion de la ficha
@@ -151,7 +185,6 @@ Contador_cambio = 2
 while True:
     
     #hace que cambien de occion van rotando las acciones...
-
     if Contador_cambio %2 == 0:
         # se pasa por parametro las poscciones de la letra dentro de la matriz M
         # y el Color de ficha que verifica si le corresponde el juego 
