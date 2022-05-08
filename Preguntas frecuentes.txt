@@ -13,12 +13,9 @@ print(f"el decimal es >>> {decimal:.2f}")
 
 hola = "Hello world"
 print(hola.replace(hola,"Hello world"))
-<<<<<<< HEAD:Preguntas frecuentees.txt
 
 #split()
 #divide la palabra
 str = "Pasta, pollo, jugo, leche"
 >>> str.split(", ")
 ['Pasta', 'pollo', 'jugo', 'leche']
-=======
->>>>>>> 17b113d2f36c6d17329b66d323f3b4aad09dabe6:Preguntas frecuentes.txt
