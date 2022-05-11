@@ -3,15 +3,14 @@ Será que se puede crear el jeugo del agedrez en pyton con la consola..  yo no l
 Se inició este proyecto el dia 29/04/2022
 """
 """
-horas concientes de inversion 5 horas  hasta las 8:28  del dia 9/05/2022
-                                
+horas concientes de inversion 5 horas  hasta las 8:28  del dia 9/05/2022    5 horas
+dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 hora                              
 """
 from os import system
 from pickle import TRUE
 from time import time
 
-from numpy import sort
-from pygame import Color
+
 
 
 #todas las funciones importantes
@@ -49,7 +48,7 @@ LFicha = [""]
 LLave_cambio_posicion = [""]
 
 #Almacena la ubicacion de la ficha
-Ubicacion_ficha = []
+Ubicacion_ficha = [0,0,0,0]
 
 #se guardarán los movimientos permitidos
 MovimientoPeon = []
@@ -92,7 +91,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
         while True:
             print(jugador)
 
-            Numero_fila2 = int(input(ingreso2))
+            Numero_fila2 = int(input(ingreso2)) 
             Letra_columna2 = input(ingreso)
 
             
@@ -141,9 +140,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             #GUARDARÁ LA POSICION DE LA FICHA PASANDO COMO LLAVE TRUE O FALSE
             if LLave == True:
                 #guarda donde esta
+                Ubicacion_ficha.pop(0)
+                Ubicacion_ficha.pop(1)
+                Ubicacion_ficha.pop(2)
+                Ubicacion_ficha.pop(3)
+
                 Ubicacion_ficha.append(fila2)
                 Ubicacion_ficha.append(columna2)
             elif LLave == False:
+                
                 #guarda donde se moverá
                 Ubicacion_ficha.append(fila2)
                 Ubicacion_ficha.append(columna2)
@@ -182,83 +187,58 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 
 
                 def Algoritmo(La_ficha,peon,torre,reina,caballo,rey,arfil):
-                    #Aqui de de ir el algorimo que coloca las posibilidades de la ficha 
-                    #verifica que ficha es 
-                    
-                    #Algoritmo del peon
-                    #Ve que ficha es i apartir de eso empiezan los algoritmos
+                    #Ve que ficha es, y  apartir de eso empiezan los algoritmos
                     if La_ficha == peon:
-                        #debes definir la posicion del peon 
-                        Posicion_ficha = [fila2,columna2]
-                        print(Posicion_ficha)
-                        a = input("")
-                        #voy a definir si está en la primera posicion o no ficha negra 
-                        if Ubicacion_ficha[0] == M[8]:
+                        #peon 
+                        print("El peon esta en ")
+                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        print("El Peon se mover a ")
+                        print(Ubicacion_ficha[2][3])
+                        #posicion relativa de las fichas
+                        Posicion_Relativa = [0,0]
+                        Movimento_relativo = [0,0]
+                        #Movimientos Permitidos 
+                        Movimientos_Permitidos = [[1],[1]]
+                        #que ficha es negra o blanca
+                        if Colorde_ficha == N:
                             
-                            if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == ".":
-                                #pocicion libre
-                                MovimientoPeon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]])
+                            #ficha negra
+
+                            ##guarda las possiconoes de la ficcha 
+                            Posicion_Relativa.pop(0)
+                            Posicion_Relativa.pop(1)
+
+                            Posicion_Relativa.append(Ubicacion_ficha[0])
+                            Posicion_Relativa.append(Ubicacion_ficha[1])
+
+
+                            #limpia los moviemintos y luego los igresa
+                            Movimientos_Permitidos.clear()
+                            #verifica que tiene en frente
+                            if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
+
+                                Movimientos_Permitidos.append()
+
+                            for i in B:
+                                
+                                #frente isquierda
+                                if B == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1]:
+                                    Movimientos_Permitidos.append()
+                                #frente Derecha
+                                elif B == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1]:
+                                    Movimientos_Permitidos.append()
                             
-                            elif M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]]==".":
-                                MovimientoPeon.append([Ubicacion_ficha[0]-2,Ubicacion_ficha[1]])
-                            #verifica si la posccion permitida es igual  la posicion ingresada para luego guardarla
-                            if MovimientoPeon[0][0]  == Ubicacion_ficha[2] and MovimientoPeon[0][1] == Ubicacion_ficha[3]:
-                                #esta es para confirmar el cambio :D 
-                                LLave_cambio_posicion.append(True)
-                                LLave_cambio_posicion.pop(0)
-                            elif MovimientoPeon[1][0]  == Ubicacion_ficha[2] and MovimientoPeon[1][1] == Ubicacion_ficha[3]:
-                                #esta es para confirmar el cambio :D 
-                                LLave_cambio_posicion.append(True)
-                                LLave_cambio_posicion.pop(0)
-                            #LIMPIA LAS POCCICIONES :D
-                            Ubicacion_ficha.clear()
-                        #hace el movimiento si la ficha ya no está en la posicion inicial
-                        else:
-                            if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == ".":
-                                #pocicion libre
-                                MovimientoPeon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]])
-                            #verifica si la posccion permitida es igual  la posicion ingresada para luego guardarla
-                            if MovimientoPeon[0][0]  == Ubicacion_ficha[2] and MovimientoPeon[0][1] == Ubicacion_ficha[3]:
-                                #esta es para confirmar el cambio :D 
-                                LLave_cambio_posicion.append(True)
-                                LLave_cambio_posicion.pop(0)
-                            #LIMPIA LAS POCCICIONES :D
-                            Ubicacion_ficha.clear()
 
+                            Movimento_relativo.pop(0)
+                            Movimento_relativo.pop(1)
 
-
-
-                        #si es ficha blanca 
-                        if Ubicacion_ficha[0] == M[3]:
-                            if M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == ".":
-                                #pocicion libre
-                                MovimientoPeon.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]])
+                            Movimento_relativo.append(Movimento_relativo[0])
+                            Movimento_relativo.append(Movimento_relativo[1])
                             
-                            elif M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]]==".":
-                                MovimientoPeon.append([Ubicacion_ficha[0]+2,Ubicacion_ficha[1]])
-                            #verifica si la posccion permitida es igual  la posicion ingresada para luego guardarla
-                            if MovimientoPeon[0][0]  == Ubicacion_ficha[2] and MovimientoPeon[0][1] == Ubicacion_ficha[3]:
-                                #esta es para confirmar el cambio :D 
-                                LLave_cambio_posicion.append(True)
-                                LLave_cambio_posicion.pop(0)
-                            elif MovimientoPeon[1][0]  == Ubicacion_ficha[2] and MovimientoPeon[1][1] == Ubicacion_ficha[3]:
-                                #esta es para confirmar el cambio :D 
-                                LLave_cambio_posicion.append(True)
-                                LLave_cambio_posicion.pop(0)
-                            #LIMPIA LAS POCCICIONES :D
-                            Ubicacion_ficha.clear()
-                        #hace el movimiento si la ficha ya no está en la posicion inicial
-                        else:
-                            if M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == ".":
-                                #pocicion libre
-                                MovimientoPeon.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]])
-                            #verifica si la posccion permitida es igual  la posicion ingresada para luego guardarla
-                            if MovimientoPeon[0][0]  == Ubicacion_ficha[2] and MovimientoPeon[0][1] == Ubicacion_ficha[3]:
-                                #esta es para confirmar el cambio :D 
-                                LLave_cambio_posicion.append(True)
-                                LLave_cambio_posicion.pop(0)
-                            #LIMPIA LAS POCCICIONES :D
-                            Ubicacion_ficha.clear()
+                            if Movimento_relativo[0]
+                            
+
+                                
 
 
 
@@ -266,14 +246,18 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
 
 
+                            #si todo está ok pasa esto 
+                            Ingreso_ficha()
 
+                            LLave_cambio_posicion.pop(0)
+                            LLave_cambio_posicion.push(True)
 
-                        #verificar que tien en frente
-                        #deves activar la funcion de cierre para que el cambio se efectue
-                        
-
-
-                        
+                            
+                        elif Colorde_ficha == B:
+                            #ficha blanca
+                            pass
+                           
+                     
                     elif La_ficha == torre:
                         #Torre
                         pass
@@ -289,13 +273,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     elif La_ficha == arfil:
                         #Arfil 
                         pass
+                    
                 #pasa la ficha y la posicion de la ficha cuando se selecciona
                 Algoritmo(LFicha[0],peon=Colorde_ficha2[0],torre=Colorde_ficha2[1],reina=Colorde_ficha2[2],caballo=Colorde_ficha2[3],rey=Colorde_ficha2[4],arfil=Colorde_ficha2[5])
 
                 #coloca el la ficha en la posicion colocada
-                if LLave_cambio_posicion[0] == True:
-
+               
+                def Ingreso_ficha():
                     M[fila2][columna2] = LFicha[0]
+                if LLave_cambio_posicion[0] == True:
                     break
     #Se pasqa por parametros las occiones y una llave que activa la opcion de eleccion o la opcion de colocar fica 
     Funcion_ingresaFicha("Ingrese La letra de la ficha >> ","Ingrese EL numero de la ficha >> ",True)
