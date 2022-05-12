@@ -4,13 +4,13 @@ Se inició este proyecto el dia 29/04/2022
 """
 """
 horas concientes de inversion 5 horas  hasta las 8:28  del dia 9/05/2022    5 horas
-dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 hora                              
+dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 hora    
+11 / 05 / 2022                                                              1 hora hasta las 7:00                          
 """
 from os import system
 from pickle import TRUE
 from time import time
-
-
+import math
 
 
 #todas las funciones importantes
@@ -140,10 +140,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             #GUARDARÁ LA POSICION DE LA FICHA PASANDO COMO LLAVE TRUE O FALSE
             if LLave == True:
                 #guarda donde esta
-                Ubicacion_ficha.pop(0)
-                Ubicacion_ficha.pop(1)
-                Ubicacion_ficha.pop(2)
-                Ubicacion_ficha.pop(3)
+                Ubicacion_ficha.clear()
+              
 
                 Ubicacion_ficha.append(fila2)
                 Ubicacion_ficha.append(columna2)
@@ -193,7 +191,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print("El peon esta en ")
                         print(Ubicacion_ficha[0],Ubicacion_ficha[1])
                         print("El Peon se mover a ")
-                        print(Ubicacion_ficha[2][3])
+                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
                         #posicion relativa de las fichas
                         Posicion_Relativa = [0,0]
                         Movimento_relativo = [0,0]
@@ -205,8 +203,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             #ficha negra
 
                             ##guarda las possiconoes de la ficcha 
-                            Posicion_Relativa.pop(0)
-                            Posicion_Relativa.pop(1)
+                            Posicion_Relativa.clear()
+                            
 
                             Posicion_Relativa.append(Ubicacion_ficha[0])
                             Posicion_Relativa.append(Ubicacion_ficha[1])
@@ -217,45 +215,97 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             #verifica que tiene en frente
                             if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
 
-                                Movimientos_Permitidos.append()
+                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                Movimientos_Permitidos.append(Posicion_Relativa[1])
 
                             for i in B:
                                 
                                 #frente isquierda
                                 if B == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1]:
-                                    Movimientos_Permitidos.append()
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
                                 #frente Derecha
                                 elif B == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1]:
-                                    Movimientos_Permitidos.append()
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
                             
 
-                            Movimento_relativo.pop(0)
-                            Movimento_relativo.pop(1)
-
-                            Movimento_relativo.append(Movimento_relativo[0])
-                            Movimento_relativo.append(Movimento_relativo[1])
-                            
-                            if Movimento_relativo[0]
+                            Movimento_relativo.clear()
                             
 
-                                
+                            Movimento_relativo.append(Ubicacion_ficha[2])
+                            Movimento_relativo.append(Ubicacion_ficha[3])
+                            
+                            #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
+                            movi = 0
+                            cantidad = len(Movimientos_Permitidos) /2
+                            cantidad = math.trunc(cantidad)
+                            for i in range(cantidad):
 
+                                #si encuentra el movimiento igual al movimiento 
+                                if Movimientos_Permitidos[movi] == Movimento_relativo[movi] and Movimientos_Permitidos[movi+1] == Movimento_relativo[movi+1] :
+                                    #si todo está ok pasa esto 
+                                    M[fila2][columna2] = LFicha[0]
 
-
-
-
-
-
-                            #si todo está ok pasa esto 
-                            Ingreso_ficha()
-
-                            LLave_cambio_posicion.pop(0)
-                            LLave_cambio_posicion.push(True)
-
+                                    LLave_cambio_posicion.pop(0)
+                                    LLave_cambio_posicion.append(True)
+                                else:
+                                    print("Movimiento Fuera de rango ")
+                                movi = movi + 2
                             
                         elif Colorde_ficha == B:
-                            #ficha blanca
-                            pass
+                            #ficha Blanca
+
+                            ##guarda las posiciones de la ficcha 
+                            Posicion_Relativa.clear()
+                          
+
+                            Posicion_Relativa.append(Ubicacion_ficha[0])
+                            Posicion_Relativa.append(Ubicacion_ficha[1])
+
+
+                            #limpia los moviemintos y luego los igresa
+                            Movimientos_Permitidos.clear()
+                            #verifica que tiene en frente
+                            if M[Posicion_Relativa[0]+1][Posicion_Relativa[1]] == ".":
+
+                                Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
+                                Movimientos_Permitidos.append(Posicion_Relativa[1])
+
+                            for i in N:
+                                
+                                #frente isquierda
+                                if N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]-1]:
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
+                                #frente Derecha
+                                elif N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]+1]:
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                            
+
+                            Movimento_relativo.clear()
+                        
+
+                            Movimento_relativo.append(Ubicacion_ficha[2])
+                            Movimento_relativo.append(Ubicacion_ficha[3])
+                            
+                            #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
+                            movi = 0
+                            cantidad = len(Movimientos_Permitidos) /2
+                            cantidad = math.trunc(cantidad)
+                            for i in range(cantidad):
+
+                                #si encuentra el movimiento igual al movimiento 
+                                if Movimientos_Permitidos[movi] == Movimento_relativo[movi] and Movimientos_Permitidos[movi+1] == Movimento_relativo[movi+1] :
+                                    #si todo está ok pasa esto 
+                                    M[fila2][columna2] = LFicha[0]
+
+                                    LLave_cambio_posicion.pop(0)
+                                    LLave_cambio_posicion.append(True)
+                                else:
+                                    print("Movimiento Fuera de rango ")
+                                movi = movi + 2
                            
                      
                     elif La_ficha == torre:
@@ -279,8 +329,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                 #coloca el la ficha en la posicion colocada
                
-                def Ingreso_ficha():
-                    M[fila2][columna2] = LFicha[0]
+                
+                   
                 if LLave_cambio_posicion[0] == True:
                     break
     #Se pasqa por parametros las occiones y una llave que activa la opcion de eleccion o la opcion de colocar fica 
