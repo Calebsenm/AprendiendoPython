@@ -5,7 +5,19 @@ Se inició este proyecto el dia 29/04/2022
 """
 horas concientes de inversion 5 horas  hasta las 8:28  del dia 9/05/2022    5 horas
 dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 hora    
-11 / 05 / 2022                                                              1 hora hasta las 7:00                          
+11 / 05 / 2022                                                              1 hora hasta las 7:00     
+12 / 05 / 2022                                                              2 horas perdidas     
+13 / 05 / 2022                                                              2 horas  se logro identificar el bug XD y se corrigio una parte                
+"""
+
+
+"""
+EL movimiento del peon tiene un bug el tablero esta algo invertido no se por que asi que debes solucionar
+para el la derecha es isquierdad ajjajajaj pero logre solucionar el bug   en el condicional 
+
+linea 295          ahora tienes que ver como solucionarlo XD
+
+para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos
 """
 from os import system
 from pickle import TRUE
@@ -146,10 +158,24 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 Ubicacion_ficha.append(fila2)
                 Ubicacion_ficha.append(columna2)
             elif LLave == False:
-                
+                #la limpia
+
+                Ubicacion_ficha.append(0)
+                Ubicacion_ficha.append(0)
+                Ubicacion_ficha.pop(2)
+                Ubicacion_ficha.pop(2)
+              
+
                 #guarda donde se moverá
                 Ubicacion_ficha.append(fila2)
                 Ubicacion_ficha.append(columna2)
+
+                #elimina los ceros de la posicion agregada
+                if 0 in Ubicacion_ficha:
+                    Ubicacion_ficha.pop(2)
+                    Ubicacion_ficha.pop(2)
+
+
             else:
                 print("Nada por aqui nada por allá")
 
@@ -173,7 +199,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 #coloca el punto de la posisicon donde se movia
                 else:
                     print(Ficha2)
-                    M[fila2][columna2]="."
+                    # M[fila2][columna2]="."
                     break
 
 
@@ -182,7 +208,11 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             llave_veryficacion = 0
 
             if LLave1 == False:
-                
+                #posicion relativa de las fichas
+                #ubicavion
+                Posicion_Relativa = [0,0]
+                #se moverá 
+                Movimento_relativo = [0,0]
 
                 def Algoritmo(La_ficha,peon,torre,reina,caballo,rey,arfil):
                     #Ve que ficha es, y  apartir de eso empiezan los algoritmos
@@ -192,9 +222,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print(Ubicacion_ficha[0],Ubicacion_ficha[1])
                         print("El Peon se mover a ")
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
-                        #posicion relativa de las fichas
-                        Posicion_Relativa = [0,0]
-                        Movimento_relativo = [0,0]
+                        
                         #Movimientos Permitidos 
                         Movimientos_Permitidos = [[1],[1]]
                         #que ficha es negra o blanca
@@ -245,7 +273,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 #si encuentra el movimiento igual al movimiento 
                                 if Movimientos_Permitidos[movi] == Movimento_relativo[movi] and Movimientos_Permitidos[movi+1] == Movimento_relativo[movi+1] :
                                     #si todo está ok pasa esto 
-                                    M[fila2][columna2] = LFicha[0]
+                                    # M[fila2][columna2] = LFicha[0]
 
                                     LLave_cambio_posicion.pop(0)
                                     LLave_cambio_posicion.append(True)
@@ -267,21 +295,27 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             #limpia los moviemintos y luego los igresa
                             Movimientos_Permitidos.clear()
                             #verifica que tiene en frente
-                            if M[Posicion_Relativa[0]+1][Posicion_Relativa[1]] == ".":
+                            if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
 
-                                Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
+                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                 Movimientos_Permitidos.append(Posicion_Relativa[1])
 
                             for i in N:
                                 
                                 #frente isquierda
                                 if N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]-1]:
-                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                    
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
                                     Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
                                 #frente Derecha
                                 elif N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]+1]:
-                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
                                     Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                                else:
+                                    print("Error movimiento fuera de rango ")
+                                   
+                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]])
+                                    print(Movimientos_Permitidos)
                             
 
                             Movimento_relativo.clear()
@@ -294,12 +328,12 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             movi = 0
                             cantidad = len(Movimientos_Permitidos) /2
                             cantidad = math.trunc(cantidad)
+                           
                             for i in range(cantidad):
 
                                 #si encuentra el movimiento igual al movimiento 
                                 if Movimientos_Permitidos[movi] == Movimento_relativo[movi] and Movimientos_Permitidos[movi+1] == Movimento_relativo[movi+1] :
-                                    #si todo está ok pasa esto 
-                                    M[fila2][columna2] = LFicha[0]
+                                   
 
                                     LLave_cambio_posicion.pop(0)
                                     LLave_cambio_posicion.append(True)
@@ -328,11 +362,18 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 Algoritmo(LFicha[0],peon=Colorde_ficha2[0],torre=Colorde_ficha2[1],reina=Colorde_ficha2[2],caballo=Colorde_ficha2[3],rey=Colorde_ficha2[4],arfil=Colorde_ficha2[5])
 
                 #coloca el la ficha en la posicion colocada
-               
-                
-                   
                 if LLave_cambio_posicion[0] == True:
-                    break
+                    #posiccion anterior
+                    M[Posicion_Relativa[0]][Posicion_Relativa[1]]="."
+                    #posicion de movimiento
+                    M[fila2][columna2] = LFicha[0]
+
+                    #limpia la llave para la proxima entrada
+                    LLave_cambio_posicion.pop(0)
+                    LLave_cambio_posicion.append(0)
+
+                    break #si todo está ok pasa esto 
+
     #Se pasqa por parametros las occiones y una llave que activa la opcion de eleccion o la opcion de colocar fica 
     Funcion_ingresaFicha("Ingrese La letra de la ficha >> ","Ingrese EL numero de la ficha >> ",True)
 
@@ -350,6 +391,7 @@ while True:
 
     else:
         Accion("Jugador2",9,8,7,6,5,4,3,2,9,8,7,6,5,4,3,2,B,N)
+        
     Contador_cambio = Contador_cambio + 1
 
 
