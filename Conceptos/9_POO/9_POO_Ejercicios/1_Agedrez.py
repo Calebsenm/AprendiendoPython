@@ -7,17 +7,17 @@ horas concientes de inversion 5 horas  hasta las 8:28  del dia 9/05/2022    5 ho
 dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 hora    
 11 / 05 / 2022                                                              1 hora hasta las 7:00     
 12 / 05 / 2022                                                              2 horas perdidas     
-13 / 05 / 2022                                                              2 horas  se logro identificar el bug XD y se corrigio una parte                
+13 / 05 / 2022                                                              2 horas  se logro identificar el bug XD y se corrigio una parte      + 1 hora se solucionaron bugs          
 """
 
 
 """
-EL movimiento del peon tiene un bug el tablero esta algo invertido no se por que asi que debes solucionar
-para el la derecha es isquierdad ajjajajaj pero logre solucionar el bug   en el condicional 
-
-linea 295          ahora tienes que ver como solucionarlo XD
-
+en las fichas negras se puede matar a otros peones falrta verificar si se puede comer a otras fichas y arregalar el movimiento de las blancas XD 
+contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento 
 para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos
+falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador 
+
+
 """
 from os import system
 from pickle import TRUE
@@ -38,10 +38,10 @@ M=[
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
     ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
-    ["6","|",".",".",".",".",".",".",".",".","|","6"],
+    ["6","|",".",".",".",".",N[0],".",B[0],".","|","6"],
     ["5","|",".",".",".",".",".",".",".",".","|","5"],
     ["4","|",".",".",".",".",".",".",".",".","|","4"],
-    ["3","|",".",".",".",".",".",".",".",".","|","3"],
+    ["3","|",".",".",".",".",B[0],".",".",N[0],"|","3"],
     ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],B[0],B[0],"|","2"],
     ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
@@ -64,17 +64,6 @@ Ubicacion_ficha = [0,0,0,0]
 
 #se guardarán los movimientos permitidos
 MovimientoPeon = []
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -246,16 +235,41 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                 Movimientos_Permitidos.append(Posicion_Relativa[1])
 
-                            for i in B:
+
+                            #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
+                            # Verifica que tiene en la isquierda......
+                
+                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
+                            
+                            if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] in B :
+                                if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == ".":
+                                    if  not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "|":
                                 
-                                #frente isquierda
-                                if B == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1]:
-                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                    Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
-                                #frente Derecha
-                                elif B == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1]:
-                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                    Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                        Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
+                            # verifica que tiene en la derecha .........
+                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
+
+                            if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] in B:
+                                if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == ".":
+                                    if  not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "|":
+                                    
+                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                        Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                           
+
+
+                            # for i in range(len(B)):
+                                
+                            #     #frente isquierda
+                            #     if B[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1]:
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
+                            #     #frente Derecha
+                            #     elif B[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1]:
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                                
                             
 
                             Movimento_relativo.clear()
@@ -271,14 +285,21 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             for i in range(cantidad):
 
                                 #si encuentra el movimiento igual al movimiento 
-                                if Movimientos_Permitidos[movi] == Movimento_relativo[movi] and Movimientos_Permitidos[movi+1] == Movimento_relativo[movi+1] :
-                                    #si todo está ok pasa esto 
-                                    # M[fila2][columna2] = LFicha[0]
+                                if Movimientos_Permitidos[movi] == Movimento_relativo[0]:
+                                    if  Movimientos_Permitidos[movi+1] == Movimento_relativo[1] :
+                                        #si todo está ok pasa esto 
+                                        # M[fila2][columna2] = LFicha[0]
 
-                                    LLave_cambio_posicion.pop(0)
-                                    LLave_cambio_posicion.append(True)
+                                        LLave_cambio_posicion.pop(0)
+                                        LLave_cambio_posicion.append(True)
                                 else:
                                     print("Movimiento Fuera de rango ")
+                                    #isquierda
+                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
+                                    #derecha
+                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
+                                    
+                                    print(Movimientos_Permitidos)
                                 movi = movi + 2
                             
                         elif Colorde_ficha == B:
@@ -300,22 +321,51 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                 Movimientos_Permitidos.append(Posicion_Relativa[1])
 
-                            for i in N:
+                            #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
+                            # Verifica que tiene en la isquierda......
+                            #isquierda
+
+                            if not N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] in B and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] =="." and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "|" and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "_":
+                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
+                            
+                            #Derecha
+                            if  not  N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] in B and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "." and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "|" and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "_":
+                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+
+                            
+                            # for i in range(len(N)):
+
+                            #       #frente isquierda
+                            #     if N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1]:
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
+                            #     #frente Derecha
+                            #     elif N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1]:
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                            
+                            #     else:
+                            #         print("Error movimiento fuera de rango ")
+                            #         print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]])
+                            #         print(Movimientos_Permitidos)
                                 
-                                #frente isquierda
-                                if N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]-1]:
                                     
-                                    Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
-                                    Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
-                                #frente Derecha
-                                elif N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]+1]:
-                                    Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
-                                    Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
-                                else:
-                                    print("Error movimiento fuera de rango ")
+                                # #frente isquierda
+                                # if N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]-1]:
+                                    
+                                #     Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
+                                #     Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
+                                # #frente Derecha
+                                # elif N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]+1]:
+                                #     Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
+                                #     Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                                # else:
+                                #     print("Error movimiento fuera de rango ")
                                    
-                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]])
-                                    print(Movimientos_Permitidos)
+                                #     print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]])
+                                #     print(Movimientos_Permitidos)
                             
 
                             Movimento_relativo.clear()
@@ -339,6 +389,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     LLave_cambio_posicion.append(True)
                                 else:
                                     print("Movimiento Fuera de rango ")
+                                    print(Movimientos_Permitidos)
+                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
+                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
+
                                 movi = movi + 2
                            
                      
