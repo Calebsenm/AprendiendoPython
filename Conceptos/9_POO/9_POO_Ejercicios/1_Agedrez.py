@@ -8,7 +8,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 11 / 05 / 2022                                                              1 hora hasta las 7:00     
 12 / 05 / 2022                                                              2 horas perdidas     
 13 / 05 / 2022                                                              2 horas  se logro identificar el bug XD y se corrigio una parte      + 1 hora se solucionaron bugs          
-14/ 05 / 2022                                                               3:00     
+14/ 05 / 2022                                                               3 horas corrigiendo bugs   
 
 """
 
