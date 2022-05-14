@@ -8,11 +8,13 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 11 / 05 / 2022                                                              1 hora hasta las 7:00     
 12 / 05 / 2022                                                              2 horas perdidas     
 13 / 05 / 2022                                                              2 horas  se logro identificar el bug XD y se corrigio una parte      + 1 hora se solucionaron bugs          
+14/ 05 / 2022                                                               3:00     
+
 """
 
 
 """
-en las fichas negras se puede matar a otros peones falrta verificar si se puede comer a otras fichas y arregalar el movimiento de las blancas XD 
+
 contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento 
 para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos
 falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador 
@@ -38,10 +40,10 @@ M=[
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
     ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
-    ["6","|",".",".",".",".",N[0],".",B[0],".","|","6"],
+    ["6","|",".",".",".",".",".",N[0],".",".","|","6"],
     ["5","|",".",".",".",".",".",".",".",".","|","5"],
     ["4","|",".",".",".",".",".",".",".",".","|","4"],
-    ["3","|",".",".",".",".",B[0],".",".",N[0],"|","3"],
+    ["3","|",".",".",".",".",B[0],".",".",".","|","3"],
     ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],B[0],B[0],"|","2"],
     ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
@@ -65,7 +67,11 @@ Ubicacion_ficha = [0,0,0,0]
 #se guardarán los movimientos permitidos
 MovimientoPeon = []
 
+#congunti de posisiciones
+letras = ["a","b","c","d","e","f","g","h"]
+#movimientos no permitidos XD 
 
+Movimientos_no_Permitidos = [0,0]
 
 #funcion de la operacion
    
@@ -92,9 +98,28 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
         while True:
             print(jugador)
 
-            Numero_fila2 = int(input(ingreso2)) 
-            Letra_columna2 = input(ingreso)
+            
+            #controla la entrada 
+            while True:
+                try:
+                    Numero_fila2 = int(input(ingreso2)) 
+                    if Numero_fila2 > 0 and Numero_fila2 <9:
+                        Letra_columna2 = input(ingreso)
+                        if Letra_columna2.isalpha():
+                            Letra_columna2 = Letra_columna2.lower()
+                            if Letra_columna2 in letras:
+                                break
+                            else:
+                                print("No sea pendejo XD")
+                        else:
+                            print("Error el caracter no está permitido ")
+                
+                except ValueError:
+                    print("Es un error ")
 
+            #la convierte en mayuscula si es minuscula 
+            Letra_columna2 = Letra_columna2.upper()
+            
             
             
             #Funcion que cambia las opciones
@@ -139,14 +164,23 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 print("Error")
             
             #GUARDARÁ LA POSICION DE LA FICHA PASANDO COMO LLAVE TRUE O FALSE
-            if LLave == True:
+        
+            #esta llave activa si se puede hacer el movimiento o no 
+
+
+            LLave1 = LLave
+            
+            
+
+           
+            if LLave1 == True:
                 #guarda donde esta
                 Ubicacion_ficha.clear()
               
 
                 Ubicacion_ficha.append(fila2)
                 Ubicacion_ficha.append(columna2)
-            elif LLave == False:
+            elif LLave1 == False:
                 #la limpia
 
                 Ubicacion_ficha.append(0)
@@ -170,7 +204,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                 
 
-            if LLave == True:
+            if LLave1 == True:
             
                 #Muestra que ficha es......
                 Ficha2 = M[fila2][columna2]
@@ -192,9 +226,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     break
 
 
-            LLave1 = LLave
-            #esta llave activa si se puede hacer el movimiento o no 
-            llave_veryficacion = 0
+           
 
             if LLave1 == False:
                 #posicion relativa de las fichas
@@ -220,8 +252,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             #ficha negra
 
                             ##guarda las possiconoes de la ficcha 
-                            Posicion_Relativa.clear()
-                            
+                            Posicion_Relativa.clear() 
 
                             Posicion_Relativa.append(Ubicacion_ficha[0])
                             Posicion_Relativa.append(Ubicacion_ficha[1])
@@ -234,7 +265,17 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                 Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                 Movimientos_Permitidos.append(Posicion_Relativa[1])
+                            
+                        
 
+                            #si se descuadra todo borra esta linea xd 
+                            else:
+                                print("La ficha está ocupada XD")
+                                
+                                
+
+
+                                
 
                             #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
                             # Verifica que tiene en la isquierda......
@@ -256,21 +297,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     
                                         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                         Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
-                           
 
-
-                            # for i in range(len(B)):
-                                
-                            #     #frente isquierda
-                            #     if B[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1]:
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
-                            #     #frente Derecha
-                            #     elif B[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1]:
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
-                                
-                            
+                            #verifica si tiene una                        
 
                             Movimento_relativo.clear()
                             
@@ -287,9 +315,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 #si encuentra el movimiento igual al movimiento 
                                 if Movimientos_Permitidos[movi] == Movimento_relativo[0]:
                                     if  Movimientos_Permitidos[movi+1] == Movimento_relativo[1] :
-                                        #si todo está ok pasa esto 
-                                        # M[fila2][columna2] = LFicha[0]
-
+    
+                                        #se activa toda la llave para hacer el cambio de ficha
                                         LLave_cambio_posicion.pop(0)
                                         LLave_cambio_posicion.append(True)
                                 else:
@@ -308,10 +335,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             ##guarda las posiciones de la ficcha 
                             Posicion_Relativa.clear()
                           
-
                             Posicion_Relativa.append(Ubicacion_ficha[0])
                             Posicion_Relativa.append(Ubicacion_ficha[1])
-
 
                             #limpia los moviemintos y luego los igresa
                             Movimientos_Permitidos.clear()
@@ -321,51 +346,34 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                 Movimientos_Permitidos.append(Posicion_Relativa[1])
 
+                            #si se descuadra todo borra esta linea xd 
+                            else:
+                                print("La ficha está ocupada XD")
+                                hola = "Error XDXDXDXXDXDXDX"
+                                return hola 
+
                             #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
                             # Verifica que tiene en la isquierda......
                             #isquierda
 
-                            if not N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] in B and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] =="." and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "|" and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "_":
-                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
+                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
+                            if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] in N:
+                                if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] ==".": 
+                                    if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "|":
+                                       
+                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                        Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
                             
+                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
                             #Derecha
-                            if  not  N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] in B and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "." and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "|" and M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "_":
-                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
+                            if  not  M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] in N:
+                                if not  M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == ".":
+                                    if not  M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "|":
+                                       
+                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
+                                        Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
 
                             
-                            # for i in range(len(N)):
-
-                            #       #frente isquierda
-                            #     if N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1]:
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
-                            #     #frente Derecha
-                            #     elif N[i] == M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1]:
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                            #         Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
-                            
-                            #     else:
-                            #         print("Error movimiento fuera de rango ")
-                            #         print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]])
-                            #         print(Movimientos_Permitidos)
-                                
-                                    
-                                # #frente isquierda
-                                # if N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]-1]:
-                                    
-                                #     Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
-                                #     Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
-                                # #frente Derecha
-                                # elif N == M[Posicion_Relativa[0]+1][Posicion_Relativa[1]+1]:
-                                #     Movimientos_Permitidos.append(Posicion_Relativa[0]+1)
-                                #     Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
-                                # else:
-                                #     print("Error movimiento fuera de rango ")
-                                   
-                                #     print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]])
-                                #     print(Movimientos_Permitidos)
                             
 
                             Movimento_relativo.clear()
@@ -382,11 +390,11 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             for i in range(cantidad):
 
                                 #si encuentra el movimiento igual al movimiento 
-                                if Movimientos_Permitidos[movi] == Movimento_relativo[movi] and Movimientos_Permitidos[movi+1] == Movimento_relativo[movi+1] :
-                                   
+                                if Movimientos_Permitidos[movi] == Movimento_relativo[0]:
+                                    if Movimientos_Permitidos[movi+1] == Movimento_relativo[1] :
 
-                                    LLave_cambio_posicion.pop(0)
-                                    LLave_cambio_posicion.append(True)
+                                        LLave_cambio_posicion.pop(0)
+                                        LLave_cambio_posicion.append(True)
                                 else:
                                     print("Movimiento Fuera de rango ")
                                     print(Movimientos_Permitidos)

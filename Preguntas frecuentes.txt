@@ -19,3 +19,29 @@ print(hola.replace(hola,"Hello world"))
 str = "Pasta, pollo, jugo, leche"
 >>> str.split(", ")
 ['Pasta', 'pollo', 'jugo', 'leche']
+
+#intente hacer proyectos sin ver cursos pero nesecito teoria primero es mala practixa XD 
+
+
+# despues de acabar este juego vas a terminar los ejercicios de  la pagina de python y
+lueego directo al curso de java  de ernerto no digas nada son  decciciones de caleb del pasado  XD
+y luego terminar el contenido de min tic java luego practicar algoritmia y estructutra de datos super
+avanzada Proo ya cuando hayas creado un proyecto bien tocho. 
+
+te metes un libro de algoritmos super tocho y estructuras de datos super tcho que domines todo loque dieje 
+
+ pasas a fronted
+
+ahora toca lo mismo con javaescrip solo vas a leer como un cabron documentacion XD  y hacer algo bien tocho
+luego aprendes algo de react
+
+luego vas a seguir la guia de antonio sarosi sobre backend y bas a aprendes bases de datos como un cabron 
+bas a crear un proyevcto super tocho suoper prooooo hacker proyectos prooo hacer y deborate los contenidos de min tic 3 a 4
+
+e
+
+estas son deciciones de caleb del pasado debes obedecer para que te baya bien debes seguir y obedecer no cuestiones nada XD
+si lo haces sales a buscar un trabajo como un cabron bien tocho.
+
+aqui si no consigues empleo yte especializas en el area que desees puede probar aplicaciones moviles si deseas XD obdece y cumpple estrictamente 
+esta ley para que te baya bien y puedad entender 
