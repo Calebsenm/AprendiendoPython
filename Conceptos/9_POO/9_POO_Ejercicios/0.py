@@ -1,5 +1,6 @@
-import math
+A = []
 
-hola = math.trunc(6 / 2)
-print(hola)
-
+if A[] == False:
+    print("esta bacio")
+else:
+    print("Esta lleno")

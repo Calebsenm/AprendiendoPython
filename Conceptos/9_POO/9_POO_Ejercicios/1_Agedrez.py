@@ -9,7 +9,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 12 / 05 / 2022                                                              2 horas perdidas     
 13 / 05 / 2022                                                              2 horas  se logro identificar el bug XD y se corrigio una parte      + 1 hora se solucionaron bugs          
 14/ 05 / 2022                                                               3 horas corrigiendo bugs   
-
+15/05/ 2022                                                                 4:00
 """
 
 
@@ -20,7 +20,12 @@ para terminar con el peon debes verificar si está en la primera movida para lue
 falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador 
 
 
+
+
+ si todo sale mal en el padado has esto XD SISISIISISIISISISIIS    #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
+ elimina todo 
 """
+from asyncio import sleep
 from os import system
 from pickle import TRUE
 from time import time
@@ -31,6 +36,7 @@ import math
 
 B = ["\u2659","\u2656","\u2655","\u2658","\u2654","\u2657"]
 N = ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
+
 
 
 
@@ -72,6 +78,9 @@ letras = ["a","b","c","d","e","f","g","h"]
 #movimientos no permitidos XD 
 
 Movimientos_no_Permitidos = [0,0]
+
+#llave super maestra
+llave_supermaestra = [True]
 
 #funcion de la operacion
    
@@ -162,7 +171,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 columna2 = n18
             else: 
                 print("Error")
-            
+        
             #GUARDARÁ LA POSICION DE LA FICHA PASANDO COMO LLAVE TRUE O FALSE
         
             #esta llave activa si se puede hacer el movimiento o no 
@@ -208,6 +217,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             
                 #Muestra que ficha es......
                 Ficha2 = M[fila2][columna2]
+                Ficha3 =  M[fila2-1][columna2]
 
                 #guarda la posicion de la ficha tomada
                 LFicha.append(Ficha2)
@@ -216,6 +226,14 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 #verifica la ficha elegida y está bacia
                 if Ficha2 ==".":
                     print("La ficha no existe")
+                
+
+                #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
+                elif Ficha3 in B:
+                    print("Error la ficha está bloqueada ")
+                elif Ficha3 in N:
+                    print("Eror la ficha está bloqueada Si ")
+
                 #verifica si ha ingresado una ficha contraria
                 elif Ficha2 == Colorde_ficha[0] or Ficha2 == Colorde_ficha[1] or Ficha2 == Colorde_ficha[2] or Ficha2 == Colorde_ficha[3] and Ficha2 == Colorde_ficha[4] or Ficha2 == Colorde_ficha[5]:
                     print("Error de turno")
@@ -268,13 +286,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             
                         
 
-                            #si se descuadra todo borra esta linea xd 
-                            else:
-                                print("La ficha está ocupada XD")
-                                
-                                
-
-
+                           
                                 
 
                             #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
@@ -346,12 +358,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                 Movimientos_Permitidos.append(Posicion_Relativa[1])
 
-                            #si se descuadra todo borra esta linea xd 
-                            else:
-                                print("La ficha está ocupada XD")
-                                hola = "Error XDXDXDXXDXDXDX"
-                                return hola 
-
+                           
                             #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
                             # Verifica que tiene en la isquierda......
                             #isquierda
@@ -436,9 +443,11 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                     break #si todo está ok pasa esto 
 
+    #condicional supermaestro
     #Se pasqa por parametros las occiones y una llave que activa la opcion de eleccion o la opcion de colocar fica 
+    
     Funcion_ingresaFicha("Ingrese La letra de la ficha >> ","Ingrese EL numero de la ficha >> ",True)
-
+    
     Funcion_ingresaFicha("Letra donde Desea mover la ficha>> ","Numero donde Desea Mover la ficha >> ",False)
     
 
