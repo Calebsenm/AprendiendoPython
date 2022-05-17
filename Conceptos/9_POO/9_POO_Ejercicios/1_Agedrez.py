@@ -5,17 +5,20 @@ Se inició este proyecto el dia 29/04/2022
 """
 horas concientes de inversion 5 horas  hasta las 8:28  del dia 9/05/2022    5 horas
 dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 hora    
-11 / 05 / 2022                                                              1 hora hasta las 7:00     
+11 / 05 / 2022                                                              1 hora  
 12 / 05 / 2022                                                              2 horas perdidas     
-13 / 05 / 2022                                                              2 horas  se logro identificar el bug XD y se corrigio una parte      + 1 hora se solucionaron bugs          
+13 / 05 / 2022                                                              3 horas  se logro identificar el bug XD y se corrigio una parte               
 14/ 05 / 2022                                                               3 horas corrigiendo bugs   
-15/05/ 2022                                                                 4:00
+15/05/ 2022                                                                 2 horas matando bugs  se aniquiláron los bug maximos no se si habra quedado despues de la aniquilacion maxima 
+1      5:23 PM                                                              un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
+
+      
 """
 
 
 """
 
-contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento 
+contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento                anikilado estubo lleno de bugs  tarde mas de 4 horas buscandolo no sabia como hacer esta funcionalidad lo logré
 para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos
 falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador 
 
@@ -228,21 +231,30 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     print("La ficha no existe")
                 
 
-                #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
-                elif Ficha3 in B:
-                    print("Error la ficha está bloqueada ")
-                elif Ficha3 in N:
-                    print("Eror la ficha está bloqueada Si ")
 
                 #verifica si ha ingresado una ficha contraria
                 elif Ficha2 == Colorde_ficha[0] or Ficha2 == Colorde_ficha[1] or Ficha2 == Colorde_ficha[2] or Ficha2 == Colorde_ficha[3] and Ficha2 == Colorde_ficha[4] or Ficha2 == Colorde_ficha[5]:
                     print("Error de turno")
                 #coloca el punto de la posisicon donde se movia
                 else:
-                    print(Ficha2)
-                    # M[fila2][columna2]="."
-                    break
 
+
+                    #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
+
+                    if Ficha2 == B[0] or Ficha2 ==N[0]:
+                        if Ficha3 in B:
+                            print("Error la ficha está bloqueada ")
+                        elif Ficha3 in N:
+                            print("Eror la ficha está bloqueada Si ")
+
+                        else:
+                            print(Ficha2)
+                            # M[fila2][columna2]="."
+                            break
+                    else:
+                        print(Ficha2)
+                        # M[fila2][columna2]="."
+                        break
 
            
 
@@ -275,9 +287,28 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             Posicion_Relativa.append(Ubicacion_ficha[0])
                             Posicion_Relativa.append(Ubicacion_ficha[1])
 
-
                             #limpia los moviemintos y luego los igresa
                             Movimientos_Permitidos.clear()
+                            
+                            
+                            #si peon esta en el primer movimiento permite hacer ingresa los movimientos permitidos 
+                            if Posicion_Relativa[0] == 8:
+                                print("El peon se encuentra en la primera casilla ")
+
+                                o = 1
+                                for i in range(2):
+                                    if not M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in N or  M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in B:
+                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
+                                        Movimientos_Permitidos.append(Posicion_Relativa[1])
+
+                                    o = o + 1
+
+                                
+
+
+
+
+                            
                             #verifica que tiene en frente
                             if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
 
