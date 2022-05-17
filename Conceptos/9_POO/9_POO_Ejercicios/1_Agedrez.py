@@ -379,6 +379,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                                 LFicha.pop(0)
                                                 LFicha.append(LAS_fichas_del_cambio[3])
                                                 break
+                                            else:
+                                                print("No sea pendejo este numero no existe")
                                         except ValueError:
                                             print("No sea bobo le pidieron un numero ")
 
@@ -485,7 +487,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     while True:
                                         try:
                                             
-                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon imgrese un numero"))
+                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon ingrese un numero "))
 
                                             if Que_ficha == 1:
                                                 LFicha.pop(0)
@@ -503,6 +505,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                                 LFicha.pop(0)
                                                 LFicha.append(LAS_fichas_del_cambio[3])
                                                 break
+                                            else:
+                                                print("No sea pendejo este numero no existe")
                                         except ValueError:
                                             print("No sea bobo le pidieron un numero ")
 
