@@ -12,8 +12,8 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 15/05/ 2022                                                                 2 horas matando bugs  se aniquiláron los bug maximos no se si habra quedado despues de la aniquilacion maxima 
 5:23 PM                                                                     un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
 16/05/2020       12:17 AM                                                    1 hora detalles y se puede hacer dos movimientos en la primera jugada 
-17/ 05/ 1:12     1.13 AM                                                     1 hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
-                                                                             hay un bug corrigelo     
+17/ 05/ 1:12     1.13 AM                                                     1 :20 minutos  hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
+                                                                             terminado                                                                       
 
       
 """
@@ -23,7 +23,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 
 contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento                                     anikilado estubo lleno de bugs  tarde mas de 4 horas buscandolo no sabia como hacer esta funcionalidad lo logré
 para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos           finikitado estuvo facil no hubo bugs se me ocurrio a la primerra
-falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador 
+falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador   finikitado XD  no hubo bugs agresivos solo un error 
 
 
 
@@ -356,11 +356,12 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 while True:
                                     print("Has llegado a la ultima posicion ahora puedes cambiar el peon por la ficha que deses ")
                                     for i in range(len(LAS_fichas_del_cambio)):
-                                        print(f"{i+1} = {LAS_fichas_del_cambio[0]}",end=" ")
+                                        print(f"{i+1} = {LAS_fichas_del_cambio[i]}.   ",end=" ")
+                                        print()
                                     while True:
                                         try:
                                             
-                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon imgrese un numero"))
+                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon ingrese un numero "))
 
                                             if Que_ficha == 1:
                                                 LFicha.pop(0)
@@ -479,7 +480,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 while True:
                                     print("Has llegado a la ultima posicion ahora puedes cambiar el peon por la ficha que deses ")
                                     for i in range(len(LAS_fichas_del_cambio)):
-                                        print(f"{i+1} = {LAS_fichas_del_cambio[0]}",end=" ")
+                                        print(f"  {i+1} = {LAS_fichas_del_cambio[i]}      ",end=" ")
+                                        print()
                                     while True:
                                         try:
                                             
