@@ -11,8 +11,9 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 14/ 05 / 2022                                                               3 horas corrigiendo bugs   
 15/05/ 2022                                                                 2 horas matando bugs  se aniquiláron los bug maximos no se si habra quedado despues de la aniquilacion maxima 
 5:23 PM                                                                     un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
-16/05/202       12:17 PM                                                    1 hora detalles y se puede hacer dos movimientos en la primera jugada 
-
+16/05/2020       12:17 AM                                                    1 hora detalles y se puede hacer dos movimientos en la primera jugada 
+17/ 05/ 1:12     1.13 AM                                                     1 hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
+                                                                             hay un bug corrigelo     
 
       
 """
@@ -49,8 +50,8 @@ N = ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
-    ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
-    ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
+    ["8","|",".",N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
+    ["7","|",B[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
     ["6","|",".",".",".",".",".",N[0],".",".","|","6"],
     ["5","|",".",".",".",".",".",".",".",".","|","5"],
     ["4","|",".",".",".",".",".",".",".",".","|","4"],
@@ -305,12 +306,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                     o = o + 1
 
-                           
-                            
-
-
-
-
                             
                             #verifica que tiene en frente
                             if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
@@ -355,11 +350,38 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
 
                             #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
-                            
+                            if Movimento_relativo[0] == 2:
+                                system("cls")
+                                LAS_fichas_del_cambio = ["\u2656","\u2655","\u2658","\u2657"]
+                                while True:
+                                    print("Has llegado a la ultima posicion ahora puedes cambiar el peon por la ficha que deses ")
+                                    for i in range(len(LAS_fichas_del_cambio)):
+                                        print(f"{i+1} = {LAS_fichas_del_cambio[0]}",end=" ")
+                                    while True:
+                                        try:
+                                            
+                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon imgrese un numero"))
 
+                                            if Que_ficha == 1:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[0])
+                                                break
+                                            elif Que_ficha == 2:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[1])
+                                                break
+                                            elif Que_ficha == 3:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[2])
+                                                break
+                                            elif Que_ficha == 4:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[3])
+                                                break
+                                        except ValueError:
+                                            print("No sea bobo le pidieron un numero ")
 
-
-                            
+                                    break
                             #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
                             movi = 0
                             cantidad = len(Movimientos_Permitidos) /2
@@ -448,6 +470,43 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                             Movimento_relativo.append(Ubicacion_ficha[2])
                             Movimento_relativo.append(Ubicacion_ficha[3])
+
+                            
+                             #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
+                            if Movimento_relativo[0] == 2:
+                                system("cls")
+                                LAS_fichas_del_cambio = ["\u265C","\u265B","\u265E","\u265D"]
+                                while True:
+                                    print("Has llegado a la ultima posicion ahora puedes cambiar el peon por la ficha que deses ")
+                                    for i in range(len(LAS_fichas_del_cambio)):
+                                        print(f"{i+1} = {LAS_fichas_del_cambio[0]}",end=" ")
+                                    while True:
+                                        try:
+                                            
+                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon imgrese un numero"))
+
+                                            if Que_ficha == 1:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[0])
+                                                break
+                                            elif Que_ficha == 2:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[1])
+                                                break
+                                            elif Que_ficha == 3:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[2])
+                                                break
+                                            elif Que_ficha == 4:
+                                                LFicha.pop(0)
+                                                LFicha.append(LAS_fichas_del_cambio[3])
+                                                break
+                                        except ValueError:
+                                            print("No sea bobo le pidieron un numero ")
+
+                                    break
+
+
                             
                             #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
                             movi = 0
