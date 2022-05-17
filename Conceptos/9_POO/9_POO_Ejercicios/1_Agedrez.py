@@ -10,7 +10,9 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 13 / 05 / 2022                                                              3 horas  se logro identificar el bug XD y se corrigio una parte               
 14/ 05 / 2022                                                               3 horas corrigiendo bugs   
 15/05/ 2022                                                                 2 horas matando bugs  se aniquiláron los bug maximos no se si habra quedado despues de la aniquilacion maxima 
-1      5:23 PM                                                              un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
+5:23 PM                                                                     un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
+16/05/202       12:17 PM                                                    1 hora detalles y se puede hacer dos movimientos en la primera jugada 
+
 
       
 """
@@ -18,8 +20,8 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 
 """
 
-contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento                anikilado estubo lleno de bugs  tarde mas de 4 horas buscandolo no sabia como hacer esta funcionalidad lo logré
-para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos
+contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento                                     anikilado estubo lleno de bugs  tarde mas de 4 horas buscandolo no sabia como hacer esta funcionalidad lo logré
+para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos           finikitado estuvo facil no hubo bugs se me ocurrio a la primerra
 falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador 
 
 
@@ -291,7 +293,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             Movimientos_Permitidos.clear()
                             
                             
-                            #si peon esta en el primer movimiento permite hacer ingresa los movimientos permitidos 
+                            #si no se ha movido y esta en la pocicion inicial 2 de la casilla entonces permite hacer 2 movimientos 
                             if Posicion_Relativa[0] == 8:
                                 print("El peon se encuentra en la primera casilla ")
 
@@ -303,7 +305,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                     o = o + 1
 
-                                
+                           
+                            
 
 
 
@@ -341,13 +344,21 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                         Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
 
-                            #verifica si tiene una                        
+                            # aqui se verifican los movimientos  XD                        
 
                             Movimento_relativo.clear()
                             
 
                             Movimento_relativo.append(Ubicacion_ficha[2])
                             Movimento_relativo.append(Ubicacion_ficha[3])
+
+
+
+                            #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
+                            
+
+
+
                             
                             #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
                             movi = 0
@@ -383,6 +394,24 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                             #limpia los moviemintos y luego los igresa
                             Movimientos_Permitidos.clear()
+
+                             
+                            #si peon esta en el primer movimiento permite hacer ingresa los movimientos permitidos 
+                            if Posicion_Relativa[0] == 8:
+                                print("El peon se encuentra en la primera casilla ")
+
+                                o = 1
+                                for i in range(2):
+                                    if not M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in N or  M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in B:
+                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
+                                        Movimientos_Permitidos.append(Posicion_Relativa[1])
+
+                                    o = o + 1
+                            
+
+
+
+                            
                             #verifica que tiene en frente
                             if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
 
