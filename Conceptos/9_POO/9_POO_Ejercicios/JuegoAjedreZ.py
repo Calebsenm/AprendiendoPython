@@ -13,7 +13,8 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 5:23 PM                                                                     un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
 16/05/2020       12:17 AM                                                    1 hora detalles y se puede hacer dos movimientos en la primera jugada 
 17/ 05/ 1:12     1.13 AM                                                     1 :20 minutos  hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
-                                                                             terminado                                                                       
+                                                                             terminado  no XD me di cunta de un erorr gravisimo
+18/05/2022       7:22 PM                                                    1 hora fin del peon y sus funcionalidades                                                                     
 
       
 """
@@ -50,12 +51,12 @@ N = ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
-    ["8","|",".",N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
-    ["7","|",B[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
-    ["6","|",".",".",".",".",".",N[0],".",".","|","6"],
+    ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
+    ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
+    ["6","|",".",".",".",".",".",".",".",".","|","6"],
     ["5","|",".",".",".",".",".",".",".",".","|","5"],
     ["4","|",".",".",".",".",".",".",".",".","|","4"],
-    ["3","|",".",".",".",".",B[0],".",".",".","|","3"],
+    ["3","|",".",".",".",".",".",".",".",".","|","3"],
     ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],B[0],B[0],"|","2"],
     ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
@@ -223,7 +224,12 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             
                 #Muestra que ficha es......
                 Ficha2 = M[fila2][columna2]
-                Ficha3 =  M[fila2-1][columna2]
+                #frente
+                Ficha3 = M[fila2-1][columna2]
+                #isquierdda
+                Ficha4 = M[fila2-1][columna2-1]
+                #derecha 
+                Ficha5 = M[fila2-1][columna2+1]
 
                 #guarda la posicion de la ficha tomada
                 LFicha.append(Ficha2)
@@ -241,19 +247,44 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 #coloca el punto de la posisicon donde se movia
                 else:
 
-
                     #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
-
+                    #SI es un peon   permite identificar que ficha tiene en frente y a sus lads para ver si el peon está bloqueado 
                     if Ficha2 == B[0] or Ficha2 ==N[0]:
-                        if Ficha3 in B:
-                            print("Error la ficha está bloqueada ")
-                        elif Ficha3 in N:
-                            print("Eror la ficha está bloqueada Si ")
+                        #verifica si está bloqueado por las pociciones 
+                        print(f"{Ficha2}{Ficha3}{Ficha4}{Ficha5}")
+                        #ficha blanca 
+                        if Ficha3 in B or Ficha3 in N:
+                            #si la ficha es blanca 
+                            if Ficha2 in B:
+                                if Ficha4 in N :
+                                    break
+                                elif Ficha5 in N:
+                                    break
+                                else: 
+                                    print("Error La ficha blanca está bloqueada")
+                            elif Ficha2 in N:
+                                if Ficha4 in B :
+                                    break
+                                elif Ficha5 in B:
+                                    break
+                                else: 
+                                    print("Error La ficha negra esta bloqueda ")
+
+                        # #ficha negras 
+                        # elif Ficha3 in N:
+                        #     if Ficha4 in N:
+                        #         break
+                        #     elif Ficha5 in N:
+                        #         break
+                        #     else:
+                        #         print("Eror la ficha está bloqueada negras")
 
                         else:
                             print(Ficha2)
                             # M[fila2][columna2]="."
                             break
+
+
                     else:
                         print(Ficha2)
                         # M[fila2][columna2]="."
@@ -299,12 +330,17 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 print("El peon se encuentra en la primera casilla ")
 
                                 o = 1
-                                for i in range(2):
+                                i = 0
+                                while i < 2:
                                     if not M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in N or  M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in B:
-                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
-                                        Movimientos_Permitidos.append(Posicion_Relativa[1])
-
+                                        if M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] == ".":
+                                            Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
+                                            Movimientos_Permitidos.append(Posicion_Relativa[1])
+                                        else:
+                                            print("Error el Peon no Puede saltar una Ficha")
+                                            break
                                     o = o + 1
+                                    i = i + 1
 
                             
                             #verifica que tiene en frente
@@ -426,12 +462,18 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 print("El peon se encuentra en la primera casilla ")
 
                                 o = 1
-                                for i in range(2):
+                                i = 0
+                                while  i < 2:
                                     if not M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in N or  M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in B:
-                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
-                                        Movimientos_Permitidos.append(Posicion_Relativa[1])
+                                        if M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] == ".":
+                                            Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
+                                            Movimientos_Permitidos.append(Posicion_Relativa[1])
+                                        else:
+                                            print("Error La ficha no se puede saltar ")
+                                            break
 
                                     o = o + 1
+                                    i = i + 1
                             
 
 
