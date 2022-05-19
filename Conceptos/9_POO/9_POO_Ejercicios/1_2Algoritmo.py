@@ -30,8 +30,7 @@
 # fila = input("Ingresa la fila ")
 # columna = input("ingresa la letra ")
  
-i = 0
+def hola(a,b):
+    print(a + b)
 
-while i < 2:
-    print(i)
-    i = i + 1
+hola(12,-6)

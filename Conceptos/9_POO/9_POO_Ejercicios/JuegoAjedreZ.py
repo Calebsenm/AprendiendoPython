@@ -1,3 +1,5 @@
+#ultimo respaldo 
+
 """
 Será que se puede crear el jeugo del agedrez en pyton con la consola..  yo no lo sé solo quiero intentarlo.... ajajajjajaja
 Se inició este proyecto el dia 29/04/2022
@@ -33,6 +35,7 @@ debe verificar si la torre que tiene em frente para recorrer y a la dereccha
  si todo sale mal en el padado has esto XD SISISIISISIISISISIIS    #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
  elimina todo 
 """
+from ast import Break
 from asyncio import sleep
 from os import system
 from pickle import TRUE
@@ -46,6 +49,8 @@ B = ["\u2659","\u2656","\u2655","\u2658","\u2654","\u2657"]
 N = ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 
 
+Fichas_Blancas = ["\u2659","\u2656","\u2655","\u2658","\u2654","\u2657"]
+Fichas_Negras= ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 
 
 
@@ -55,8 +60,8 @@ M=[
     ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
     ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
     ["6","|",".",".",".",".",".",".",".",".","|","6"],
-    ["5","|",".",".",".",".",".",".",".",".","|","5"],
-    ["4","|",".",".",".",".",".",".",".",".","|","4"],
+    ["5","|",".",".",".",B[2],".",".",N[2],".","|","5"],
+    ["4","|",N[1],".",".",".",B[1],".",".",N[1],"|","4"],
     ["3","|",".",".",".",".",".",".",".",".","|","3"],
     ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],B[0],B[0],"|","2"],
     ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
@@ -90,6 +95,9 @@ Movimientos_no_Permitidos = [0,0]
 #llave super maestra
 llave_supermaestra = [True]
 
+
+#Movimientos permitidos de la reina 
+Movimientos_permitidos_Reina = []
 #funcion de la operacion
    
 def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2):
@@ -301,6 +309,77 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 break
                             else:
                                 print("La ficha está bloqueada")
+
+
+                    #Algoritmo de reina posiciones permitidas 
+                    if Ficha2 == B[2] or Ficha2 == N[2]:
+                        Movimientos_permitidos_Reina.clear()
+
+                        print("Es una reina")
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+
+                        #color de la ficha elegida
+                        COLOR_ELEGIDO1 = 0
+                        #verifica si es blanca o negra
+                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Blancas[2]:
+                            #es una ficha blanca
+                            COLOR_ELEGIDO1 = Fichas_Blancas 
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[2]:
+                            #es una ficha negra 
+                            COLOR_ELEGIDO1 = Fichas_Negras
+
+                        #Posicion actual
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+
+                        #Verifica si está bloqueada a su alrededor 
+                        #arriba 
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == ".":
+
+                            #el algoritmo que busca hacia arriba
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]])
+                                elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]])
+                                    break
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] == "_":
+                                    break
+
+                                i = i + 1
+
+                           
+                            break
+                        #arriba derecha
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == ".":
+                            break
+                        #arriba isquierda
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == ".":
+                            break
+                        #derecha
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == ".":
+                            break
+                        #isquierda
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == ".":
+                            break
+                        #abajo 
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == ".":
+                            break
+                        #abajo derecha 
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == ".":
+                            break
+                        #abajo isquierda 
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == ".":
+                            break
+                        else:
+                            print("La ficha está bloqueada")
+
+
+                    
+
+
+
+                        
                     else:
                         print(Ficha2)
                         # M[fila2][columna2]="."
@@ -597,7 +676,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         
                         Movimientos_Permitidos = []
                         #los colores
-                        def ALgoritmo_dela_Torre(Color_Ficha):
+                        def ALgoritmo_dela_Torre(Color_Ficha,Color_Ficha2):
                             #ficha negra
 
                             ##guarda las possiconoes de la ficcha 
@@ -614,10 +693,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 if M[Posicion_Relativa[0]-iterador][Posicion_Relativa[1]] == ".":
                                     Movimientos_Permitidos.append(Posicion_Relativa[0]-iterador)
                                     Movimientos_Permitidos.append(Posicion_Relativa[1])
+
                                 elif M[Posicion_Relativa[0]-iterador][Posicion_Relativa[1]] in Color_Ficha:
+                                    break
+                                        
+                                elif M[Posicion_Relativa[0]-iterador][Posicion_Relativa[1]] in Color_Ficha2:
                                     Movimientos_Permitidos.append(Posicion_Relativa[0]-iterador)
                                     Movimientos_Permitidos.append(Posicion_Relativa[1])
                                     break
+                                
 
                                 iterador = iterador + 1
 
@@ -627,6 +711,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 if M[Posicion_Relativa[0]+iterador2][Posicion_Relativa[1]] == ".":
                                     Movimientos_Permitidos.append(Posicion_Relativa[0]+iterador2)
                                     Movimientos_Permitidos.append(Posicion_Relativa[1])
+
+                                elif  M[Posicion_Relativa[0]+iterador2][Posicion_Relativa[1]] in Color_Ficha2:
+                                    break
                                 elif M[Posicion_Relativa[0]+iterador2][Posicion_Relativa[1]] in Color_Ficha:
                                     Movimientos_Permitidos.append(Posicion_Relativa[0]+iterador2)
                                     Movimientos_Permitidos.append(Posicion_Relativa[1])
@@ -640,12 +727,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 if M[Posicion_Relativa[0]][Posicion_Relativa[1]+iterador3] == ".":
                                     Movimientos_Permitidos.append(Posicion_Relativa[0])
                                     Movimientos_Permitidos.append(Posicion_Relativa[1]+iterador3)
+
+                                elif M[Posicion_Relativa[0]][Posicion_Relativa[1]+iterador3] in Color_Ficha2:
+                                    break
                                 elif M[Posicion_Relativa[0]][Posicion_Relativa[1]+iterador3] in Color_Ficha:
                                     Movimientos_Permitidos.append(Posicion_Relativa[0])
                                     Movimientos_Permitidos.append(Posicion_Relativa[1+iterador3])
 
                                     break
-                                iterador3 = iterador3 + iterador3
+                                iterador3 = iterador3 + 1
                             
                             #algoritmo de busqueda hacia abajo
                             iterador4 = 0
@@ -653,6 +743,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 if M[Posicion_Relativa[0]][Posicion_Relativa[1]-iterador4] == ".":
                                     Movimientos_Permitidos.append(Posicion_Relativa[0])
                                     Movimientos_Permitidos.append(Posicion_Relativa[1]-iterador4)
+                                
+                                elif M[Posicion_Relativa[0]][Posicion_Relativa[1]-iterador4] in Color_Ficha2:
+                                    break
                                 elif M[Posicion_Relativa[0]][Posicion_Relativa[1]-iterador4] in Color_Ficha:
                                     Movimientos_Permitidos.append(Posicion_Relativa[0])
                                     Movimientos_Permitidos.append(Posicion_Relativa[1]-iterador4)
@@ -670,22 +763,51 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             Cantidad = math.trunc(len(Movimientos_Permitidos)/2)
                             for i in range(Cantidad):
                                 if Movimientos_Permitidos[Movimienos] == Movimento_relativo[0]:
-                                    if Movimientos_Permitidos[Movimienos] == Movimientos_Permitidos[1]:
+                                    if Movimientos_Permitidos[Movimienos+1] == Movimientos_Permitidos[1]:
                                         LLave_cambio_posicion.pop(0)
-                                        LLave_cambio_posicion(True)
+                                        LLave_cambio_posicion.append(True)
                                 else:
                                     print("Movimiento no permitido el movimiento está fuera de rango")
+                                Movimienos = Movimienos + 2
 
 
 
                         if Colorde_ficha == B:
-                            ALgoritmo_dela_Torre(N)
+                            ALgoritmo_dela_Torre(N,B)
                         elif Colorde_ficha == N:
-                            ALgoritmo_dela_Torre(B)
+                            ALgoritmo_dela_Torre(B,N)
+
+
+
+
+
+
+                            
                         
                     elif La_ficha == reina:
                         #Reina
-                        pass
+                        print("El peon esta en ")
+                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        print("El Peon se mover a ")
+                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+
+                        #los movimientos 
+                        Movimento_relativo.clear()
+                        Movimento_relativo.append(Ubicacion_ficha[2])
+                        Movimento_relativo.append(Ubicacion_ficha[3])
+
+                        print(Movimientos_permitidos_Reina)
+                        
+                        for i in range(len(Movimientos_permitidos_Reina)):
+                            for  j in range(1):
+                                print(Movimientos_permitidos_Reina[i][j] )
+                                print(Movimientos_permitidos_Reina[i][j+1] )
+                                print(Movimientos_permitidos_Reina[i][j]+1)
+                                if Movimento_relativo[0] == Movimientos_permitidos_Reina[i][j] and  Movimento_relativo[1] == Movimientos_permitidos_Reina[i][j+1]:
+                                    LLave_cambio_posicion.clear()
+                                    LLave_cambio_posicion.append(True) 
+                                   
+                        
                     elif La_ficha == caballo:
                         #caballo
                         pass
@@ -702,7 +824,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 #coloca el la ficha en la posicion colocada
                 if LLave_cambio_posicion[0] == True:
                     #posiccion anterior
-                    M[Posicion_Relativa[0]][Posicion_Relativa[1]]="."
+                    M[Posicion_Relativa[0]][Posicion_Relativa[1]] = "."
+                    M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] = "."
                     #posicion de movimiento
                     M[fila2][columna2] = LFicha[0]
 
