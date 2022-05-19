@@ -26,7 +26,8 @@ contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento
 para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos           finikitado estuvo facil no hubo bugs se me ocurrio a la primerra
 falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador   finikitado XD  no hubo bugs agresivos solo un error 
 
-
+#la toree
+debe verificar si la torre que tiene em frente para recorrer y a la dereccha
 
 
  si todo sale mal en el padado has esto XD SISISIISISIISISISIIS    #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
@@ -269,22 +270,37 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     break
                                 else: 
                                     print("Error La ficha negra esta bloqueda ")
-
-                        # #ficha negras 
-                        # elif Ficha3 in N:
-                        #     if Ficha4 in N:
-                        #         break
-                        #     elif Ficha5 in N:
-                        #         break
-                        #     else:
-                        #         print("Eror la ficha está bloqueada negras")
-
                         else:
                             print(Ficha2)
                             # M[fila2][columna2]="."
                             break
+                    
+                    #si es una torre
+                    if Ficha2 == B[1] or Ficha2 == N[1]:
+                        if Ficha2 in N:
 
+                            if M[fila2+1][columna2] in B or M[fila2+1][columna2] == ".":
+                                break
+                            elif M[fila2-1][columna2] in B or M[fila2-1][columna2] == ".":
+                                break
+                            elif M[fila2][columna2+1] in B or  M[fila2][columna2+1] == ".":
+                                break
+                            elif M[fila2][columna2-1] in B or  M[fila2][columna2-1] == ".":
+                                break
+                            else:
+                                print("La ficha está bloqueada")
 
+                        elif Ficha2 in B:
+                            if M[fila2+1][columna2] in N  or M[fila2+1][columna2] == ".":
+                                break
+                            elif M[fila2-1][columna2] in N or M[fila2-1][columna2] == ".":
+                                break
+                            elif M[fila2][columna2+1] in N or  M[fila2][columna2+1] == ".":
+                                break
+                            elif M[fila2][columna2-1] in N  or  M[fila2][columna2-1] == "." :
+                                break
+                            else:
+                                print("La ficha está bloqueada")
                     else:
                         print(Ficha2)
                         # M[fila2][columna2]="."
@@ -348,12 +364,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                 Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
                                 Movimientos_Permitidos.append(Posicion_Relativa[1])
-                            
-                        
-
-                           
-                                
-
+                                                                    
                             #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
                             # Verifica que tiene en la isquierda......
                 
@@ -577,10 +588,101 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                 movi = movi + 2
                            
-                     
+                    #EL algoritmo de la torre Torre 
                     elif La_ficha == torre:
-                        #Torre
-                        pass
+                        print("La torre se encuentra en la posicion  ")
+                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        print("El Peon se mover a la posicion ")
+                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+                        
+                        Movimientos_Permitidos = []
+                        #los colores
+                        def ALgoritmo_dela_Torre(Color_Ficha):
+                            #ficha negra
+
+                            ##guarda las possiconoes de la ficcha 
+                            Posicion_Relativa.clear() 
+                            Posicion_Relativa.append(Ubicacion_ficha[0])
+                            Posicion_Relativa.append(Ubicacion_ficha[1])
+
+                            #limpia los moviemintos y luego los igresa
+                            Movimientos_Permitidos.clear()
+
+                            #el el Algoritmo que buscará las fichas verticalmente hacia riba 
+                            iterador = 1
+                            while True:
+                                if M[Posicion_Relativa[0]-iterador][Posicion_Relativa[1]] == ".":
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-iterador)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1])
+                                elif M[Posicion_Relativa[0]-iterador][Posicion_Relativa[1]] in Color_Ficha:
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]-iterador)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1])
+                                    break
+
+                                iterador = iterador + 1
+
+                            #algoritmo de busqueda hacia abajo
+                            iterador2 = 0
+                            while True:
+                                if M[Posicion_Relativa[0]+iterador2][Posicion_Relativa[1]] == ".":
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]+iterador2)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1])
+                                elif M[Posicion_Relativa[0]+iterador2][Posicion_Relativa[1]] in Color_Ficha:
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0]+iterador2)
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1])
+
+                                    break
+                                iterador2 = iterador2 + 1
+                           
+                            #algoritmo de busqueda hacia derecha
+                            iterador3 = 0
+                            while True:
+                                if M[Posicion_Relativa[0]][Posicion_Relativa[1]+iterador3] == ".":
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0])
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1]+iterador3)
+                                elif M[Posicion_Relativa[0]][Posicion_Relativa[1]+iterador3] in Color_Ficha:
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0])
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1+iterador3])
+
+                                    break
+                                iterador3 = iterador3 + iterador3
+                            
+                            #algoritmo de busqueda hacia abajo
+                            iterador4 = 0
+                            while True:
+                                if M[Posicion_Relativa[0]][Posicion_Relativa[1]-iterador4] == ".":
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0])
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1]-iterador4)
+                                elif M[Posicion_Relativa[0]][Posicion_Relativa[1]-iterador4] in Color_Ficha:
+                                    Movimientos_Permitidos.append(Posicion_Relativa[0])
+                                    Movimientos_Permitidos.append(Posicion_Relativa[1]-iterador4)
+
+                                    break
+                                iterador4 = iterador4 + 1
+
+                            #los movimientos 
+                            Movimento_relativo.clear()
+                            Movimento_relativo.append(Ubicacion_ficha[2])
+                            Movimento_relativo.append(Ubicacion_ficha[3])
+
+                            #Comprueba los movimientos XD
+                            Movimienos = 0
+                            Cantidad = math.trunc(len(Movimientos_Permitidos)/2)
+                            for i in range(Cantidad):
+                                if Movimientos_Permitidos[Movimienos] == Movimento_relativo[0]:
+                                    if Movimientos_Permitidos[Movimienos] == Movimientos_Permitidos[1]:
+                                        LLave_cambio_posicion.pop(0)
+                                        LLave_cambio_posicion(True)
+                                else:
+                                    print("Movimiento no permitido el movimiento está fuera de rango")
+
+
+
+                        if Colorde_ficha == B:
+                            ALgoritmo_dela_Torre(N)
+                        elif Colorde_ficha == N:
+                            ALgoritmo_dela_Torre(B)
+                        
                     elif La_ficha == reina:
                         #Reina
                         pass
