@@ -17,8 +17,8 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 17/ 05/ 1:12     1.13 AM                                                     1 :20 minutos  hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
                                                                              terminado  no XD me di cunta de un erorr gravisimo
 18/05/2022       7:22 PM  - 9:16 PM                                         3 hora fin del peon y sus funcionalidades  + movimiento torre XD                                                                    
-
-      
+19 /05/2022                                                                 3 horas movimiento de la reina 
+20 /05/2022      
 """
 
 
@@ -58,12 +58,12 @@ M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
-    ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
+    ["7","|",N[0],N[0],N[0],B[0],N[0],N[0],N[0],N[0],"|","7"],
     ["6","|",".",".",".",".",".",".",".",".","|","6"],
     ["5","|",".",".",".",B[2],".",".",N[2],".","|","5"],
     ["4","|",N[1],".",".",".",B[1],".",".",N[1],"|","4"],
     ["3","|",".",".",".",".",".",".",".",".","|","3"],
-    ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],B[0],B[0],"|","2"],
+    ["2","|",B[0],B[0],B[0],B[0],B[0],N[2],B[0],B[0],"|","2"],
     ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     [" "," ","A","B","C","D","E","F","G","H"," "," "]
@@ -99,7 +99,6 @@ llave_supermaestra = [True]
 #Movimientos permitidos de la reina 
 Movimientos_permitidos_Reina = []
 #funcion de la operacion
-   
 def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2):
     system("cls")
         
@@ -331,10 +330,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         #Posicion actual
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
-                        #Verifica si está bloqueada a su alrededor 
-                        #arriba 
-                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == ".":
-
+                        #ALgoritmo ficha
+                        def Super_Algoritmo():
                             #el algoritmo que busca hacia arriba
                             i  = 1
                             while True:
@@ -348,28 +345,127 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                 i = i + 1
 
+                            #el algoritmo que busca hacia arriba derecha
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]+i])
+                                elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]+i])
+                                    break
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "_":
+                                   break
+
+                                i = i + 1
+                            #algoritmo arriba isquierda
+                            i = 0
+                            while True:
+                                if M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]-i])
+                                elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i],Ubicacion_ficha[1]-i)
+                                    break
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == "_":
+                                    break
+                                i = i + 1 
+                            #algoritmo isquierda 
+                            i = 0
+                            while True:
+                                if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0],Ubicacion_ficha[1]-i])
+                                elif not M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]],Ubicacion_ficha[1]-i)
+                                    break
+                                elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] == "_":
+                                    break
+                                i = i + 1 
+                            #algoritmo Derecha
+                            i = 0
+                            while True:
+                                if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+i] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0],Ubicacion_ficha[1]+i])
+                                elif not M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]],Ubicacion_ficha[1]+i)
+                                    break
+                                elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == "_":
+                                    break
+                                i = i + 1 
+                            
+                            #el algoritmo que busca hacia abajo
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]])
+                                elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]])
+                                    break
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] == "_":
+                                    break
+
+                                i = i + 1
+                            #el algoritmo que busca hacia abajo derecha 
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]+i])
+                                elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]+i])
+                                    break
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == "_":
+                                    break
+
+                                i = i + 1
+                            
+                            #el algoritmo que busca hacia abajo isquierda
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == ".":
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]-i])
+                                elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                                    Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]-i])
+                                    break
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == "_":
+                                    break
+
+                                i = i + 1
+
+
+
+                        #Verifica si está bloqueada a su alrededor 
+                        #arriba 
+                        print(COLOR_ELEGIDO1)
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                           
+                            Super_Algoritmo()    
                            
                             break
                         #arriba derecha
-                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == ".":
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1:
+                            Super_Algoritmo()
                             break
                         #arriba isquierda
-                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == ".":
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1:
+                            Super_Algoritmo()
                             break
                         #derecha
-                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == ".":
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == "." or not  M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1:
+                            Super_Algoritmo()
                             break
                         #isquierda
-                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == ".":
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1:
+                            Super_Algoritmo()
                             break
                         #abajo 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == ".":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                            Super_Algoritmo()
                             break
                         #abajo derecha 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == ".":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1:
+                            Super_Algoritmo()
                             break
                         #abajo isquierda 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == ".":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1:
+                            Super_Algoritmo()
                             break
                         else:
                             print("La ficha está bloqueada")
