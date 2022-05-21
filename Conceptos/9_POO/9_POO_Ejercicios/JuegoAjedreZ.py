@@ -20,6 +20,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 19 /05/2022                                                                 5 horas movimiento de la reina  Y torre corregido 
 20 /05/2022      
 
+9:00
 
 """
 
@@ -60,12 +61,12 @@ M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
-    ["7","|",N[0],N[0],N[0],B[0],N[0],N[0],N[0],N[0],"|","7"],
+    ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],".",N[0],"|","7"],
     ["6","|",".",".",".",".",".",".",".",".","|","6"],
-    ["5","|",".",".",".",B[2],".",".",N[2],".","|","5"],
-    ["4","|",N[1],".",".",".",B[1],".",".",N[1],"|","4"],
+    ["5","|",".",".",".",".",".",".",".",".","|","5"],
+    ["4","|",".",".",".",".",".",".",".",".","|","4"],
     ["3","|",".",".",".",".",".",".",".",".","|","3"],
-    ["2","|",B[0],B[0],B[0],B[0],B[0],N[2],B[0],B[0],"|","2"],
+    ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],".",B[0],"|","2"],
     ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     [" "," ","A","B","C","D","E","F","G","H"," "," "]
@@ -102,6 +103,12 @@ llave_supermaestra = [True]
 Movimientos_permitidos_Reina = []
 #movimientos torre
 Movimientos_Torre = []
+
+#movimientos permitidos del arfil 
+Movimiento_Arfil  = []
+
+
+
 #funcion de la operacion
 def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2):
     system("cls")
@@ -434,7 +441,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]+i])
                                     break
-                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "_":
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "_":
                                    break
 
                                 i = i + 1
@@ -551,12 +558,99 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         else:
                             print("La ficha está bloqueada")
 
+                    #Esto es para el arfil 
+                    if Ficha2 == B[5] or Ficha2 == N[5]:
+                        Movimiento_Arfil.clear()
 
-                    
+                        print("Esto es un arfil")
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
+                        Color_ficha_elegida  = 0
+                         #verifica si es blanca o negra
+                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Blancas[5]:
+                            #es una ficha blanca
+                            Color_ficha_elegida = Fichas_Blancas 
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[5]:
+                            #es una ficha negra 
+                            Color_ficha_elegida = Fichas_Negras
 
+                        #Posicion actual
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
+                        def Algorito_Arfil():
+                            #el algoritmo que busca hacia arriba derecha
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == ".":
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]+i])
+                                elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in Color_ficha_elegida:
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]+i])
+                                    break
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in Color_ficha_elegida or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "_":
+                                   break
+
+                                i = i + 1
+                            
+                            #el algoritmo que busca hacia arriba isquierda
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == ".":
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]-i])
+                                elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in Color_ficha_elegida:
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]-i])
+                                    break
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in Color_ficha_elegida or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == "_":
+                                   break
+
+                                i = i + 1 
+
+                            #el algoritmo que busca abajo  isquierda
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == ".":
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]-i])
+                                elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in Color_ficha_elegida:
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]-i])
+                                    break
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in Color_ficha_elegida or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == "_":
+                                   break
+
+                                i = i + 1 
+
+                            #el algoritmo que busca abajo isquierda
+                            i  = 1
+                            while True:
+                                if M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == ".":
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]+i])
+                                elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in Color_ficha_elegida:
+                                    Movimiento_Arfil.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]+i])
+                                    break
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in Color_ficha_elegida or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == "_":
+                                   break
+
+                                i = i + 1 
                         
+                        #Verifica si está bloqueada a su alrededor 
+                      
+                        #arriba derecha
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
+                            Algorito_Arfil()
+                            break
+                        #arriba isquierda
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
+                            Algorito_Arfil()
+                            break
+                      
+                        #abajo derecha 
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
+                            Algorito_Arfil()
+                            break
+                        #abajo isquierda 
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
+                            Algorito_Arfil()
+                            break
+                        else:
+                            print("La ficha está bloqueada")
                     # else:
                     #     print(Ficha2)
                     #     # M[fila2][columna2]="."
@@ -853,7 +947,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
                         #los movimintos 
-                         #los movimientos 
+                        #los movimientos 
                         Movimento_relativo.clear()
                         Movimento_relativo.append(Ubicacion_ficha[2])
                         Movimento_relativo.append(Ubicacion_ficha[3])
@@ -900,7 +994,24 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         pass
                     elif La_ficha == arfil:
                         #Arfil 
-                        pass
+                        print("El la Torre esta en ")
+                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        print("La Torre se va a mover a ")
+                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+
+                        #los movimintos 
+                        #los movimientos 
+                        Movimento_relativo.clear()
+                        Movimento_relativo.append(Ubicacion_ficha[2])
+                        Movimento_relativo.append(Ubicacion_ficha[3])
+
+                        print(Movimiento_Arfil)
+
+                        for i in range(len(Movimiento_Arfil)):
+                            for j in range(1):
+                                if Movimento_relativo[0] == Movimiento_Arfil[i][j] and  Movimento_relativo[1] == Movimiento_Arfil[i][j+1]:
+                                    LLave_cambio_posicion.clear()
+                                    LLave_cambio_posicion.append(True) 
                     
                 #pasa la ficha y la posicion de la ficha cuando se selecciona
                 Algoritmo(LFicha[0],peon=Colorde_ficha2[0],torre=Colorde_ficha2[1],reina=Colorde_ficha2[2],caballo=Colorde_ficha2[3],rey=Colorde_ficha2[4],arfil=Colorde_ficha2[5])
