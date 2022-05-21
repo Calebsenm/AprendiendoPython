@@ -19,7 +19,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 18/05/2022       7:22 PM  - 9:16 PM                                         3 hora fin del peon y sus funcionalidades  + movimiento torre XD                                                                    
 19 /05/2022                                                                 5 horas movimiento de la reina  Y torre corregido 
 20 /05/2022      
-
+21/05/ 2022      9:00 - 11:00                                               2 horas movimiento arfil listo
 9:00
 
 """
