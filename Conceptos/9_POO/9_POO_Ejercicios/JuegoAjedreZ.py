@@ -17,8 +17,10 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 17/ 05/ 1:12     1.13 AM                                                     1 :20 minutos  hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
                                                                              terminado  no XD me di cunta de un erorr gravisimo
 18/05/2022       7:22 PM  - 9:16 PM                                         3 hora fin del peon y sus funcionalidades  + movimiento torre XD                                                                    
-19 /05/2022                                                                 3 horas movimiento de la reina 
+19 /05/2022                                                                 5 horas movimiento de la reina  Y torre corregido 
 20 /05/2022      
+
+
 """
 
 
