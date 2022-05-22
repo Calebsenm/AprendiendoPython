@@ -13,15 +13,14 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 14/ 05 / 2022                                                               3 horas corrigiendo bugs   
 15/05/ 2022                                                                 2 horas matando bugs  se aniquiláron los bug maximos no se si habra quedado despues de la aniquilacion maxima 
 5:23 PM                                                                     un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
-16/05/2020       12:17 AM                                                    1 hora detalles y se puede hacer dos movimientos en la primera jugada 
-17/ 05/ 1:12     1.13 AM                                                     1 :20 minutos  hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
-                                                                             terminado  no XD me di cunta de un erorr gravisimo
+16/05/2020       12:17 AM                                                   1 hora detalles y se puede hacer dos movimientos en la primera jugada 
+17/ 05/ 1:12     1.13 AM                                                    1 :20 minutos  hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
+                                                                            terminado  no XD me di cunta de un erorr gravisimo
 18/05/2022       7:22 PM  - 9:16 PM                                         3 hora fin del peon y sus funcionalidades  + movimiento torre XD                                                                    
 19 /05/2022                                                                 5 horas movimiento de la reina  Y torre corregido 
 20 /05/2022      
-21/05/ 2022      9:00 - 11:00                                               2 horas movimiento arfil listo
-9:00
-
+21/05/ 2022      9:00 am - 11:00 am                                         2 horas movimiento arfil listo
+21/05/2022       7:30 - 10:55                                               3 horas y media           caballo a medias  AJJAJAJAJJAJA   estuvo bastante entretenido
 """
 
 
@@ -61,12 +60,12 @@ M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
-    ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],".",N[0],"|","7"],
+    ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
     ["6","|",".",".",".",".",".",".",".",".","|","6"],
     ["5","|",".",".",".",".",".",".",".",".","|","5"],
-    ["4","|",".",".",".",".",".",".",".",".","|","4"],
+    ["4","|",".",".",".",".",".",B[3],".",N[3],"|","4"],
     ["3","|",".",".",".",".",".",".",".",".","|","3"],
-    ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],".",B[0],"|","2"],
+    ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],B[0],B[0],"|","2"],
     ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
     [" "," ","A","B","C","D","E","F","G","H"," "," "]
@@ -107,7 +106,8 @@ Movimientos_Torre = []
 #movimientos permitidos del arfil 
 Movimiento_Arfil  = []
 
-
+#Movimiento Cabalo
+Movimiento_caballo = []
 
 #funcion de la operacion
 def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2):
@@ -558,6 +558,95 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         else:
                             print("La ficha está bloqueada")
 
+
+                    #esto es para el caballo
+                    if Ficha2 == B[3] or Ficha2 == N[3]:
+                        
+                        Movimiento_caballo.clear()
+                        print("Esto es un caballo")
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+
+                        Color_ficha_elegida  = 0
+                        #verifica si es blanca o negra
+                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Blancas[3]:
+                            #es una ficha blanca
+                            Color_ficha_elegida = Fichas_Blancas 
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[3]:
+                            #es una ficha negra 
+                            Color_ficha_elegida = Fichas_Negras
+
+                        #Posicion actual
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+
+                        #la llave incomprensible
+                        llave_imcomprensible = []
+
+                        #es ta es incompresible HHAHHAHAHHAHAHAHAHHAHA
+                        #va moverse una posicion diagonal si siene un dianonal no pasa  luega en la nueva posicion
+                        #va a buscar en frente y la isquierda si tiene un gion o si no permite agregar el movimiento           
+                        #diagonal Derecha arriba 
+                        while True:
+                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1]== "_":  
+                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1]== "_":
+                                    if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]-2,Ubicacion_ficha[1]+1])
+                                        llave_imcomprensible.append(True)
+                                    
+                                
+                                if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+2]== "|":
+                                    if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+2] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]+2])
+                                        llave_imcomprensible.append(True)
+                                        
+
+                            #diagonal isquierda arriba 
+                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "_":  
+                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]-1]== "_":
+                                    if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]-2,Ubicacion_ficha[1]-1])
+                                        llave_imcomprensible.append(True)
+                                        
+                                
+                                if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-2]== "|":
+                                    if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-2] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]-2])
+                                        llave_imcomprensible.append(True)
+                                        
+
+                            #digonal isquierda abajo
+                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "_":  
+                                if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]-1]== "_":
+                                    if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]+2,Ubicacion_ficha[1]-1])
+                                        llave_imcomprensible.append(True)
+                                        
+                                
+                                if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-2]== "|":
+                                    if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-2] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]-2])
+                                        llave_imcomprensible.append(True)
+                                        
+
+                            #diagonal iderecha abajo           
+                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "_":  
+                                if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]+1]== "_":
+                                    if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]+2,Ubicacion_ficha[1]+1])
+                                        llave_imcomprensible.append(True)
+                                        
+                            
+                                if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+2]== "|":
+                                    if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+2] in Color_ficha_elegida:
+                                        Movimiento_caballo.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]+2])
+                                        llave_imcomprensible.append(True)
+                            break
+                                    
+                        if llave_imcomprensible[0] == True:
+                            break
+                        else:
+                            print("La ficha está bloquedad")
+                        
+
                     #Esto es para el arfil 
                     if Ficha2 == B[5] or Ficha2 == N[5]:
                         Movimiento_Arfil.clear()
@@ -651,6 +740,11 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             break
                         else:
                             print("La ficha está bloqueada")
+                    
+                    
+                    
+                    
+                    
                     # else:
                     #     print(Ficha2)
                     #     # M[fila2][columna2]="."
@@ -988,7 +1082,29 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         
                     elif La_ficha == caballo:
                         #caballo
-                        pass
+                        print("El el caballo ")
+                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        print("La Torre se va a mover a ")
+                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+
+                        
+                        #los movimintos 
+                        #los movimientos 
+                        Movimento_relativo.clear()
+                        Movimento_relativo.append(Ubicacion_ficha[2])
+                        Movimento_relativo.append(Ubicacion_ficha[3])
+
+                        print(Movimiento_caballo)
+
+                        for i in range(len(Movimiento_caballo)):
+                            for j in range(1):
+                                if Movimento_relativo[0] == Movimiento_caballo[i][j] and  Movimento_relativo[1] == Movimiento_caballo[i][j+1]:
+                                    LLave_cambio_posicion.clear()
+                                    LLave_cambio_posicion.append(True) 
+
+
+
+                        
                     elif La_ficha == rey:
                         #reY
                         pass
