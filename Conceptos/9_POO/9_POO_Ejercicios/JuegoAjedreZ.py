@@ -21,21 +21,18 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 20 /05/2022      
 21/05/ 2022      9:00 am - 11:00 am                                         2 horas movimiento arfil listo
 21/05/2022       7:30 - 10:55                                               3 horas y media           caballo a medias  AJJAJAJAJJAJA   estuvo bastante entretenido
-"""
+22/05/2022       7:28 _ 9:14                                                1 hora 45minutos  errores del caballo terminado y el rey listo
 
 
 """
 
-contolar si tiene una ficha bloqueda al frente para luego devolver el movimiento                                     anikilado estubo lleno de bugs  tarde mas de 4 horas buscandolo no sabia como hacer esta funcionalidad lo logré
-para terminar con el peon debes verificar si está en la primera movida para luego permitirle los dos pasos           finikitado estuvo facil no hubo bugs se me ocurrio a la primerra
-falta verificar si el pen está en la utltima posiscion y sisi entonces el peon se convierte en una reina o la que decida el jugador   finikitado XD  no hubo bugs agresivos solo un error 
 
-#la toree
-debe verificar si la torre que tiene em frente para recorrer y a la dereccha
+"""
+reglas faltantes
 
-
- si todo sale mal en el padado has esto XD SISISIISISIISISISIIS    #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
- elimina todo 
+movimiento del rey
+hacer el enrosque 
+hacer el hakemate 
 """
 from ast import Break
 from asyncio import sleep
@@ -108,6 +105,10 @@ Movimiento_Arfil  = []
 
 #Movimiento Cabalo
 Movimiento_caballo = []
+
+#Movimiento rey permitido 
+Movimiento_Rey = []
+
 
 #funcion de la operacion
 def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2):
@@ -261,7 +262,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
 
                 #verifica si ha ingresado una ficha contraria
-                elif Ficha2 == Colorde_ficha[0] or Ficha2 == Colorde_ficha[1] or Ficha2 == Colorde_ficha[2] or Ficha2 == Colorde_ficha[3] and Ficha2 == Colorde_ficha[4] or Ficha2 == Colorde_ficha[5]:
+                elif Ficha2 == Colorde_ficha[0] or Ficha2 == Colorde_ficha[1] or Ficha2 == Colorde_ficha[2] or Ficha2 == Colorde_ficha[3] or Ficha2 == Colorde_ficha[4] or Ficha2 == Colorde_ficha[5]:
                     print("Error de turno")
                 #coloca el punto de la posisicon donde se movia
                 else:
@@ -579,15 +580,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         #la llave incomprensible
-                        llave_imcomprensible = []
+                        llave_imcomprensible = [False]
 
                         #es ta es incompresible HHAHHAHAHHAHAHAHAHHAHA
                         #va moverse una posicion diagonal si siene un dianonal no pasa  luega en la nueva posicion
                         #va a buscar en frente y la isquierda si tiene un gion o si no permite agregar el movimiento           
                         #diagonal Derecha arriba 
                         while True:
-                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1]== "_":  
-                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1]== "_":
+                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1]== "_" and not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1] == "|":  
+                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1]== "_" :
                                     if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]-2,Ubicacion_ficha[1]+1])
                                         llave_imcomprensible.append(True)
@@ -600,7 +601,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         
 
                             #diagonal isquierda arriba 
-                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "_":  
+                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "_" and not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "|":  
                                 if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]-1]== "_":
                                     if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]-2,Ubicacion_ficha[1]-1])
@@ -614,7 +615,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         
 
                             #digonal isquierda abajo
-                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "_":  
+                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "_" and  not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "|":  
                                 if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]-1]== "_":
                                     if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]+2,Ubicacion_ficha[1]-1])
@@ -628,7 +629,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         
 
                             #diagonal iderecha abajo           
-                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "_":  
+                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "_" and not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "|":  
                                 if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]+1]== "_":
                                     if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]+2,Ubicacion_ficha[1]+1])
@@ -640,8 +641,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         Movimiento_caballo.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]+2])
                                         llave_imcomprensible.append(True)
                             break
-                                    
-                        if llave_imcomprensible[0] == True:
+
+                        #si sale mal solo colocas if llave_imcomprensible[0] == True   
+                        if len(llave_imcomprensible) > 1:
+                            llave_imcomprensible.clear()
                             break
                         else:
                             print("La ficha está bloquedad")
@@ -744,12 +747,72 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     
                     
                     
-                    
-                    # else:
-                    #     print(Ficha2)
-                    #     # M[fila2][columna2]="."
-                    #     break
+                    #si es el rey
+                    if Ficha2 == B[4] or Ficha2 == N[4]:
+                        Movimiento_Rey.clear()
 
+                        print("La ficha es el rey")
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+
+                        COLOR_ELEGIDO1  = 0
+                         #verifica si es blanca o negra
+                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Blancas[4]:
+                            #es una ficha blanca
+                            COLOR_ELEGIDO1 = Fichas_Negras
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[4]:
+                            #es una ficha negra 
+                            COLOR_ELEGIDO1 = Fichas_Blancas 
+
+                        #Posicion actual
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+
+                        #Llava incomprensible 
+                        hola = [False]
+                        #Verifica si está bloqueada a su alrededor 
+                        #arriba 
+                        print(COLOR_ELEGIDO1)
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                            Movimiento_Rey.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]])
+                            hola.append(True)
+                           
+                        #arriba derecha
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1:
+                            
+                            Movimiento_Rey.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]+1])
+                            hola.append(True)
+                        #arriba isquierda
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1:
+                            Movimiento_Rey.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]-1])
+                            hola.append(True)
+                        #derecha
+                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == "." or  M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1:
+                           
+                           Movimiento_Rey.append([Ubicacion_ficha[0],Ubicacion_ficha[1]+1])
+                           hola.append(True)
+                        #isquierda
+                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == "." or M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1:
+                            Movimiento_Rey.append([Ubicacion_ficha[0],Ubicacion_ficha[1]-1])
+                            hola.append(True)
+                        #abajo 
+                        if M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
+                            Movimiento_Rey.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]])
+                            hola.append(True)
+
+                        #abajo derecha 
+                        if M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1:
+                            Movimiento_Rey.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]+1])
+                            hola.append(True)
+                        #abajo isquierda 
+                        if M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1:
+                            Movimiento_Rey.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]-1])
+                            hola.append(True)
+
+                        
+                        if len(hola) > 1:
+                            hola.clear()
+                            break
+                        else:
+                            print("La ficha está bloqueada")
            
 
             if LLave1 == False:
@@ -1106,13 +1169,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                         
                     elif La_ficha == rey:
-                        #reY
-                        pass
-                    elif La_ficha == arfil:
-                        #Arfil 
-                        print("El la Torre esta en ")
+                        #Rey
+                        print("El rey Está ")
                         print(Ubicacion_ficha[0],Ubicacion_ficha[1])
-                        print("La Torre se va a mover a ")
+                        print("El rey se va a mover a ")
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
                         #los movimintos 
@@ -1121,8 +1181,33 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         Movimento_relativo.append(Ubicacion_ficha[2])
                         Movimento_relativo.append(Ubicacion_ficha[3])
 
+                        print(Movimiento_Rey)
+
+                        for i in range(len(Movimiento_Rey)):
+                            for j in range(1):
+                                if Movimento_relativo[0] == Movimiento_Rey[i][j] and  Movimento_relativo[1] == Movimiento_Rey[i][j+1]:
+                                    LLave_cambio_posicion.clear()
+                                    LLave_cambio_posicion.append(True) 
+                        
+                    elif La_ficha == arfil:
+                        #Arfil 
+                        #imprime las posiciones 
+                        print("El la Torre esta en ")
+                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        print("La Torre se va a mover a ")
+                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+
+                        #los movimintos 
+                        #los movimientos 
+                        #guarda los movimientos
+
+                        Movimento_relativo.clear()
+                        Movimento_relativo.append(Ubicacion_ficha[2])
+                        Movimento_relativo.append(Ubicacion_ficha[3])
+
                         print(Movimiento_Arfil)
 
+                        #compara cada movimiento permitido de la ficha con el moviento ingresado si coinciden ingresa una llave 
                         for i in range(len(Movimiento_Arfil)):
                             for j in range(1):
                                 if Movimento_relativo[0] == Movimiento_Arfil[i][j] and  Movimento_relativo[1] == Movimiento_Arfil[i][j+1]:
