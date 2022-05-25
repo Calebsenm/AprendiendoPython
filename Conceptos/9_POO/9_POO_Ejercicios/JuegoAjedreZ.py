@@ -23,7 +23,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 21/05/2022       7:30 - 10:55                                               3 horas y media           caballo a medias  AJJAJAJAJJAJA   estuvo bastante entretenido
 22/05/2022       7:28 _ 9:14                                                1 hora 45minutos  errores del caballo terminado y el rey listo
 23/05/2022       10:00  - 3:44                                              3 horas  arrgle un bug y leyendo nada mas XD                                              
-
+24/05/2022       7:17   
 
 """
 
@@ -214,10 +214,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             if LLave1 == True:
                 #guarda donde esta
                 Ubicacion_ficha.clear()
-              
-
                 Ubicacion_ficha.append(fila2)
                 Ubicacion_ficha.append(columna2)
+
+                #Va a calcular todos los ataques de todas las fichas XD 
             elif LLave1 == False:
                 #la limpia
 
@@ -268,6 +268,12 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     print("Error de turno")
                 #coloca el punto de la posisicon donde se movia
                 else:
+                    print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+                    
+                    # i = 0
+                    # while True:
+                    #         pass
+
 
                     #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
                     #SI es un peon   permite identificar que ficha tiene en frente y a sus lads para ver si el peon está bloqueado 
@@ -768,6 +774,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         #Posicion actual
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
+
+
                         #Llava incomprensible 
                         hola = [False]
                         #Verifica si está bloqueada a su alrededor 
@@ -810,6 +818,29 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             hola.append(True)
 
                         #verifica si está en hakemate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         
                         if len(hola) > 1:

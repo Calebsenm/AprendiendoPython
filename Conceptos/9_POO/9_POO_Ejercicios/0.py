@@ -1,13 +1,10 @@
-from pickle import TRUE
+from os import system
+system("cls")
+
+Base = int(input("Ingresa la base "))
+altura = int(input("Ingresa al atura "))
+
+Area = (Base * altura)/2
 
 
-hake = [True]
-Hakemate = [False]
-
-Hakemate.pop(0)
-Hakemate.append(True)
-
-if hake[0] == True:
-    print("Hake")
-if Hakemate[0] == True:
-    print("Hakemate")
+print(f"el area del triangulo es {Area}")
