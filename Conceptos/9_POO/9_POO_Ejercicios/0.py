@@ -1,10 +1,19 @@
-from os import system
-system("cls")
+M = [[2,2],[2,4]]
 
-Base = int(input("Ingresa la base "))
-altura = int(input("Ingresa al atura "))
+if [2,7] in M:
+    print("Correcto :)")
+else:
+    print("incorrecto")
 
-Area = (Base * altura)/2
 
+hola = [3,4]
 
-print(f"el area del triangulo es {Area}")
+Hola =  [hola[0]-1,hola[1]]
+print(Hola)
+
+if [hola[0]-1,hola[1]] in M:
+    print("si está")
+
+else:
+    print("No estas")
+

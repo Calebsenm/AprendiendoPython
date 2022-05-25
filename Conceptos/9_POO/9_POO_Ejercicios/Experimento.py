@@ -376,6 +376,7 @@ while True:
         break
 #Verica si está en hakemate
 
+Posicioneslibre = []
 print("Esta es la ubicacion del rey dentro del tablero")
 
 print(Nueva_Ubicacion_Rey)
@@ -398,6 +399,7 @@ elif M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]]  == "_":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
 
 #verifica arriba Derecha 
 if [Nueva_Ubicacion_Rey[0]-1,Nueva_Ubicacion_Rey[1]+1] in Linea_De_peligro:
@@ -408,6 +410,7 @@ elif M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+1]  == "_":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
 
 
 
@@ -420,6 +423,7 @@ elif M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]-1]  == "_":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
 
 #verifica isquierda
 if [Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]-1] in Linea_De_peligro:
@@ -430,6 +434,7 @@ elif M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]-1]  == "|":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
 
 
 #verifica Derecha 
@@ -441,6 +446,7 @@ elif M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]+1]  == "|":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
 
 
 #verifica abajo Derecha 
@@ -452,6 +458,7 @@ elif M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]+1]  == "_":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
 
 #verifica abajo isquierda  
 if [Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]-1] in Linea_De_peligro:
@@ -462,6 +469,7 @@ elif M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]-1]  == "_":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
 
 #verifica abajo 
 if [Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]] in Linea_De_peligro:
@@ -472,5 +480,11 @@ elif M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]]  == "_":
     print("posion Bloquedad ")
 else:
     print("Posisicion libre")
+    Posicioneslibre.append(True)
+
+if True in Posicioneslibre:
+    print("EL moviento está libre")
+else:
+    print("Haquemate")
 
 
