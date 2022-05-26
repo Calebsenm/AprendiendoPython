@@ -1,4 +1,5 @@
 #simulacion del algoritmo 
+#este es el algoritmo
 
 
 

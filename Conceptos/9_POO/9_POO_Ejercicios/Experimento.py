@@ -1,5 +1,5 @@
 #simulacion del algoritmo 
-
+#este es un espermiento la rama primcipa els el 1_2Algoritmo.py
 
 
 B = ["\u2659","\u2656","\u2655","\u2658","\u2654","\u2657"]
