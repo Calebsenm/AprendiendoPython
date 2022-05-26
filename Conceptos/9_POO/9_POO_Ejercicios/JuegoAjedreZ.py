@@ -1,4 +1,4 @@
-#ultimo respaldo 
+#ultimo respaldo de seguridad
 
 """
 Será que se puede crear el jeugo del agedrez en pyton con la consola..  yo no lo sé solo quiero intentarlo.... ajajajjajaja
@@ -15,7 +15,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 5:23 PM                                                                     un bug que me quitó el sueño lo pude haver aniquilado en un minuto y estuve horas aniquilandolo JAJAJAJAJAJA
 16/05/2020       12:17 AM                                                   1 hora detalles y se puede hacer dos movimientos en la primera jugada 
 17/ 05/ 1:12     1.13 AM                                                    1 :20 minutos  hora haciendo la funcionalidad del peon en la posicion 8 hace el cambio por otra ficha
-                                                                            terminado  no XD me di cunta de un erorr gravisimo
+                                                                         terminado  no XD me di cunta de un erorr gravisimo
 18/05/2022       7:22 PM  - 9:16 PM                                         3 hora fin del peon y sus funcionalidades  + movimiento torre XD                                                                    
 19 /05/2022                                                                 5 horas movimiento de la reina  Y torre corregido 
 20 /05/2022      

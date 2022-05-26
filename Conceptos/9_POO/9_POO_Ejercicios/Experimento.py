@@ -438,14 +438,14 @@ print(Nueva_Ubicacion_Rey_Origen)
 
 
 #verifica si la posisicion actual esta en hake
-if Nueva_Ubicacion_Rey_Origen in Linea_De_peligro:
-    print("Movimiento en jake")
+if Nueva_Ubicacion_Rey_Origen in Nueva_linea_Peligro:
+    print("Posicion en Haque")
 else:
     print("el movimiento no está en hake")
 
 #verifica arriba
-if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
@@ -455,12 +455,12 @@ else:
     Posicioneslibre.append(True)
 
 #verifica arriba Derecha 
-if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]+1] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
-    print("posion Bloquedad ")
+    print("posion Bloquedada ")
 else:
     print("Posisicion libre")
     Posicioneslibre.append(True)
@@ -468,65 +468,65 @@ else:
 
 
 #verifica arriba isquierda
-if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]-1] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
-    print("posion Bloquedad ")
+    print("posion Bloquedada ")
 else:
     print("Posisicion libre")
     Posicioneslibre.append(True)
 
 #verifica isquierda
-if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]-1] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1]  == "|":
-    print("posion Bloquedad ")
+    print("posion Bloqueda ")
 else:
     print("Posisicion libre")
     Posicioneslibre.append(True)
 
 
 #verifica Derecha 
-if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]+1] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1]  == "|":
-    print("posion Bloquedad ")
+    print("posion Bloqueda ")
 else:
     print("Posisicion libre")
     Posicioneslibre.append(True)
 
 
 #verifica abajo Derecha 
-if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]+1] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
-    print("posion Bloquedad ")
+    print("posion Bloqueda ")
 else:
     print("Posisicion libre")
     Posicioneslibre.append(True)
 
 #verifica abajo isquierda  
-if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]-1] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
-    print("posion Bloquedad ")
+    print("posion Bloqueda ")
 else:
     print("Posisicion libre")
     Posicioneslibre.append(True)
 
 #verifica abajo 
-if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]] in Linea_De_peligro:
-    print("Posicion en hake") 
+if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
+    print("Movimiento en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
