@@ -1,19 +1,26 @@
-M = [[2,2],[2,4]]
 
-if [2,7] in M:
-    print("Correcto :)")
-else:
-    print("incorrecto")
+H = [
 
+    [1,2],
+    [3,4],
+    [2,4],
+    [5,5],
+    [2,4],
+    [1,2],
+    [1,1]
+]
+h = []
+for i in H:
+    print(i)
 
-hola = [3,4]
+for i in H:
+    if i not in h:
+        h.append(i)
 
-Hola =  [hola[0]-1,hola[1]]
-print(Hola)
+for i in H:
+    if i not in h:
+        h.append(i)
 
-if [hola[0]-1,hola[1]] in M:
-    print("si está")
-
-else:
-    print("No estas")
-
+print("Lista con eliminacion de duplicados")
+for i in h:
+    print(i)
