@@ -9,6 +9,7 @@ print(B)
 print(N)
 Ubicacion_Rey = []
 Linea_De_peligro = []
+cual_ficha_ataca = []
 M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
@@ -62,9 +63,9 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
     Fihas_Ataque2 = [CONJUNTO_FICHA[0],CONJUNTO_FICHA[4]]
     Fihas_Ataque_Diagonal = [CONJUNTO_FICHA[2],CONJUNTO_FICHA[5]]
     Ficha_Ataque_Caballo = [CONJUNTO_FICHA[3]]
-    cual_ficha_ataca = []
+   
 
-    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+    Linea_De_peligro.append([Ubicacion_Rey[0][0],Ubicacion_Rey[0][1]])
 
     while True:
         #ataque hacia arriba
@@ -391,9 +392,9 @@ print(Nueva_Ubicacion_Rey_Origen)
 i = 0
 while True:
     if Nueva_Ubicacion_Rey_Origen[0] == Linea_De_peligro[i][i] and Nueva_Ubicacion_Rey_Origen[1] == Linea_De_peligro[i][i+1]:
-        for i in range(len(Nueva_Ubicacion_Rey_Origen)):
-            
-            print(f"La ficha está en hake por {M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]]}")
+        for i in range(len(cual_ficha_ataca)):
+            for j in range(1):
+                print(f"La ficha está en hake por {M[cual_ficha_ataca[i][0]][cual_ficha_ataca[i][1]]}")
         
         break 
     else:
@@ -439,13 +440,13 @@ print(Nueva_Ubicacion_Rey_Origen)
 
 #verifica si la posisicion actual esta en hake
 if Nueva_Ubicacion_Rey_Origen in Nueva_linea_Peligro:
-    print("Posicion en Haque")
+    print("Rey en Haque")
 else:
     print("el movimiento no está en hake")
 
 #verifica arriba
 if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento hacia arriba está en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
@@ -456,7 +457,7 @@ else:
 
 #verifica arriba Derecha 
 if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento Hacia Arriba Derecha está en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
@@ -469,7 +470,7 @@ else:
 
 #verifica arriba isquierda
 if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento Hacia arriba isquierda Esta en haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
@@ -480,7 +481,7 @@ else:
 
 #verifica isquierda
 if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento Hacia Isquierda está en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1]  == "|":
@@ -492,7 +493,7 @@ else:
 
 #verifica Derecha 
 if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento Hacia Derecha está en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1]  == "|":
@@ -504,7 +505,7 @@ else:
 
 #verifica abajo Derecha 
 if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento hacia abajo Derecha en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
@@ -515,7 +516,7 @@ else:
 
 #verifica abajo isquierda  
 if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento hacia abajo isquierda  en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
@@ -526,7 +527,7 @@ else:
 
 #verifica abajo 
 if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
-    print("Movimiento en Haque") 
+    print("Movimiento hacia verifica abajo en Haque") 
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]] in N:
     print("ficha bloqueada")
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
@@ -536,7 +537,7 @@ else:
     Posicioneslibre.append(True)
 
 if True in Posicioneslibre:
-    print("Tiene Un Movimiento Libre")
+    print("EL rey tiene Chance de salvarse del Haque ")
     print("")
 else:
     print("Haquemate")
