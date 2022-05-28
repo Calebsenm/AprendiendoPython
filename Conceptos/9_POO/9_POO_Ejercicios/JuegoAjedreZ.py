@@ -26,7 +26,7 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 24/05/2022       7:17am   - 7:10 pm                                         12 horas creando el algoritmo que hace el haquemate incompleto aun hace falta verificar posisciones y establecer el hakemate
 25/05/2022       10:00am  - 12:00 am                                        2 horas perfecionando el algoritmo
 26/05/2022
-27/05/2022       11:00 PM - 12:42                                          cambios
+27/05/2022       11:00 AM - 12:42 PM     and 11:00 pm -                     1.40 cambios
 """
 
 

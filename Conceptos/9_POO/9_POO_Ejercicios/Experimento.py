@@ -7,15 +7,13 @@ N = ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 
 print(B)
 print(N)
-Ubicacion_Rey = []
-Linea_De_peligro = []
-cual_ficha_ataca = []
+
 M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
-    ["8","|",".",".",".",".",N[5],".",N[2],".","|","8"],
+    ["8","|",".",".",".",".",N[5],".",N[2],N[2],"|","8"],
     ["7","|",".",".",".",".",".",".",".",".","|","7"],
-    ["6","|",".",".",".",".",".",".",".",".","|","6"],
+    ["6","|",".",".",".",".",".",".",".",N[1],"|","6"],
     ["5","|",".",".",".",B[4],".",".",".",".","|","5"],
     ["4","|",N[1],".",".",".",".",N[3],".",".","|","4"],
     ["3","|",".",".",".",".",".",".",".",".","|","3"],
@@ -32,17 +30,21 @@ for i in range(12):
     print()
 
 
-def BuscaFichas(C,Ficha_Buscada):
 
+
+Ubicacion_Rey = []
+Linea_De_peligro = []
+cual_ficha_ataca = []
+
+def BuscaFichas(C,Ficha_Buscada):
     for i in range(len(M)):
         for j in range(len(M[i])):
             if C[i][j] == Ficha_Buscada:
                 Ubicacion_Rey.append([i,j])
 
-            
+
+
 BuscaFichas(M,B[4])
-
-
 
 # Nueva_Ubicacion_Rey = [Ubicacion_Rey[0][0],Ubicacion_Rey[0][1]]
 # print(Nueva_Ubicacion_Rey)
@@ -71,7 +73,9 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
         #ataque hacia arriba
         A = 1
         Movimiento_recursivo1 = []
+        Movimiento_recursivo1.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         while True:
+            
             if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]] in Fihas_Ataque:
                 Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]])
                 cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]])
@@ -99,8 +103,18 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
 
         #ataque arriba derecha
         Movimiento_recursivo2 = []
-        A = 1
+        A = 1 
+        Movimiento_recursivo2.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         while True:
+           
+            if A == 1:
+                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque2:
+                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+
+
+                    break
+                
             if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque_Diagonal:
                 Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
                 cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
@@ -108,14 +122,7 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
                 break
             if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]+A] == ".":
                 Movimiento_recursivo2.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
-            elif A == 1:
-                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque2:
-                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
-                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
-
-
-                    break
-                break
+           
 
             else:
                 break
@@ -134,8 +141,18 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
         
         #ataque arriba isquierda
         Movimiento_recursivo3 = []
-        A = 1
+        A = 1 
+        Movimiento_recursivo3.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         while True:
+           
+            if A == 1:
+                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque2:
+                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+                    
+                    break
+                
+
             if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque_Diagonal:
                 Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
                 cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
@@ -145,14 +162,7 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
                 break
             if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]-A] == ".":
                 Movimiento_recursivo3.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
-            elif A == 1:
-                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque2:
-                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
-                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
-                    
-                    break
-                break
-
+           
             else:
                 break
             
@@ -172,6 +182,7 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
         #ataque hacia la derecha
         A = 1
         Movimiento_recursivo = []
+        Movimiento_recursivo.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         while True:
             if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque:
                 Linea_De_peligro.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]+A])
@@ -197,6 +208,7 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
         #ataque hacia la isquierda
         A = 1
         Movimiento_recursivo4 = []
+        Movimiento_recursivo4.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         while True:
             if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque:
                 Linea_De_peligro.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]-A])
@@ -222,6 +234,7 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
         #ataque hacia abajo
         Movimiento_recursivo5 = []
         A = 1
+        Movimiento_recursivo5.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         while True:
             if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]] in Fihas_Ataque:
                 Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]])
@@ -251,6 +264,7 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
         #ataque abajo derecha
         Movimiento_recursivo6 = []
         A = 1
+        Movimiento_recursivo6.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         while True:
             if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque_Diagonal:
                 Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]+A])
@@ -278,6 +292,7 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
 
         #ataque abajo isquierda
         Movimiento_recursivo7 = []
+        Movimiento_recursivo7.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
         A = 1
         while True:
             if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque_Diagonal:
@@ -354,11 +369,6 @@ def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
                     Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]+2])
                     cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]+2])
         
-
-
-        
-
-
         break
 
 
@@ -402,14 +412,14 @@ while True:
         break
 #Verica si está en hakemate
 
-#esta ba a buscar 8 posiciones al redesdor para ver si estan en hakemate
+# esta ba a buscar 8 posiciones al redesdor para ver si estan en hakemate
 Algoritmo_De_busqueda(Una_ficha_Arriba)
 Algoritmo_De_busqueda(Una_ficha_Arriba_Derecha)
 Algoritmo_De_busqueda(Una_ficha_Arriba_Isquierda)
 Algoritmo_De_busqueda(Una_ficha_Derecha)
 Algoritmo_De_busqueda(Una_ficha_Isquierda)
 Algoritmo_De_busqueda(Una_ficha_Abajo)
-Algoritmo_De_busqueda(Una_ficha_Arriba_Derecha)
+Algoritmo_De_busqueda(Una_ficha_Abajo_Derecha)
 Algoritmo_De_busqueda(Una_ficha_Abajo_Isquierda)
 
 
@@ -452,7 +462,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
     print("posion Bloquedad ")
 else:
-    print("Posisicion libre")
+    print("Posisicion arriba libre")
     Posicioneslibre.append(True)
 
 #verifica arriba Derecha 
@@ -463,7 +473,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
     print("posion Bloquedada ")
 else:
-    print("Posisicion libre")
+    print("Posisicion arriba derecha libre")
     Posicioneslibre.append(True)
 
 
@@ -476,7 +486,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
     print("posion Bloquedada ")
 else:
-    print("Posisicion libre")
+    print("Posisicion arriba isquierda libre")
     Posicioneslibre.append(True)
 
 #verifica isquierda
@@ -487,7 +497,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1]  == "|":
     print("posion Bloqueda ")
 else:
-    print("Posisicion libre")
+    print("Posisicion isquierda libre")
     Posicioneslibre.append(True)
 
 
@@ -499,7 +509,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1]  == "|":
     print("posion Bloqueda ")
 else:
-    print("Posisicion libre")
+    print("Posisicion derecha libre")
     Posicioneslibre.append(True)
 
 
@@ -511,7 +521,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
     print("posion Bloqueda ")
 else:
-    print("Posisicion libre")
+    print("Posisicion  abajo derecha libre")
     Posicioneslibre.append(True)
 
 #verifica abajo isquierda  
@@ -522,7 +532,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
     print("posion Bloqueda ")
 else:
-    print("Posisicion libre")
+    print("Posisicion abajo isquierda libre")
     Posicioneslibre.append(True)
 
 #verifica abajo 
@@ -533,7 +543,7 @@ elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]] in N:
 elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
     print("posion Bloqueda ")
 else:
-    print("Posisicion libre")
+    print("Posisicion abajo libre")
     Posicioneslibre.append(True)
 
 if True in Posicioneslibre:
