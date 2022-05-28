@@ -26,7 +26,10 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 24/05/2022       7:17am   - 7:10 pm                                         12 horas creando el algoritmo que hace el haquemate incompleto aun hace falta verificar posisciones y establecer el hakemate
 25/05/2022       10:00am  - 12:00 am                                        2 horas perfecionando el algoritmo
 26/05/2022
-27/05/2022       11:00 AM - 12:42 PM     and 11:00 pm - 1:34 am              1.40 cambios       la funcionalidad del haquenate yy el haque terminadas falta es ver los errores
+27/05/2022       11:00 AM - 12:42 PM     and 11:00 pm - 1:34 am             4 horas cambios       la funcionalidad del haquenate yy el haque terminadas falta es ver los errores
+28/05/2022       3:20 PM  _ 
+
+
 """
 
 
@@ -44,7 +47,6 @@ from pickle import TRUE
 from time import time
 import math
 
-from Experimento import Ubicacion_Rey
 
 
 #todas las funciones importantes
@@ -278,6 +280,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     # Sirve para Verificar si está en haque o Haquemate 
                     #-----------------------------------------------------------------------------------------------------
                     Ubicacion_Rey = []
+                    Ubicacion_Rey.clear()
                     Linea_De_peligro = []
                     cual_ficha_ataca = []
 
@@ -623,7 +626,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     Una_ficha_Abajo = [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]] 
                     Una_ficha_Abajo_Derecha = [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]+1] 
                     Una_ficha_Abajo_Isquierda = [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]-1]
-
 
 
                     Algoritmo_De_busqueda(Nueva_Ubicacion_Rey_Origen)
@@ -1829,13 +1831,11 @@ while True:
         # y el Color de ficha que verifica si le corresponde el juego 
         Accion("Jugador1",2,3,4,5,6,7,8,9,2,3,4,5,6,7,8,9,N,B,Fichas_Blancas)
 
-        #limpia La ubicacion del rey
-        Ubicacion_Rey.clear()
 
     else:
         Accion("Jugador2",9,8,7,6,5,4,3,2,9,8,7,6,5,4,3,2,B,N,Fichas_Negras)
         #limpia La ubicacion del rey
-        Ubicacion_Rey.clear()
+       
 
     Contador_cambio = Contador_cambio + 1
 
