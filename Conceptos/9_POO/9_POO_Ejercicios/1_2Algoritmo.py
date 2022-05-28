@@ -11,7 +11,7 @@ print(N)
 M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
     [" ","_","_","_","_","_","_","_","_","_","_"," "],
-    ["8","|",".",".",".",".",N[5],".",N[2],N[2],"|","8"],
+    ["8","|",N[4],".",".",".",N[5],".",N[2],N[2],"|","8"],
     ["7","|",".",".",".",".",".",".",".",".","|","7"],
     ["6","|",".",".",".",".",".",".",".",N[1],"|","6"],
     ["5","|",".",".",".",B[4],".",".",".",".","|","5"],
@@ -45,14 +45,13 @@ def BuscaFichas(C,Ficha_Buscada):
 
 
 BuscaFichas(M,B[4])
+BuscaFichas(M,N[4])
 
 # Nueva_Ubicacion_Rey = [Ubicacion_Rey[0][0],Ubicacion_Rey[0][1]]
 # print(Nueva_Ubicacion_Rey)
 
 def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
 
-    #verifica el color de la ficha
-    print( M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]])
     CONJUNTO_FICHA = N
     if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]] in B:
         #color contrario 
@@ -434,6 +433,7 @@ print("Esta es la ubicacion del rey dentro del tablero")
 
 print(Nueva_Ubicacion_Rey_Origen)
 
+print(Nueva_linea_Peligro)
 
 
 
