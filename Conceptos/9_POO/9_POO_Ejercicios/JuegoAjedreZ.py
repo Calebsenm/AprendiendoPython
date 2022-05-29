@@ -41,12 +41,11 @@ movimiento del rey
 hacer el enrosque 
 hacer el hakemate 
 """
-from ast import Break
-from asyncio import sleep
+
+#rama EXPERIMENTAL 2 
 from os import system
-from pickle import TRUE
-from time import time
 import math
+from time import process_time
 
 
 
@@ -62,23 +61,25 @@ Fichas_Negras= ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 
 
 M=[
-    [" "," ","A","B","C","D","E","F","G","H"," "," "],
-    [" ","+","-","-","-","-","-","-","-","-","+"," "],
-    ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
-    ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
-    ["6","|",".",".",".",".",".",".",".",".","|","6"],
-    ["5","|",".",".",".",".",".",".",".",".","|","5"],
-    ["4","|",".",".",".",".",".",".",".",".","|","4"],
-    ["3","|",".",".",".",".",".",".",".",".","|","3"],
-    ["2","|",B[0],B[0],B[0],B[0],B[0],B[0],B[0],B[0],"|","2"],
-    ["1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1"],
-    [" ","_","_","_","_","_","_","_","_","_","_"," "],
-    [" "," ","A","B","C","D","E","F","G","H"," "," "]
+    ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
+    ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+    ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+    ["|","8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8","|"],
+    ["|","7","|",N[0],N[0],N[0],N[0],N[0],".",N[0],N[0],"|","7","|"],
+    ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
+    ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
+    ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
+    ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
+    ["|","2","|",B[0],B[0],".",B[0],B[0],B[0],B[0],B[0],"|","2","|"],
+    ["|","1","|",B[1],B[3],B[5],B[4],B[2],B[5],B[3],B[1],"|","1","|"],
+    ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+    ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+    ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
 ]
 M.reverse()
-for a in range(12):
+for a in range(14):
     M[a].reverse()
-    for b in range(12):
+    for b in range(14):
         a = 0
 
 #la ubicacion de fila y ocoluman para colocar la ficha
@@ -120,7 +121,7 @@ Movimiento_Rey = []
 #Moviemintos en hake 
 
 #funcion de la operacion
-def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2,Color_DelRey):
+def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2,Color_DelRey,Color2):
     system("cls")
         
     print("Las fichas..")
@@ -131,10 +132,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
     M.reverse()
         
-    for i in range(12):
+    for i in range(14):
             
         M[i].reverse()
-        for j in range(12):
+        for j in range(14):
             print(M[i][j],end = ' ') 
         print()
 
@@ -143,24 +144,29 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
         while True:
             print(jugador)
 
-            
-            #controla la entrada 
+            #Pide la entrada modificada
+
             while True:
-                try:
-                    Numero_fila2 = int(input(ingreso2)) 
-                    if Numero_fila2 > 0 and Numero_fila2 <9:
-                        Letra_columna2 = input(ingreso)
-                        if Letra_columna2.isalpha():
-                            Letra_columna2 = Letra_columna2.lower()
-                            if Letra_columna2 in letras:
-                                break
+                input_ficha = input(f"{ingreso2} {ingreso}")
+                if len(input_ficha) == 2:
+                    if input_ficha[1] in letras:
+                        if not input_ficha[0].isalpha():
+                            if int(input_ficha[0]) > 0 and int(input_ficha[0]) <9:
+                                if input_ficha[1].isalpha():
+                                    break
+                                else:
+                                    print("Se equivocó ingresando jugada")
                             else:
-                                print("No sea pendejo XD")
-                        else:
-                            print("Error el caracter no está permitido ")
-                
-                except ValueError:
-                    print("Es un error ")
+                                print("Se equivocó ingresando jugada")
+                        else:    
+                            print("Se equivocó ingresando jugada")
+                    else:
+                        print("Se equivocó ingresando jugada")
+                else:    
+                    print("Se equivocó ingresando jugada")
+
+            Numero_fila2 = int(input_ficha[0])
+            Letra_columna2 = input_ficha[1]
 
             #la convierte en mayuscula si es minuscula 
             Letra_columna2 = Letra_columna2.upper()
@@ -297,13 +303,14 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                     def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
 
-                        CONJUNTO_FICHA = N
-                        if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]] in B:
-                            #color contrario 
-                            CONJUNTO_FICHA = N
-                        elif M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]] in N:
-                            CONJUNTO_FICHA = B
+                        CONJUNTO_FICHA = Color2
 
+
+                        print("__________________________")
+                        print(M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]])
+                        print(Nueva_Ubicacion_Rey)
+                        print(CONJUNTO_FICHA)
+                        print("__________________________")
 
                         Fihas_Ataque = [CONJUNTO_FICHA[1],CONJUNTO_FICHA[2]]
                         Fihas_Ataque2 = [CONJUNTO_FICHA[0],CONJUNTO_FICHA[4]]
@@ -562,14 +569,14 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         
                             #Ataque de un caballo
                             #Diagonal Derecha Arriba
-                            if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+1]  == "_" and not  M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+1] == "|":
-                                if not M[Nueva_Ubicacion_Rey[0]-2][Nueva_Ubicacion_Rey[1]+1] == "_":
+                            if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+1]  == "-" and not  M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+1] == "+":
+                                if not M[Nueva_Ubicacion_Rey[0]-2][Nueva_Ubicacion_Rey[1]+1] == "-":
                                     if M[Nueva_Ubicacion_Rey[0]-2][Nueva_Ubicacion_Rey[1]+1] in Ficha_Ataque_Caballo:
                                         Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-2,Nueva_Ubicacion_Rey[1]+1])
                                         cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-2,Nueva_Ubicacion_Rey[1]+1])
 
                                 
-                                if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+2] == "|":
+                                if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+2] == "+":
                                     if M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+2] in Ficha_Ataque_Caballo:
                                         Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-1,Nueva_Ubicacion_Rey[1]+2])
                                         cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-1,Nueva_Ubicacion_Rey[1]+2])
@@ -674,6 +681,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
 
                     Posicioneslibre = []
+                    Posicioneslibre2 = []
+                    
                     print("Esta es la ubicacion del rey dentro del tablero")
 
                     print(Nueva_Ubicacion_Rey_Origen)
@@ -684,15 +693,16 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #verifica si la posisicion actual esta en hake
                     if Nueva_Ubicacion_Rey_Origen in Nueva_linea_Peligro:
                         print("Rey en Haque")
+                        print(Nueva_linea_Peligro)
                     else:
-                        print("el movimiento no está en hake")
+                        print("El rey no Está en hake")
 
                     #verifica arriba
                     if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
                         print("Movimiento hacia arriba está en Haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]] in N:
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]] in Color_DelRey:
                         print("ficha bloqueada")
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]]  == "-":
                         print("posion Bloquedad ")
                     else:
                         print("Posisicion arriba libre")
@@ -701,9 +711,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #verifica arriba Derecha 
                     if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
                         print("Movimiento Hacia Arriba Derecha está en Haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1] in Color_DelRey:
                         print("ficha bloqueada")
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "-" or  M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "+" :
                         print("posion Bloquedada ")
                     else:
                         print("Posisicion arriba derecha libre")
@@ -714,9 +724,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #verifica arriba isquierda
                     if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
                         print("Movimiento Hacia arriba isquierda Esta en haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1] in Color_DelRey:
                         print("ficha bloqueada")
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "-" or  M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "+":
                         print("posion Bloquedada ")
                     else:
                         print("Posisicion arriba isquierda libre")
@@ -725,7 +735,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #verifica isquierda
                     if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
                         print("Movimiento Hacia Isquierda está en Haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1] in Color_DelRey:
                         print("ficha bloqueada")
                     elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1]  == "|":
                         print("posion Bloqueda ")
@@ -737,7 +747,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #verifica Derecha 
                     if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
                         print("Movimiento Hacia Derecha está en Haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1] in Color_DelRey:
                         print("ficha bloqueada")
                     elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1]  == "|":
                         print("posion Bloqueda ")
@@ -749,9 +759,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #verifica abajo Derecha 
                     if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
                         print("Movimiento hacia abajo Derecha en Haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1] in N:
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1] in Color_DelRey:
                         print("ficha bloqueada")
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "_":
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "+" or M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "-":
                         print("posion Bloqueda ")
                     else:
                         print("Posisicion  abajo derecha libre")
@@ -760,9 +770,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #verifica abajo isquierda  
                     if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
                         print("Movimiento hacia abajo isquierda  en Haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1] in N:
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1] in Color_DelRey:
                         print("ficha bloqueada")
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "_":
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "+" or M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "-":
                         print("posion Bloqueda ")
                     else:
                         print("Posisicion abajo isquierda libre")
@@ -770,10 +780,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                     #verifica abajo 
                     if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
-                        print("Movimiento hacia verifica abajo en Haque") 
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]] in N:
+                        print("Movimiento hacia abajo en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]] in Color_DelRey:
                         print("ficha bloqueada")
-                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]]  == "_":
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]]  == "-":
                         print("posion Bloqueda ")
                     else:
                         print("Posisicion abajo libre")
@@ -781,11 +791,17 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                     if True in Posicioneslibre:
                         print("EL rey tiene Chance de salvarse del Haque ")
-                        print("")
-                    else:
+                        
+                    if Nueva_Ubicacion_Rey_Origen in Nueva_linea_Peligro and Una_ficha_Arriba in Nueva_linea_Peligro and Una_ficha_Arriba_Derecha in Nueva_linea_Peligro and Una_ficha_Arriba_Isquierda in Nueva_linea_Peligro and Una_ficha_Isquierda in Nueva_linea_Peligro and Una_ficha_Derecha in Nueva_linea_Peligro and Una_ficha_Abajo in Nueva_linea_Peligro and Una_ficha_Abajo_Derecha in Nueva_linea_Peligro and Una_ficha_Abajo_Isquierda in Nueva_linea_Peligro : 
+                        
                         print("Haquemate")
+                        print("Felicidades a ganado el juego")
+                        exit()
 
                    
+                
+
+
                     # ____________________________________________________________________________________________________ 
 
                     #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
@@ -891,7 +907,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                        #Verifica si está bloqueada a su alrededor 
                         #arriba 
                         print(COLOR_ELEGIDO2)
-                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] != "_":
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] != "-":
                            
                             Algoritmo_Torre()  
                             break
@@ -905,7 +921,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             Algoritmo_Torre()
                             break
                         #abajo 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] != "_":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] != "-":
                             Algoritmo_Torre()
                             break
                     
@@ -950,7 +966,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]])
                                     break
-                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] == "_":
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] == "-":
                                     break
 
                                 i = i + 1
@@ -963,7 +979,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]+i])
                                     break
-                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "_":
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "+":
                                    break
 
                                 i = i + 1
@@ -975,7 +991,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]-i])
                                     break
-                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == "_":
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == "+":
                                     break
                                 i = i + 1 
                             #algoritmo isquierda 
@@ -986,7 +1002,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0],Ubicacion_ficha[1]-i])
                                     break
-                                elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] == "_":
+                                elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-i] == "|":
                                     break
                                 i = i + 1 
                             #algoritmo Derecha
@@ -1009,7 +1025,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]])
                                     break
-                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] == "_":
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] == "-":
                                     break
 
                                 i = i + 1
@@ -1021,7 +1037,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]+i])
                                     break
-                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == "_":
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == "+":
                                     break
 
                                 i = i + 1
@@ -1034,7 +1050,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]] in COLOR_ELEGIDO1:
                                     Movimientos_permitidos_Reina.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]-i])
                                     break
-                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == "_":
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in COLOR_ELEGIDO1 or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == "+":
                                     break
 
                                 i = i + 1
@@ -1044,17 +1060,17 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         #Verifica si está bloqueada a su alrededor 
                         #arriba 
                         print(COLOR_ELEGIDO1)
-                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] != "|":
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] != "-":
                            
                             Super_Algoritmo()    
                            
                             break
                         #arriba derecha
-                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] != "_" :
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] != "+" :
                             Super_Algoritmo()
                             break
                         #arriba isquierda
-                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1 and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] != "_":
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1 and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] != "+":
                             Super_Algoritmo()
                             break
                         #derecha
@@ -1066,15 +1082,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             Super_Algoritmo()
                             break
                         #abajo 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] != "_":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] != "-":
                             Super_Algoritmo()
                             break
                         #abajo derecha 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] != "_":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] != "+":
                             Super_Algoritmo()
                             break
                         #abajo isquierda 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]!="_":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]!="+":
                             Super_Algoritmo()
                             break
                         else:
@@ -1108,56 +1124,56 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         #va a buscar en frente y la isquierda si tiene un gion o si no permite agregar el movimiento           
                         #diagonal Derecha arriba 
                         while True:
-                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1]== "_" and not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1] == "|":  
-                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1]== "_" :
+                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1]== "-" or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "+" or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "|":  
+                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1]== "-" :
                                     if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]-2,Ubicacion_ficha[1]+1])
                                         llave_imcomprensible.append(True)
                                     
                                 
-                                if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+2]== "|":
+                                if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+2]== "+" or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+2]== "|":
                                     if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+2] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]+2])
                                         llave_imcomprensible.append(True)
                                         
 
                             #diagonal isquierda arriba 
-                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "_" and not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "|":  
-                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]-1]== "_":
+                            if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "-" or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "+"  or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1]== "|":  
+                                if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]-1]== "-":
                                     if not M[Ubicacion_ficha[0]-2][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]-2,Ubicacion_ficha[1]-1])
                                         llave_imcomprensible.append(True)
                                         
                                 
-                                if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-2]== "|":
+                                if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-2]== "|" or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-2]== "+":
                                     if not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-2] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]-2])
                                         llave_imcomprensible.append(True)
                                         
 
                             #digonal isquierda abajo
-                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "_" and  not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "|":  
-                                if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]-1]== "_":
+                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "-" or  not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "+"  or  not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]== "|":  
+                                if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]-1]== "-":
                                     if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]-1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]+2,Ubicacion_ficha[1]-1])
                                         llave_imcomprensible.append(True)
                                         
                                 
-                                if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-2]== "|":
+                                if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-2]== "|" or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-2] == "+":
                                     if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-2] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]-2])
                                         llave_imcomprensible.append(True)
                                         
 
                             #diagonal iderecha abajo           
-                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "_" and not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "|":  
-                                if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]+1]== "_":
+                            if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "-" or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "|"  or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]== "+":  
+                                if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]+1]== "-":
                                     if not M[Ubicacion_ficha[0]+2][Ubicacion_ficha[1]+1] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]+2,Ubicacion_ficha[1]+1])
                                         llave_imcomprensible.append(True)
                                         
                             
-                                if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+2]== "|":
+                                if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+2]== "|" or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+2]== "+":
                                     if not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+2] in Color_ficha_elegida:
                                         Movimiento_caballo.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]+2])
                                         llave_imcomprensible.append(True)
@@ -1199,7 +1215,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] in Color_ficha_elegida:
                                     Movimiento_Arfil.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]+i])
                                     break
-                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in Color_ficha_elegida or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "_":
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]] in Color_ficha_elegida or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]+i] == "+":
                                    break
 
                                 i = i + 1
@@ -1212,7 +1228,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in Color_ficha_elegida:
                                     Movimiento_Arfil.append([Ubicacion_ficha[0]-i,Ubicacion_ficha[1]-i])
                                     break
-                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in Color_ficha_elegida or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == "_":
+                                elif M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] in Color_ficha_elegida or M[Ubicacion_ficha[0]-i][Ubicacion_ficha[1]-i] == "+":
                                    break
 
                                 i = i + 1 
@@ -1225,7 +1241,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in Color_ficha_elegida:
                                     Movimiento_Arfil.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]-i])
                                     break
-                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in Color_ficha_elegida or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == "_":
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] in Color_ficha_elegida or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]-i] == "+":
                                    break
 
                                 i = i + 1 
@@ -1238,7 +1254,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 elif not M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in Color_ficha_elegida:
                                     Movimiento_Arfil.append([Ubicacion_ficha[0]+i,Ubicacion_ficha[1]+i])
                                     break
-                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in Color_ficha_elegida or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == "_":
+                                elif M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] in Color_ficha_elegida or M[Ubicacion_ficha[0]+i][Ubicacion_ficha[1]+i] == "+":
                                    break
 
                                 i = i + 1 
@@ -1246,20 +1262,20 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         #Verifica si está bloqueada a su alrededor 
                       
                         #arriba derecha
-                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in Color_ficha_elegida and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] != "_" :
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in Color_ficha_elegida and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] != "+" :
                             Algorito_Arfil()
                             break
                         #arriba isquierda
-                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in Color_ficha_elegida and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] != "_":
+                        elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in Color_ficha_elegida and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] != "+":
                             Algorito_Arfil()
                             break
                       
                         #abajo derecha 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in Color_ficha_elegida and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]  != "_":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in Color_ficha_elegida and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]  != "+":
                             Algorito_Arfil()
                             break
                         #abajo isquierda 
-                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in Color_ficha_elegida and  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]  != "_":
+                        elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in Color_ficha_elegida and  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]  != "+":
                             Algorito_Arfil()
                             break
                         else:
@@ -1433,7 +1449,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             
                             
                             #si no se ha movido y esta en la pocicion inicial 2 de la casilla entonces permite hacer 2 movimientos 
-                            if Posicion_Relativa[0] == 8:
+                            if Posicion_Relativa[0] == 9:
                                 print("El peon se encuentra en la primera casilla ")
 
                                 o = 1
@@ -1488,7 +1504,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
 
                             #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
-                            if Movimento_relativo[0] == 2:
+                            if Movimento_relativo[0] == 3:
                                 system("cls")
                                 LAS_fichas_del_cambio = ["\u2656","\u2655","\u2658","\u2657"]
                                 while True:
@@ -1560,7 +1576,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                              
                             #si peon esta en el primer movimiento permite hacer ingresa los movimientos permitidos 
-                            if Posicion_Relativa[0] == 8:
+                            if Posicion_Relativa[0] == 9:
                                 print("El peon se encuentra en la primera casilla ")
 
                                 o = 1
@@ -1620,7 +1636,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                             
                              #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
-                            if Movimento_relativo[0] == 2:
+                            if Movimento_relativo[0] == 3:
                                 system("cls")
                                 LAS_fichas_del_cambio = ["\u265C","\u265B","\u265E","\u265D"]
                                 while True:
@@ -1818,9 +1834,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
     #condicional supermaestro
     #Se pasqa por parametros las occiones y una llave que activa la opcion de eleccion o la opcion de colocar fica 
     
-    Funcion_ingresaFicha("Ingrese La letra de la ficha >> ","Ingrese EL numero de la ficha >> ",True)
+    Funcion_ingresaFicha("y La letra de la ficha >","Ingrese EL numero",True)
     
-    Funcion_ingresaFicha("Letra donde Desea mover la ficha>> ","Numero donde Desea Mover la ficha >> ",False)
+    Funcion_ingresaFicha("Letra donde Desea mover la ficha > ","Numero y ",False)
     
 
 Contador_cambio = 2
@@ -1830,11 +1846,11 @@ while True:
     if Contador_cambio %2 == 0:
         # se pasa por parametro las poscciones de la letra dentro de la matriz M
         # y el Color de ficha que verifica si le corresponde el juego 
-        Accion("Jugador1",2,3,4,5,6,7,8,9,2,3,4,5,6,7,8,9,N,B,Fichas_Blancas)
+        Accion("Jugador1",3,4,5,6,7,8,9,10,3,4,5,6,7,8,9,10,N,B,Fichas_Blancas,Fichas_Negras)
 
-
+#
     else:
-        Accion("Jugador2",9,8,7,6,5,4,3,2,9,8,7,6,5,4,3,2,B,N,Fichas_Negras)
+        Accion("Jugador2",10,9,8,7,6,5,4,3,10,9,8,7,6,5,4,3,B,N,Fichas_Negras,Fichas_Blancas)
         #limpia La ubicacion del rey
        
 
