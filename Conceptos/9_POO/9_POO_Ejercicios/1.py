@@ -1808,7 +1808,7 @@ while True:
         # y el Color de ficha que verifica si le corresponde el juego 
         Accion("Jugador1",3,4,5,6,7,8,9,10,3,4,5,6,7,8,9,10,N,B,Fichas_Blancas,Fichas_Negras)
 
-
+#i
     else:
         Accion("Jugador2",10,9,8,7,6,5,4,3,10,9,8,7,6,5,4,3,B,N,Fichas_Negras,Fichas_Blancas)
         #limpia La ubicacion del rey
