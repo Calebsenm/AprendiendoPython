@@ -27,7 +27,8 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 25/05/2022       10:00am  - 12:00 am                                        2 horas perfecionando el algoritmo
 26/05/2022
 27/05/2022       11:00 AM - 12:42 PM     and 11:00 pm - 1:34 am             4 horas cambios       la funcionalidad del haquenate yy el haque terminadas falta es ver los errores
-28/05/2022       3:20 PM  _ 
+28/05/2022       3:20 PM  _ 4:00pm
+29/ 05/2022      11_40m  - 
 
 
 """
@@ -62,7 +63,7 @@ Fichas_Negras= ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 
 M=[
     [" "," ","A","B","C","D","E","F","G","H"," "," "],
-    [" ","_","_","_","_","_","_","_","_","_","_"," "],
+    [" ","+","-","-","-","-","-","-","-","-","+"," "],
     ["8","|",N[1],N[3],N[5],N[4],N[2],N[5],N[3],N[1],"|","8"],
     ["7","|",N[0],N[0],N[0],N[0],N[0],N[0],N[0],N[0],"|","7"],
     ["6","|",".",".",".",".",".",".",".",".","|","6"],
