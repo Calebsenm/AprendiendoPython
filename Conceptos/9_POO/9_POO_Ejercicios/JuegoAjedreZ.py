@@ -27,8 +27,9 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 25/05/2022       10:00am  - 12:00 am                                        2 horas perfecionando el algoritmo
 26/05/2022
 27/05/2022       11:00 AM - 12:42 PM     and 11:00 pm - 1:34 am             4 horas cambios       la funcionalidad del haquenate yy el haque terminadas falta es ver los errores
-28/05/2022       3:20 PM  _ 4:00pm
-29/ 05/2022      11_40m  - 
+28/05/2022       3:20 PM  _ 4:00pm                                          40 minutos
+29/ 05/2022      12:00 am  - 12_00 pm                                       6 horas 
+30/05/2022       11:00 am _12:00 am  2:pm - 4pm                             3 horas se esta creado todos los ataques de las fichas
 
 
 """
