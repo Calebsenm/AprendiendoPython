@@ -41,7 +41,6 @@ movimiento del rey
 hacer el enrosque 
 hacer el hakemate 
 """
-
 #rama EXPERIMENTAL 2 
 from os import system
 import math
@@ -304,7 +303,11 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
 
                         CONJUNTO_FICHA = Color2
-
+                        # if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]] in B:
+                        #     #color contrario 
+                        #     CONJUNTO_FICHA = N
+                        # elif M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]] in N:
+                        #     CONJUNTO_FICHA = B
 
                         print("__________________________")
                         print(M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]])
@@ -799,7 +802,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         exit()
 
                    
-                
+                    
 
 
                     # ____________________________________________________________________________________________________ 
