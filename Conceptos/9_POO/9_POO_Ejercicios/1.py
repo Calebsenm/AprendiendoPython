@@ -193,37 +193,60 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             def Algorimit_maximous(Color_variable,Color_Opuesto,Ubicacion,Ataques,Operador_positivo,Operador_negativo):
                 for a in range(len(Ubicacion)):
 
-                    # si son peones......
-                    if M[ Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[0]:
-                        # print(M[ Ubicacion_Todas_fichas_Arriba[a][0]][Ubicacion_Todas_fichas_Arriba[a][1]])
-                        #derecha 
-                        if  M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_negativo] in Color_Opuesto or M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_negativo] == ".":
-                            Ataques.append([ Ubicacion[a][0]+Operador_positivo,Ubicacion[a][1]+Operador_negativo])
-                        #isquierda
-                        if  M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_positivo] in Color_Opuesto or M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_positivo] == ".":
-                            Ataques.append([ Ubicacion[a][0]+Operador_positivo,Ubicacion[a][1]+Operador_positivo])
+                    # # si son peones......
+                    # if M[ Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[0]:
+                    #     # print(M[ Ubicacion_Todas_fichas_Arriba[a][0]][Ubicacion_Todas_fichas_Arriba[a][1]])
+                    #     #derecha 
+                    #     if  M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_negativo] in Color_Opuesto or M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_negativo] == ".":
+                    #         Ataques.append([ Ubicacion[a][0]+Operador_positivo,Ubicacion[a][1]+Operador_negativo])
+                    #     #isquierda
+                    #     if  M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_positivo] in Color_Opuesto or M[ Ubicacion[a][0]+Operador_positivo][Ubicacion[a][1]+Operador_positivo] == ".":
+                    #         Ataques.append([ Ubicacion[a][0]+Operador_positivo,Ubicacion[a][1]+Operador_positivo])
                     
                     # # ##########################################################################################################################################
                     # #si es un rey 
                     # if M[Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[4]:
                     #     #arriba
                     #     def Algoritmo_deciciones_rey(Diagonal,Vertical):
-                    #         if M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] in Color_variable or M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] == ".":
+                    #         if M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] in Color_Opuesto or M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] == ".":
                     #             Ataques.append([Ubicacion[a][0]+Diagonal,Ubicacion[a][1]+Vertical])
                     #     #arriba                                              #abajo                                #Derecha                                       isquierda                                     #arriba Derecha                                                 #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
                     #     Algoritmo_deciciones_rey(Operador_positivo,0),Algoritmo_deciciones_rey(Operador_negativo,0),Algoritmo_deciciones_rey(0,Operador_positivo),Algoritmo_deciciones_rey(0,Operador_negativo),Algoritmo_deciciones_rey(Operador_positivo,Operador_positivo),Algoritmo_deciciones_rey(Operador_positivo,Operador_negativo), Algoritmo_deciciones_rey(Operador_negativo,Operador_positivo),Algoritmo_deciciones_rey(Operador_negativo,Operador_negativo)
                         
                     # # ##########################################################################################################################################
+                    # ******************************************************************************************************************************************
+                    # si es una reina
+                    if M[Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[2]:
+                        def Algoritmo_Deciciones_Reina(Diagonal,Vertical):
+                            Fila_mas = Diagonal
+                            Columna_mas = Vertical
+                            while True:
+                                if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] in Color_Opuesto or M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] == ".":
+                                    Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
+                                else:
+                                    break
+                                if not Columna_mas == 0:
+                                    Columna_mas = Columna_mas + 1
+                                if not Fila_mas == 0:
+                                    Fila_mas = Fila_mas + 1
+                                    
+
+                        #arriba                                              #abajo                                #Derecha                                       isquierda                                     #arriba Derecha                                                 #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
+                        Algoritmo_Deciciones_Reina(Operador_positivo,0),Algoritmo_Deciciones_Reina(Operador_negativo,0),Algoritmo_Deciciones_Reina(0,Operador_positivo),Algoritmo_Deciciones_Reina(0,Operador_negativo),Algoritmo_Deciciones_Reina(Operador_positivo,Operador_positivo),Algoritmo_Deciciones_Reina(Operador_positivo,Operador_negativo), Algoritmo_Deciciones_Reina(Operador_negativo,Operador_positivo),Algoritmo_Deciciones_Reina(Operador_negativo,Operador_negativo)
+
+
+                        
+                    # ******************************************************************************************************************************************
 
             #Las fichas de arriba 
             Algorimit_maximous(Color_Variable2,Color_Variable1,Ubicacion_Todas_fichas_Arriba,Todos_Los_posiblesAtaques_Arriba,+1,-1)
             #las fuchas de abajo
             Algorimit_maximous(Color_Variable1,Color_Variable2,Ubicacion_Todas_fichas_Abajo,Todos_Los_posiblesAtaques_Abajo,-1,+1)
 
-            print("Estos son todos los ataques de las fichas Negras ")
+            print("Estos son todos los ataques de las fichas De arriba ")
             print(Todos_Los_posiblesAtaques_Arriba)
             
-            print("Estos son todos los ataques de las fichas Blancas ")
+            print("Estos son todos los ataques de las fichas De abajo ")
             print(Todos_Los_posiblesAtaques_Abajo)
             
             
