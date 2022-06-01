@@ -30,6 +30,8 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 28/05/2022       3:20 PM  _ 4:00pm                                          40 minutos
 29/ 05/2022      12:00 am  - 12_00 pm                                       6 horas 
 30/05/2022       11:00 am _12:00 am  2:pm - 4pm                             3 horas se esta creado todos los ataques de las fichas
+31/05/2022       9:am      3:am                                             5 horas 
+1/06/2022        9:am     
 
 
 """

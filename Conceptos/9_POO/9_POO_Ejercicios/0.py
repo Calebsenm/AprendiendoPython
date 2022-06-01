@@ -1,22 +1,31 @@
-def hola():
-    M =[ 
-    [1,0,0,1],
-    [1,0,0,1],
-    [0,1,0,1]
-    ]
+# def hola():
+#     M =[ 
+#     [1,0,0,1],
+#     [1,0,0,1],
+#     [0,1,0,1]
+#     ]
 
-    text_file = open('Text.py','a')
+#     text_file = open('Text.py','a')
 
-    for i in range(len(M)):
-        for j in range(1,4,1):
-            print(M[i][j],end= " ")
-            text_file.write(str(f"print( {[i,j]})"))
-        print()
+#     for i in range(len(M)):
+#         for j in range(1,4,1):
+#             print(M[i][j],end= " ")
+#             text_file.write(str(f"print( {[i,j]})"))
+#         print()
     
 
 
-    print("U+1F617")
+#     print("U+1F617")
 
-hola(),hola(),hola(),hola()
+# hola(),hola(),hola(),hola()
+
+
+class ficha():
+    def __init__(self) -> None:
+        self.Movimiento_arriba = +1
+        self.Movimiento_abajo = -1
+
+class Peon(ficha):
+    def 
 
 
