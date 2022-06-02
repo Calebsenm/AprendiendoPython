@@ -1,31 +1,522 @@
-# def hola():
-#     M =[ 
-#     [1,0,0,1],
-#     [1,0,0,1],
-#     [0,1,0,1]
-#     ]
 
-#     text_file = open('Text.py','a')
+                    #Este es el algoritmo Super ultra  maestro 100% hacker Pro mil quitasueño
+                    # Sirve para Verificar si está en haque o Haquemate 
+                    #-----------------------------------------------------------------------------------------------------
+                    Ubicacion_Rey = []
+                    Ubicacion_Rey.clear()
+                    Linea_De_peligro = []
+                    cual_ficha_ataca = []
 
-#     for i in range(len(M)):
-#         for j in range(1,4,1):
-#             print(M[i][j],end= " ")
-#             text_file.write(str(f"print( {[i,j]})"))
-#         print()
-    
-
-
-#     print("U+1F617")
-
-# hola(),hola(),hola(),hola()
+                    def BuscaFichas(C,Ficha_Buscada):
+                        for i in range(len(M)):
+                            for j in range(len(M[i])):
+                                if C[i][j] == Ficha_Buscada:
+                                    Ubicacion_Rey.append([i,j])
 
 
-class ficha():
-    def __init__(self) -> None:
-        self.Movimiento_arriba = +1
-        self.Movimiento_abajo = -1
 
-class Peon(ficha):
-    def 
+                    BuscaFichas(M,Color_DelRey[4])
+
+                    def Algoritmo_De_busqueda(Nueva_Ubicacion_Rey):
+
+                        CONJUNTO_FICHA = Color2
+                        # if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]] in B:
+                        #     #color contrario 
+                        #     CONJUNTO_FICHA = N
+                        # elif M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]] in N:
+                        #     CONJUNTO_FICHA = B
+
+                        print("__________________________")
+                        print(M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]])
+                        print(Nueva_Ubicacion_Rey)
+                        print(CONJUNTO_FICHA)
+                        print("__________________________")
+
+                        Fihas_Ataque = [CONJUNTO_FICHA[1],CONJUNTO_FICHA[2]]
+                        Fihas_Ataque2 = [CONJUNTO_FICHA[0],CONJUNTO_FICHA[4]]
+                        Fihas_Ataque_Diagonal = [CONJUNTO_FICHA[2],CONJUNTO_FICHA[5]]
+                        Ficha_Ataque_Caballo = [CONJUNTO_FICHA[3]]
+                    
+
+                        Linea_De_peligro.append([Ubicacion_Rey[0][0],Ubicacion_Rey[0][1]])
+
+                        while True:
+                            #ataque hacia arriba
+                            A = 1
+                            Movimiento_recursivo1 = []
+                            Movimiento_recursivo1.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            while True:
+                                
+                                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]] in Fihas_Ataque:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]])
+                                    Movimiento_recursivo1.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]])
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]] == ".":
+                                    Movimiento_recursivo1.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]])
+                            
+                                else:
+                                    break
+                                A = A + 1
+                            # print("Este es el moviminto recursivo")
+                            # print(Movimiento_recursivo1)
+
+                            for i in range(len(Movimiento_recursivo1)):
+                                for j in range(1):
+                                    
+                                    if M[Movimiento_recursivo1[i][0]][Movimiento_recursivo1[i][1]] in Fihas_Ataque:
+
+                                        for o in range(len(Movimiento_recursivo1)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo1[o][s],Movimiento_recursivo1[o][s+1]])
+                            
 
 
+                            #ataque arriba derecha
+                            Movimiento_recursivo2 = []
+                            A = 1 
+                            Movimiento_recursivo2.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            while True:
+                            
+                                if A == 1:
+                                    if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque2:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+
+
+                                        break
+                                    
+                                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque_Diagonal:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+                                    Movimiento_recursivo2.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]+A] == ".":
+                                    Movimiento_recursivo2.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]+A])
+                            
+
+                                else:
+                                    break
+                                A = A + 1
+                            # print("Este es el movimiento resucursivo")
+                            # print(Movimiento_recursivo2)
+                            for i in range(len(Movimiento_recursivo2)):
+                                for j in range(1):
+                                    if M[Movimiento_recursivo2[i][0]][Movimiento_recursivo2[i][1]] in Fihas_Ataque_Diagonal:
+
+                                        for o in range(len(Movimiento_recursivo2)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo2[o][s],Movimiento_recursivo2[o][s+1]])
+                            
+
+                            
+                            #ataque arriba isquierda
+                            Movimiento_recursivo3 = []
+                            A = 1 
+                            Movimiento_recursivo3.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            while True:
+                            
+                                if A == 1:
+                                    if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque2:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+                                        
+                                        break
+                                    
+
+                                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque_Diagonal:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+                                    Movimiento_recursivo3.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+
+
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]-A][Nueva_Ubicacion_Rey[1]-A] == ".":
+                                    Movimiento_recursivo3.append([Nueva_Ubicacion_Rey[0]-A,Nueva_Ubicacion_Rey[1]-A])
+                            
+                                else:
+                                    break
+                                
+                                A = A + 1
+                            # print("Este es el movimiento resucursivo")
+                            # print(Movimiento_recursivo3)
+                            for i in range(len(Movimiento_recursivo3)):
+                                for j in range(1):
+                                    
+                                    if M[Movimiento_recursivo3[i][0]][Movimiento_recursivo3[i][1]] in Fihas_Ataque_Diagonal:
+
+                                        for o in range(len(Movimiento_recursivo3)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo3[o][s],Movimiento_recursivo3[o][s+1]])
+                            
+
+                            #ataque hacia la derecha
+                            A = 1
+                            Movimiento_recursivo = []
+                            Movimiento_recursivo.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            while True:
+                                if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]+A])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]+A])
+                                    Movimiento_recursivo.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]+A])
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]+A] == ".":
+                                    Movimiento_recursivo.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]+A])
+                                else:
+                                    break
+                                A = A + 1
+                            # print("Este es el movimiento resucursivo")
+                            # print(Movimiento_recursivo)
+                            for i in range(len(Movimiento_recursivo)):
+                                for j in range(1):
+                                    
+                                    if M[Movimiento_recursivo[i][0]][Movimiento_recursivo[i][1]] in Fihas_Ataque:
+
+                                        for o in range(len(Movimiento_recursivo)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo[o][s],Movimiento_recursivo[o][s+1]])
+                            
+                            #ataque hacia la isquierda
+                            A = 1
+                            Movimiento_recursivo4 = []
+                            Movimiento_recursivo4.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            while True:
+                                if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]-A])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]-A])
+                                    Movimiento_recursivo4.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]-A])
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]][Nueva_Ubicacion_Rey[1]-A] == ".":
+                                    Movimiento_recursivo4.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]-A])
+                                else:
+                                    break
+                                A = A + 1
+                            # print("Este es el movimiento resucursivo")
+                            # print(Movimiento_recursivo4)
+                            for i in range(len(Movimiento_recursivo4)):
+                                for j in range(1):
+                                    
+                                    if M[Movimiento_recursivo4[i][0]][Movimiento_recursivo4[i][1]] in Fihas_Ataque:
+
+                                        for o in range(len(Movimiento_recursivo4)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo4[o][s],Movimiento_recursivo4[o][s+1]])
+                            
+                            #ataque hacia abajo
+                            Movimiento_recursivo5 = []
+                            A = 1
+                            Movimiento_recursivo5.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            while True:
+                                if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]] in Fihas_Ataque:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]])
+                                    Movimiento_recursivo5.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]])
+
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]] == ".":
+                                    Movimiento_recursivo5.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]])
+                            
+                                else:
+                                    break
+                                A = A + 1
+
+                            # print("Este es el movimiento resucursivo")
+                            # print(Movimiento_recursivo5)
+                            for i in range(len(Movimiento_recursivo5)):
+                                for j in range(1):
+                                    
+                                    if M[Movimiento_recursivo5[i][0]][Movimiento_recursivo5[i][1]] in Fihas_Ataque:
+
+                                        for o in range(len(Movimiento_recursivo5)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo5[o][s],Movimiento_recursivo5[o][s+1]])
+                            
+
+                            #ataque abajo derecha
+                            Movimiento_recursivo6 = []
+                            A = 1
+                            Movimiento_recursivo6.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            while True:
+                                if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]+A] in Fihas_Ataque_Diagonal:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]+A])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]+A])
+                                    Movimiento_recursivo6.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]+A])
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]+A] == ".":
+                                    Movimiento_recursivo6.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]+A])
+                            
+
+                                else:
+                                    break
+                                A = A + 1
+                            # print("Este es el movimiento resucursivo")
+                            # print(Movimiento_recursivo6)
+                            for i in range(len(Movimiento_recursivo6)):
+                                for j in range(1):
+                                    # print(M[Movimiento_recursivo6[i][0]][Movimiento_recursivo6[i][1]] )
+                                    if M[Movimiento_recursivo6[i][0]][Movimiento_recursivo6[i][1]] in Fihas_Ataque_Diagonal:
+
+                                        for o in range(len(Movimiento_recursivo6)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo6[o][s],Movimiento_recursivo6[o][s+1]])
+
+
+                            #ataque abajo isquierda
+                            Movimiento_recursivo7 = []
+                            Movimiento_recursivo7.append([Nueva_Ubicacion_Rey[0],Nueva_Ubicacion_Rey[1]])
+                            A = 1
+                            while True:
+                                if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]-A] in Fihas_Ataque_Diagonal:
+                                    Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]-A])
+                                    cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]-A])
+                                    Movimiento_recursivo7.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]-A])
+                                    break
+                                if M[Nueva_Ubicacion_Rey[0]+A][Nueva_Ubicacion_Rey[1]-A] == ".":
+                                    Movimiento_recursivo7.append([Nueva_Ubicacion_Rey[0]+A,Nueva_Ubicacion_Rey[1]-A])
+                                else:
+                                    break
+                                A = A + 1
+                            # print("Este es el movimiento resucursivo")
+                            # print(Movimiento_recursivo7)
+                            for i in range(len(Movimiento_recursivo7)):
+                                for j in range(1):
+                                    if M[Movimiento_recursivo7[i][0]][Movimiento_recursivo7[i][1]] in Fihas_Ataque_Diagonal:
+
+                                        for o in range(len(Movimiento_recursivo7)):
+                                            for s in range(1):
+                                                Linea_De_peligro.append([Movimiento_recursivo7[o][s],Movimiento_recursivo7[o][s+1]])
+                        
+                        
+                            #Ataque de un caballo
+                            #Diagonal Derecha Arriba
+                            if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+1]  == "-" and not  M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+1] == "+":
+                                if not M[Nueva_Ubicacion_Rey[0]-2][Nueva_Ubicacion_Rey[1]+1] == "-":
+                                    if M[Nueva_Ubicacion_Rey[0]-2][Nueva_Ubicacion_Rey[1]+1] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-2,Nueva_Ubicacion_Rey[1]+1])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-2,Nueva_Ubicacion_Rey[1]+1])
+
+                                
+                                if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+2] == "+":
+                                    if M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]+2] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-1,Nueva_Ubicacion_Rey[1]+2])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-1,Nueva_Ubicacion_Rey[1]+2])
+                            
+                            #Diagonal isquierda arriba
+                            if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]-1]  == "_" and not  M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]-1] == "|":
+                                if not M[Nueva_Ubicacion_Rey[0]-2][Nueva_Ubicacion_Rey[1]-1] == "_":
+                                    if M[Nueva_Ubicacion_Rey[0]-2][Nueva_Ubicacion_Rey[1]-1] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-2,Nueva_Ubicacion_Rey[1]-1])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-2,Nueva_Ubicacion_Rey[1]-1])
+
+                                
+                                if not M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]-2] == "|":
+                                    if M[Nueva_Ubicacion_Rey[0]-1][Nueva_Ubicacion_Rey[1]-2] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]-1,Nueva_Ubicacion_Rey[1]-2])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]-1,Nueva_Ubicacion_Rey[1]-2])
+                            
+                            #Diagonal isquierda abajo
+                            if not M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]-1]  == "_" and not  M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]-1] == "|":
+                                if not M[Nueva_Ubicacion_Rey[0]+2][Nueva_Ubicacion_Rey[1]-1] == "_":
+                                    if M[Nueva_Ubicacion_Rey[0]+2][Nueva_Ubicacion_Rey[1]-1] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+2,Nueva_Ubicacion_Rey[1]-1])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+2,Nueva_Ubicacion_Rey[1]-1])
+
+                                
+                                if not M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]-2] == "|":
+                                    if M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]-2] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]-2])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]-2])
+                            
+                            #Diagonal Derecha abajo
+                            if not M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]+1]  == "_" and not  M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]+1] == "|":
+                                if not M[Nueva_Ubicacion_Rey[0]+2][Nueva_Ubicacion_Rey[1]+1] == "_":
+                                    if M[Nueva_Ubicacion_Rey[0]+2][Nueva_Ubicacion_Rey[1]+1] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+2,Nueva_Ubicacion_Rey[1]-1])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+2,Nueva_Ubicacion_Rey[1]-1])
+
+                                
+                                if not M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]+2] == "|":
+                                    if M[Nueva_Ubicacion_Rey[0]+1][Nueva_Ubicacion_Rey[1]+2] in Ficha_Ataque_Caballo:
+                                        Linea_De_peligro.append([Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]+2])
+                                        cual_ficha_ataca.append([Nueva_Ubicacion_Rey[0]+1,Nueva_Ubicacion_Rey[1]+2])
+                            
+                            break
+
+
+                    Nueva_Ubicacion_Rey_Origen = [Ubicacion_Rey[0][0],Ubicacion_Rey[0][1]]
+
+
+                    Una_ficha_Arriba = [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]]
+                    Una_ficha_Arriba_Derecha = [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]+1]
+                    Una_ficha_Arriba_Isquierda =  [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]-1] 
+                    Una_ficha_Isquierda = [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]-1]
+                    Una_ficha_Derecha = [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]+1]
+                    Una_ficha_Abajo = [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]] 
+                    Una_ficha_Abajo_Derecha = [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]+1] 
+                    Una_ficha_Abajo_Isquierda = [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]-1]
+
+
+                    Algoritmo_De_busqueda(Nueva_Ubicacion_Rey_Origen)
+
+                                        
+                    #esta es para la pocision actual 
+                    print(Nueva_Ubicacion_Rey_Origen) 
+
+
+                    #verifica si esta en hake
+                    i = 0
+                    while True:
+                        if Nueva_Ubicacion_Rey_Origen[0] == Linea_De_peligro[i][i] and Nueva_Ubicacion_Rey_Origen[1] == Linea_De_peligro[i][i+1]:
+                            for i in range(len(cual_ficha_ataca)):
+                                for j in range(1):
+                                    print(f"La ficha está en hake por {M[cual_ficha_ataca[i][0]][cual_ficha_ataca[i][1]]}")
+                            
+                            break 
+                        else:
+                            print("NO hay hake")
+                            break
+                    #Verica si está en hakemate
+
+                    # esta ba a buscar 8 posiciones al redesdor para ver si estan en hakemate
+                    Algoritmo_De_busqueda(Una_ficha_Arriba)
+                    Algoritmo_De_busqueda(Una_ficha_Arriba_Derecha)
+                    Algoritmo_De_busqueda(Una_ficha_Arriba_Isquierda)
+                    Algoritmo_De_busqueda(Una_ficha_Derecha)
+                    Algoritmo_De_busqueda(Una_ficha_Isquierda)
+                    Algoritmo_De_busqueda(Una_ficha_Abajo)
+                    Algoritmo_De_busqueda(Una_ficha_Abajo_Derecha)
+                    Algoritmo_De_busqueda(Una_ficha_Abajo_Isquierda)
+
+
+                    
+                    #ba a buscar todos los duplicados en la linea de peligro y los reubicará e la nueva linea de peligro
+
+                    print("Esta es la lina de peligro")
+                    Nueva_linea_Peligro = []
+
+                    for i in Linea_De_peligro:
+                        if not i in Nueva_linea_Peligro:
+                            Nueva_linea_Peligro.append(i)
+                    #va a imprimir la nueva linea de peligro 
+
+
+                    Posicioneslibre = []
+                    Posicioneslibre2 = []
+                    
+                    print("Esta es la ubicacion del rey dentro del tablero")
+
+                    print(Nueva_Ubicacion_Rey_Origen)
+
+
+
+
+                    #verifica si la posisicion actual esta en hake
+                    if Nueva_Ubicacion_Rey_Origen in Nueva_linea_Peligro:
+                        print("Rey en Haque")
+                        print(Nueva_linea_Peligro)
+                    else:
+                        print("El rey no Está en hake")
+
+                    #verifica arriba
+                    if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
+                        print("Movimiento hacia arriba está en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]]  == "-":
+                        print("posion Bloquedad ")
+                    else:
+                        print("Posisicion arriba libre")
+                        Posicioneslibre.append(True)
+
+                    #verifica arriba Derecha 
+                    if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
+                        print("Movimiento Hacia Arriba Derecha está en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "-" or  M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "+" :
+                        print("posion Bloquedada ")
+                    else:
+                        print("Posisicion arriba derecha libre")
+                        Posicioneslibre.append(True)
+
+
+
+                    #verifica arriba isquierda
+                    if [Nueva_Ubicacion_Rey_Origen[0]-1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
+                        print("Movimiento Hacia arriba isquierda Esta en haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "-" or  M[Nueva_Ubicacion_Rey_Origen[0]-1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "+":
+                        print("posion Bloquedada ")
+                    else:
+                        print("Posisicion arriba isquierda libre")
+                        Posicioneslibre.append(True)
+
+                    #verifica isquierda
+                    if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
+                        print("Movimiento Hacia Isquierda está en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]-1]  == "|":
+                        print("posion Bloqueda ")
+                    else:
+                        print("Posisicion isquierda libre")
+                        Posicioneslibre.append(True)
+
+
+                    #verifica Derecha 
+                    if [Nueva_Ubicacion_Rey_Origen[0],Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
+                        print("Movimiento Hacia Derecha está en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]][Nueva_Ubicacion_Rey_Origen[1]+1]  == "|":
+                        print("posion Bloqueda ")
+                    else:
+                        print("Posisicion derecha libre")
+                        Posicioneslibre.append(True)
+
+
+                    #verifica abajo Derecha 
+                    if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]+1] in Nueva_linea_Peligro:
+                        print("Movimiento hacia abajo Derecha en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "+" or M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]+1]  == "-":
+                        print("posion Bloqueda ")
+                    else:
+                        print("Posisicion  abajo derecha libre")
+                        Posicioneslibre.append(True)
+
+                    #verifica abajo isquierda  
+                    if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]-1] in Nueva_linea_Peligro:
+                        print("Movimiento hacia abajo isquierda  en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "+" or M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]-1]  == "-":
+                        print("posion Bloqueda ")
+                    else:
+                        print("Posisicion abajo isquierda libre")
+                        Posicioneslibre.append(True)
+
+                    #verifica abajo 
+                    if [Nueva_Ubicacion_Rey_Origen[0]+1,Nueva_Ubicacion_Rey_Origen[1]] in Nueva_linea_Peligro:
+                        print("Movimiento hacia abajo en Haque") 
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]] in Color_DelRey:
+                        print("ficha bloqueada")
+                    elif M[Nueva_Ubicacion_Rey_Origen[0]+1][Nueva_Ubicacion_Rey_Origen[1]]  == "-":
+                        print("posion Bloqueda ")
+                    else:
+                        print("Posisicion abajo libre")
+                        Posicioneslibre.append(True)
+
+                    if True in Posicioneslibre:
+                        print("EL rey tiene Chance de salvarse del Haque ")
+                        
+                    if Nueva_Ubicacion_Rey_Origen in Nueva_linea_Peligro and Una_ficha_Arriba in Nueva_linea_Peligro and Una_ficha_Arriba_Derecha in Nueva_linea_Peligro and Una_ficha_Arriba_Isquierda in Nueva_linea_Peligro and Una_ficha_Isquierda in Nueva_linea_Peligro and Una_ficha_Derecha in Nueva_linea_Peligro and Una_ficha_Abajo in Nueva_linea_Peligro and Una_ficha_Abajo_Derecha in Nueva_linea_Peligro and Una_ficha_Abajo_Isquierda in Nueva_linea_Peligro : 
+                        
+                        print("Haquemate")
+                        print("Felicidades a ganado el juego")
+                        exit()
+
+                   
+                    
