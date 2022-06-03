@@ -77,14 +77,14 @@ M=[
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-    ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
+    ["|","8","|",T1N,C1N,A1N,DN,".",A2N,C2N,T2N,"|","8","|"],
     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
-    ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
-    ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
+    ["|","5","|",".",".",".",RN,".",".",".",".","|","5","|"],
+    ["|","4","|",".",".",".",".",".",".",".",DB,"|","4","|"],
     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
-    ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
+    ["|","1","|",T1B,C1B,A1B,".",RB,A2B,C2B,T2B,"|","1","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
@@ -162,7 +162,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 #________________________________________________________________________________________________________________________________________________________
             Nueva_linea_Peligro = []
 
-
             #ataque 
             Ubicacion_Todas_fichas_Arriba= []
             Ubicacion_Todas_fichas_Abajo= []
@@ -171,9 +170,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             #ataque de las fichas de ababjp
             Todos_Los_posiblesAtaques_Abajo = []
             
-
-
-
 
             #buscará las fichas 
             for i in range(len(M)):
@@ -301,6 +297,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         Algoritmo_Deciciones_Torre(Operador_positivo,0),Algoritmo_Deciciones_Torre(Operador_negativo,0),Algoritmo_Deciciones_Torre(0,Operador_positivo),Algoritmo_Deciciones_Torre(0,Operador_negativo)
 
                     # ####################################################################################################################################################
+                    #sie es un caballo 
                     if M[Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[3]:
                         def Algoritmo_Deciciones_Caballo(Diagonal,Vertical):
                             if M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] in Color_Opuesto or M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] == ".":
@@ -341,25 +338,118 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             # print(Todos_Los_posiblesAtaques_Abajo)
             
             Linea_del_ataque_hacia_el_rey = []
+            Las_fichas_que_estan_atacando_al_rey = []
 
             for a in range(len(Ubicacion_Todas_fichas_Abajo)):
                 if M[Ubicacion_Todas_fichas_Abajo[a][0]][Ubicacion_Todas_fichas_Abajo[a][1]] == Color_Variable1[4]:
                     POSICION = [Ubicacion_Todas_fichas_Abajo[a][0],Ubicacion_Todas_fichas_Abajo[a][1]] 
                     if POSICION in Todos_Los_posiblesAtaques_Arriba:
-                        print("El REY ESTá en HAAKE")
-
-                    # Iterador = 1
-                    # while True:
-                    #     if M[POSICION[0]][POSICION[1]] == ".":
+                        print("El REY ESTA EN HAKE POR LA FICHA")
                         
 
+                        def Alagoritmo_logaritmatico_del_cambio_haker(Atacante1,Atacante2,Atacante3,Atacante4,Diagonal1,Vertical1):
+                            logaritmo_del_cambio = []
+                            Fichas_ataque_Ralla = [Color_Variable2[Atacante1],Color_Variable2[Atacante2],Color_Variable2[Atacante3],Color_Variable2[Atacante4]]
+                        
+                            Iterador1 = Diagonal1
+                            Iterador2 = Vertical1
+                            while True:
+
+                                
+                                if M[POSICION[0]+Iterador1][POSICION[1]+Iterador2] == ".":
+                                    logaritmo_del_cambio.append([POSICION[0]+Iterador1,POSICION[1]+Iterador2])
+
+                                elif M[POSICION[0]+Iterador1][POSICION[1]+Iterador2] in Fichas_ataque_Ralla:
+                                    logaritmo_del_cambio.append([POSICION[0]+Iterador1,POSICION[1]+Iterador2])
+                                    Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[0]+Iterador1][POSICION[1]+Iterador2])
+
+                                    for logor in range(len(logaritmo_del_cambio)):
+                                        Linea_del_ataque_hacia_el_rey.append(logaritmo_del_cambio[logor])
+                                    break
+                                elif M[POSICION[0]+Iterador1][POSICION[1]+Iterador2] in Color_Variable2:
+                                    break
+                                else:
+                                    break
+                                
+                                if not Diagonal1 == 0:
+                                    if Diagonal1 == +1:
+                                        Iterador1 = Iterador1 + 1
+                                    if Diagonal1 == - 1:
+                                        Iterador1 = Iterador1 - 1
+
+                                if not Vertical1 == 0:
+                                    if Vertical1 == -1:
+                                        Iterador2 = Iterador2 - 1
+                                    if Vertical1 == +1:
+                                        Iterador2 = Iterador2+ 1
+
+                            
+                            print(Las_fichas_que_estan_atacando_al_rey)
+                            
+                        # Arriba 
+                        Alagoritmo_logaritmatico_del_cambio_haker(1,2,1,1,-1,0)
+                        # Arriba derecha
+                        Alagoritmo_logaritmatico_del_cambio_haker(2,2,2,5,-1,-1)
+                        # Arriba Isuquierda
+                        Alagoritmo_logaritmatico_del_cambio_haker(2,2,2,5,-1,+1)
+                        # Derecha 
+                        Alagoritmo_logaritmatico_del_cambio_haker(2,1,1,1,0,+1)
+                        # Abajo 
+                        Alagoritmo_logaritmatico_del_cambio_haker(2,1,1,1,0,-1)
+                        #abajo derecha 
+                        Alagoritmo_logaritmatico_del_cambio_haker(2,2,2,5,+1,+1)
+                        #Abajo isquierda 
+                        Alagoritmo_logaritmatico_del_cambio_haker(2,2,2,5,+1,-1)
+
+                        
+                        # is the jaque is of the kind is a peon
+                        #the jaque is from a peon or a kind
+                        
+                        #the wachahca 
+                        the_wachachaca = [Color_Variable2[0],Color_Variable2[4]]
+                        # the wachachaca horse
+                        the_wachachaca_horse = [Color_Variable2[3]]
+                        #derecha 
+                        if  M[POSICION[a][0]-1][POSICION[a][1]+1] in the_wachachaca :
+                            Linea_del_ataque_hacia_el_rey.append([POSICION[a][0]-1,POSICION[a][1]+1])
+                            Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[a][0]-1][POSICION[a][1]+1])
+                        #isquierda
+                        if  M[POSICION[a][0]-1][POSICION[a][1]-1] in the_wachachaca :
+                            Linea_del_ataque_hacia_el_rey.append([POSICION[a][0]-1,POSICION[a][1]-1])
+                            Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[a][0]-1][POSICION[a][1]-1])
+
+                        # the jaque of a horse   
+                        def Algoritmo_Deciciones_Caballo(Diagonal12,Vertical12):
+                            if M[POSICION[a][0]+Diagonal12][POSICION[a][1]+Vertical12] in the_wachachaca_horse:
+
+                                Linea_del_ataque_hacia_el_rey.append([POSICION[a][0]+Diagonal12,POSICION[a][1]+Vertical12])
+                                Las_fichas_que_estan_atacando_al_rey.append(M[[POSICION[a][0]+Diagonal12][POSICION[a][1]+Vertical12]])
+                            
+                        # L arriba Derecha                                                                                                                         #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
+                        Algoritmo_Deciciones_Caballo(-2,+1)
+                        # L arriba isquierda
+                        Algoritmo_Deciciones_Caballo(-2,-1)
+                        # L Derecha arriba 
+                        Algoritmo_Deciciones_Caballo(-1,+2)
+                        # L Derecha Abajo 
+                        Algoritmo_Deciciones_Caballo(+1,+2)
+                        # L Isquierda Arriba
+                        Algoritmo_Deciciones_Caballo(-1,-2)
+                        # L Isquierda Abajo 
+                        Algoritmo_Deciciones_Caballo(+1,-2)
+                        # L Abajo Derecha                        
+                        Algoritmo_Deciciones_Caballo(+2,+1)
+                        # L Abajo isquierda
+                        Algoritmo_Deciciones_Caballo(+2,-1)
                     
+                        
 
 
+
+                        print("Esta es la linea que está atacando al rey ")
+                        print(Linea_del_ataque_hacia_el_rey)
 
 #______________________________________________________________________________________________________________________________________________________________
-
-
          
             #Pide la entrada modificada
 
@@ -394,19 +484,19 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             
             if Numero_fila2 == 8:
                 fila2 = n1
-            elif Numero_fila2 ==7:
+            elif Numero_fila2 == 7:
                 fila2 = n2
-            elif Numero_fila2 ==6:
+            elif Numero_fila2 == 6:
                 fila2 = n3
-            elif Numero_fila2 ==5:
+            elif Numero_fila2 == 5:
                 fila2 = n4
-            elif Numero_fila2 ==4:
+            elif Numero_fila2 == 4:
                 fila2 = n5
-            elif Numero_fila2 ==3:
+            elif Numero_fila2 == 3:
                 fila2 = n6
             elif Numero_fila2 == 2:
                 fila2 = n7
-            elif Numero_fila2 ==1:
+            elif Numero_fila2 == 1:
                 fila2 = n8
             else:
                 print("Error")
