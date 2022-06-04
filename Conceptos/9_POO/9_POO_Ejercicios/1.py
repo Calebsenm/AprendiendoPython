@@ -4,7 +4,9 @@ import math
 from time import process_time
 
 
+#la llave del hake 
 
+llave_del_jaque_maximous = [False]
 #todas las funciones importantes
 
 B = ["\u2659","\u2656","\u2655","\u2658","\u2654","\u2657"]
@@ -77,11 +79,11 @@ M=[
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-    ["|","8","|",T1N,C1N,A1N,DN,".",A2N,C2N,T2N,"|","8","|"],
+    ["|","8","|",T1N,C1N,A1N,DN,".",A2N,C2N,".","|","8","|"],
     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
-    ["|","5","|",".",".",".",RN,".",".",".",".","|","5","|"],
-    ["|","4","|",".",".",".",".",".",".",".",DB,"|","4","|"],
+    ["|","5","|",".",T2N,".",RN,".",".",".",".","|","5","|"],
+    ["|","4","|",".",".",".",DN,".",".",".",DB,"|","4","|"],
     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
     ["|","1","|",T1B,C1B,A1B,".",RB,A2B,C2B,T2B,"|","1","|"],
@@ -132,6 +134,10 @@ Movimiento_caballo = []
 
 #Movimiento rey permitido 
 Movimiento_Rey = []
+
+#Movimiento peon Permitido
+Movimientos_Permitidos = [[1],[1]]
+
 
 #Moviemintos en hake 
 
@@ -345,7 +351,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     POSICION = [Ubicacion_Todas_fichas_Abajo[a][0],Ubicacion_Todas_fichas_Abajo[a][1]] 
                     if POSICION in Todos_Los_posiblesAtaques_Arriba:
                         print("El REY ESTA EN HAKE POR LA FICHA")
-                        
+
+                        llave_del_jaque_maximous.clear()
+                        llave_del_jaque_maximous.append(True)
 
                         def Alagoritmo_logaritmatico_del_cambio_haker(Atacante1,Atacante2,Atacante3,Atacante4,Diagonal1,Vertical1):
                             logaritmo_del_cambio = []
@@ -528,10 +536,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
 
             LLave1 = LLave
-            
-            
-
-           
+                       
             if LLave1 == True:
                 #guarda donde esta
                 Ubicacion_ficha.clear()
@@ -557,12 +562,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     Ubicacion_ficha.pop(2)
                     Ubicacion_ficha.pop(2)
 
-
             else:
                 print("Nada por aqui nada por allá")
 
-                
-
+            
             if LLave1 == True:
             
                 #Muestra que ficha es......
@@ -597,6 +600,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     # ____________________________________________________________________________________________________ 
 
                     #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
+                   
+                   
                     #SI es un peon   permite identificar que ficha tiene en frente y a sus lads para ver si el peon está bloqueado 
                     if Ficha2 == B[0] or Ficha2 ==N[0]:
                         #verifica si está bloqueado por las pociciones 
@@ -696,26 +701,87 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     break
 
                                 i = i + 1
+
+                           
+
                        #Verifica si está bloqueada a su alrededor 
                         #arriba 
                         print(COLOR_ELEGIDO2)
                         if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] != "-":
                            
-                            Algoritmo_Torre()  
-                            break
+                            Algoritmo_Torre()   
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_Torre)):
+                                    if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_Torre.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_Torre.append(k)
+                                break    
+                                    
+
+                            if llave_del_jaque_maximous[0] == False:
+                                break
                        
                         #derecha
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] != "|":
                             Algoritmo_Torre()
-                            break
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_Torre)):
+                                    if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_Torre.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_Torre.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break
                         #isquierda
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] != "|":
                             Algoritmo_Torre()
-                            break
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_Torre)):
+                                    if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_Torre.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_Torre.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break
                         #abajo 
                         elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO2 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] != "-":
                             Algoritmo_Torre()
-                            break
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_Torre)):
+                                    if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_Torre.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_Torre.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break
                     
                         else:
                             print("La ficha está bloqueada")
@@ -854,37 +920,150 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print(COLOR_ELEGIDO1)
                         if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] != "-":
                            
-                            Super_Algoritmo()    
+                            Super_Algoritmo()  
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                            
-                            break
+                           
                         #arriba derecha
                         elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] != "+" :
                             Super_Algoritmo()
-                            break
+                             #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #arriba isquierda
                         elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1 and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] != "+":
                             Super_Algoritmo()
-                            break
+                             #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #derecha
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == "." or not  M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] != "|":
                             Super_Algoritmo()
-                            break
+                             #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #isquierda
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] != "|":
                             Super_Algoritmo()
-                            break
+                             #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #abajo 
                         elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] == "." or not  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]] != "-":
                             Super_Algoritmo()
-                            break
+                             #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #abajo derecha 
                         elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] != "+":
                             Super_Algoritmo()
-                            break
+                             #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #abajo isquierda 
                         elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in COLOR_ELEGIDO1 and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]!="+":
                             Super_Algoritmo()
-                            break
+                             #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_permitidos_Reina)):
+                                    if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimientos_permitidos_Reina.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimientos_permitidos_Reina.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         else:
                             print("La ficha está bloqueada")
 
@@ -972,8 +1151,25 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             break
 
                         #si sale mal solo colocas if llave_imcomprensible[0] == True   
-                        if len(llave_imcomprensible) > 1:
+                        if llave_imcomprensible[1] == True:
                             llave_imcomprensible.clear()
+
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimiento_caballo)):
+                                    if Movimiento_caballo[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimiento_caballo[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimiento_caballo.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimiento_caballo.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
+
                             break
                         else:
                             print("La ficha está bloquedad")
@@ -1056,20 +1252,76 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         #arriba derecha
                         if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in Color_ficha_elegida and M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] != "+" :
                             Algorito_Arfil()
-                            break
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimiento_Arfil)):
+                                    if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimiento_Arfil.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimiento_Arfil.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #arriba isquierda
                         elif M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] == "."or  not M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in Color_ficha_elegida and  M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] != "+":
                             Algorito_Arfil()
-                            break
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimiento_Arfil)):
+                                    if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimiento_Arfil.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimiento_Arfil.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                       
                         #abajo derecha 
                         elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1] in Color_ficha_elegida and M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]+1]  != "+":
                             Algorito_Arfil()
-                            break
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimiento_Arfil)):
+                                    if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimiento_Arfil.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimiento_Arfil.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         #abajo isquierda 
                         elif M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] == "." or not M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1] in Color_ficha_elegida and  M[Ubicacion_ficha[0]+1][Ubicacion_ficha[1]-1]  != "+":
                             Algorito_Arfil()
-                            break
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimiento_Arfil)):
+                                    if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
+                            if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                print("La ficha no se puede mover el rey está en haque ")
+                            else:
+                                Movimiento_Arfil.clear()
+                                for k in Movimientos_permitidos_para_la_ficha:
+                                    Movimiento_Arfil.append(k)
+                                break    
+                            if llave_del_jaque_maximous[0] == False:
+                                break  
                         else:
                             print("La ficha está bloqueada")
                     
@@ -1223,8 +1475,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print("El Peon se mover a ")
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
                         
-                        #Movimientos Permitidos 
-                        Movimientos_Permitidos = [[1],[1]]
+                        # #Movimientos Permitidos 
+                        # Movimientos_Permitidos = [[1],[1]]
                         #que ficha es negra o blanca
                         if Colorde_ficha == N:
                             
@@ -1331,6 +1583,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                             print("No sea bobo le pidieron un numero ")
 
                                     break
+                            
+                            
+
                             #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
                             movi = 0
                             cantidad = len(Movimientos_Permitidos) /2
