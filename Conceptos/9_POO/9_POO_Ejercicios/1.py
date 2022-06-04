@@ -384,7 +384,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         Iterador2 = Iterador2+ 1
 
                             
-                            print(Las_fichas_que_estan_atacando_al_rey)
+                           
                             
                         # Arriba 
                         Alagoritmo_logaritmatico_del_cambio_haker(1,2,1,1,-1,0)
@@ -410,20 +410,20 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         # the wachachaca horse
                         the_wachachaca_horse = [Color_Variable2[3]]
                         #derecha 
-                        if  M[POSICION[a][0]-1][POSICION[a][1]+1] in the_wachachaca :
-                            Linea_del_ataque_hacia_el_rey.append([POSICION[a][0]-1,POSICION[a][1]+1])
-                            Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[a][0]-1][POSICION[a][1]+1])
+                        if  M[POSICION[0]-1][POSICION[1]+1] in the_wachachaca :
+                            Linea_del_ataque_hacia_el_rey.append([POSICION[0]-1,POSICION[1]+1])
+                            Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[0]-1][POSICION[1]+1])
                         #isquierda
-                        if  M[POSICION[a][0]-1][POSICION[a][1]-1] in the_wachachaca :
-                            Linea_del_ataque_hacia_el_rey.append([POSICION[a][0]-1,POSICION[a][1]-1])
-                            Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[a][0]-1][POSICION[a][1]-1])
+                        if  M[POSICION[0]-1][POSICION[1]-1] in the_wachachaca :
+                            Linea_del_ataque_hacia_el_rey.append([POSICION[0]-1,POSICION[1]-1])
+                            Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[0]-1][POSICION[1]-1])
 
                         # the jaque of a horse   
                         def Algoritmo_Deciciones_Caballo(Diagonal12,Vertical12):
-                            if M[POSICION[a][0]+Diagonal12][POSICION[a][1]+Vertical12] in the_wachachaca_horse:
+                            if M[POSICION[0]+Diagonal12][POSICION[1]+Vertical12] in the_wachachaca_horse:
 
-                                Linea_del_ataque_hacia_el_rey.append([POSICION[a][0]+Diagonal12,POSICION[a][1]+Vertical12])
-                                Las_fichas_que_estan_atacando_al_rey.append(M[[POSICION[a][0]+Diagonal12][POSICION[a][1]+Vertical12]])
+                                Linea_del_ataque_hacia_el_rey.append([POSICION[0]+Diagonal12,POSICION[1]+Vertical12])
+                                Las_fichas_que_estan_atacando_al_rey.append(M[POSICION[0]+Diagonal12][POSICION[1]+Vertical12])
                             
                         # L arriba Derecha                                                                                                                         #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
                         Algoritmo_Deciciones_Caballo(-2,+1)
@@ -445,8 +445,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         
 
 
-
+                        print(Las_fichas_que_estan_atacando_al_rey)
                         print("Esta es la linea que está atacando al rey ")
+                        
                         print(Linea_del_ataque_hacia_el_rey)
 
 #______________________________________________________________________________________________________________________________________________________________
