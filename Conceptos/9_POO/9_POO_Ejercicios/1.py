@@ -75,18 +75,34 @@ DN = N[2]
 
 
 
+# M=[
+#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
+#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+#     ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
+#     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
+#     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
+#     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
+#     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
+#     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
+#     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
+#     ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
+#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
+# ]
 M=[
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-    ["|","8","|",T1N,C1N,A1N,DN,".",A2N,C2N,".","|","8","|"],
-    ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
+    ["|","8","|",T1N,".",".",DN,RN,".",".",T2N,"|","8","|"],
+    ["|","7","|",".",".",".",".",".",".",".",".","|","7","|"],
     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
-    ["|","5","|",".",T2N,".",RN,".",".",".",".","|","5","|"],
-    ["|","4","|",".",".",".",DN,".",".",".",DB,"|","4","|"],
+    ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
+    ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
-    ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
-    ["|","1","|",T1B,C1B,A1B,".",RB,A2B,C2B,T2B,"|","1","|"],
+    ["|","2","|",".",".",".",".",".",".",".",".","|","2","|"],
+    ["|","1","|",".",".",".",".",RB,".",".",".","|","1","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
@@ -458,8 +474,54 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         
                         print(Linea_del_ataque_hacia_el_rey)
 
+                        POSICION_actual = [Ubicacion_Todas_fichas_Abajo[a][0],Ubicacion_Todas_fichas_Abajo[a][1]] 
+                        POSICION_Arriba = [Ubicacion_Todas_fichas_Abajo[a][0]-1,Ubicacion_Todas_fichas_Abajo[a][1]] 
+                        POSICION_Arriba_Derecha = [Ubicacion_Todas_fichas_Abajo[a][0]-1,Ubicacion_Todas_fichas_Abajo[a][1]+1] 
+                        POSICION_Arriba_Isquierda = [Ubicacion_Todas_fichas_Abajo[a][0]-1,Ubicacion_Todas_fichas_Abajo[a][1]-1] 
+                        POSICION_Derecha = [Ubicacion_Todas_fichas_Abajo[a][0],Ubicacion_Todas_fichas_Abajo[a][1]+1] 
+                        POSICION_Isquierda = [Ubicacion_Todas_fichas_Abajo[a][0],Ubicacion_Todas_fichas_Abajo[a][1]-1] 
+                        POSICION_Abajo_Derecha = [Ubicacion_Todas_fichas_Abajo[a][0]+1,Ubicacion_Todas_fichas_Abajo[a][1]+1] 
+                        POSICION_Abajo_Isquierda = [Ubicacion_Todas_fichas_Abajo[a][0]+1,Ubicacion_Todas_fichas_Abajo[a][1]-1] 
+                        POSICION_Abajo = [Ubicacion_Todas_fichas_Abajo[a][0]+1,Ubicacion_Todas_fichas_Abajo[a][1]] 
+
+                        La_llave_haquemate = []
+                        La_llave_haquemate12 = []
+
+                        if POSICION_actual in Todos_Los_posiblesAtaques_Arriba:
+                            La_llave_haquemate.append(True)
+                        if POSICION_Arriba in Todos_Los_posiblesAtaques_Arriba or not M[POSICION_Arriba[0]][POSICION_Arriba[0]] == ".":
+                            La_llave_haquemate.append(True)
+
+                        if POSICION_Arriba_Derecha in Todos_Los_posiblesAtaques_Arriba or not M[POSICION_Arriba_Derecha[0]][POSICION_Arriba_Derecha[1]] == ".":
+                            La_llave_haquemate.append(True)
+                        if POSICION_Arriba_Isquierda in Todos_Los_posiblesAtaques_Arriba  or not M[POSICION_Arriba_Isquierda[0]][POSICION_Arriba_Isquierda[1]] == ".":
+                            La_llave_haquemate.append(True)
+                        if POSICION_Derecha in Todos_Los_posiblesAtaques_Arriba  or not M[POSICION_Derecha[0]][POSICION_Derecha[1]] == ".":
+                            La_llave_haquemate.append(True)
+                        if POSICION_Isquierda in Todos_Los_posiblesAtaques_Arriba or not M[POSICION_Isquierda[0]][POSICION_Isquierda[1]] == ".":
+                            La_llave_haquemate.append(True)
+                        if POSICION_Abajo_Derecha in Todos_Los_posiblesAtaques_Arriba  or not M[POSICION_Abajo_Derecha[0]][POSICION_Abajo_Derecha[1]] == ".":
+                            La_llave_haquemate.append(True)
+                        if POSICION_Abajo_Isquierda in Todos_Los_posiblesAtaques_Arriba  or not M[POSICION_Abajo_Isquierda[0]][POSICION_Abajo_Isquierda[1]] == ".":
+                            La_llave_haquemate.append(True)
+                        if POSICION_Abajo in Todos_Los_posiblesAtaques_Arriba   or not M[POSICION_Abajo[0]][POSICION_Abajo[1]] == ".":
+                            La_llave_haquemate.append(True)
+
+                        for whachachaka in Linea_del_ataque_hacia_el_rey:
+                            if whachachaka in Todos_Los_posiblesAtaques_Abajo:
+                                La_llave_haquemate12.append(True)
+                            else:
+                                La_llave_haquemate12.append(False)
+
+                        if len(La_llave_haquemate) == 9 and  not True in La_llave_haquemate12:
+                            print("Jaque Mate ")
+
+
 #______________________________________________________________________________________________________________________________________________________________
-         
+
+            #ESTE ES EL HAQUEMATE 
+
+#______________________________________________________________________________________________________________________________________________________________
             #Pide la entrada modificada
 
             while True:
@@ -762,13 +824,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_Torre)):
                                     if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_Torre.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_Torre.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_Torre.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_Torre.append(k)
+                                    break    
                                     
 
                             if llave_del_jaque_maximous[0] == False:
@@ -783,13 +845,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_Torre)):
                                     if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_Torre.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_Torre.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_Torre.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_Torre.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break
                         #isquierda
@@ -801,13 +863,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_Torre)):
                                     if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_Torre.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_Torre.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_Torre.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_Torre.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break
                         #abajo 
@@ -819,13 +881,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_Torre)):
                                     if Movimientos_Torre[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_Torre[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_Torre.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_Torre.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_Torre.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_Torre.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break
                     
@@ -973,13 +1035,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                            
@@ -993,13 +1055,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #arriba isquierda
@@ -1011,13 +1073,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #derecha
@@ -1029,13 +1091,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #isquierda
@@ -1047,13 +1109,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #abajo 
@@ -1065,13 +1127,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #abajo derecha 
@@ -1083,13 +1145,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #abajo isquierda 
@@ -1101,13 +1163,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimientos_permitidos_Reina)):
                                     if Movimientos_permitidos_Reina[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimientos_permitidos_Reina[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimientos_permitidos_Reina.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimientos_permitidos_Reina.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_permitidos_Reina.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_permitidos_Reina.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         else:
@@ -1207,13 +1269,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimiento_caballo)):
                                     if Movimiento_caballo[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimiento_caballo[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimiento_caballo.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimiento_caballo.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimiento_caballo.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimiento_caballo.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
 
@@ -1305,13 +1367,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimiento_Arfil)):
                                     if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimiento_Arfil.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimiento_Arfil.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimiento_Arfil.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimiento_Arfil.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #arriba isquierda
@@ -1323,13 +1385,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimiento_Arfil)):
                                     if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimiento_Arfil.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimiento_Arfil.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimiento_Arfil.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimiento_Arfil.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                       
@@ -1342,13 +1404,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimiento_Arfil)):
                                     if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimiento_Arfil.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimiento_Arfil.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimiento_Arfil.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimiento_Arfil.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         #abajo isquierda 
@@ -1360,13 +1422,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 for o in range(len(Movimiento_Arfil)):
                                     if Movimiento_Arfil[o] in Linea_del_ataque_hacia_el_rey:
                                         Movimientos_permitidos_para_la_ficha.append( Movimiento_Arfil[o])
-                            if len(Movimientos_permitidos_para_la_ficha) == 0:
-                                print("La ficha no se puede mover el rey está en haque ")
-                            else:
-                                Movimiento_Arfil.clear()
-                                for k in Movimientos_permitidos_para_la_ficha:
-                                    Movimiento_Arfil.append(k)
-                                break    
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimiento_Arfil.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimiento_Arfil.append(k)
+                                    break    
                             if llave_del_jaque_maximous[0] == False:
                                 break  
                         else:
