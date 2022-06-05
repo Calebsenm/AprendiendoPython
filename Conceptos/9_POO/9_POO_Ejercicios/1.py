@@ -136,7 +136,7 @@ Movimiento_caballo = []
 Movimiento_Rey = []
 
 #Movimiento peon Permitido
-Movimientos_Permitidos = [[1],[1]]
+Movimientos_Peon = [[1],[1]]
 
 
 #Moviemintos en hake 
@@ -604,29 +604,75 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                    
                     #SI es un peon   permite identificar que ficha tiene en frente y a sus lads para ver si el peon está bloqueado 
                     if Ficha2 == B[0] or Ficha2 ==N[0]:
-                        #verifica si está bloqueado por las pociciones 
-                        print(f"{Ficha2}{Ficha3}{Ficha4}{Ficha5}")
-                        #ficha blanca 
-                        if Ficha3 in B or Ficha3 in N:
-                            #si la ficha es blanca 
-                            if Ficha2 in B:
-                                if Ficha4 in N :
+                        Movimientos_Peon.clear()
+                        print("Esto esun Peon")
+                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
+
+                        #Posicion actual
+                        print(Ubicacion_ficha)
+
+                        Color_que_cambia  = 0
+                         #verifica si es blanca o negra
+                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Blancas[0]:
+                            #es una ficha blanca
+                            Color_que_cambia = Fichas_Negras
+                        elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[0]:
+                            #es una ficha negra 
+                            Color_que_cambia = Fichas_Blancas 
+
+                        #llave incomprensible XD
+                        llavus_maximous = [False]
+
+                         #si no se ha movido y esta en la pocicion inicial 2 de la casilla entonces permite hacer 2 movimientos 
+                        if Ubicacion_ficha[0] == 9:
+                            print("El peon se encuentra en la primera casilla ")
+                            o = 1
+                            i = 0
+                            while i < 2:
+                                if M[Ubicacion_ficha[0]-o][Ubicacion_ficha[1]] == ".":
+                                    Movimientos_Peon.append([Ubicacion_ficha[0]-o,Ubicacion_ficha[1]])
+                                    llavus_maximous.append(True)
+                                else:
                                     break
-                                elif Ficha5 in N:
-                                    break
-                                else: 
-                                    print("Error La ficha blanca está bloqueada")
-                            elif Ficha2 in N:
-                                if Ficha4 in B :
-                                    break
-                                elif Ficha5 in B:
-                                    break
-                                else: 
-                                    print("Error La ficha negra esta bloqueda ")
+                                o = o + 1
+                                i = i + 1
+                        # Verifica que tiene en el frente
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == ".":
+                            Movimientos_Peon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]])
+                            llavus_maximous.append(True)
+
+                        #verifica que tiene  a la isquierda
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]-1] in Color_que_cambia:
+                            Movimientos_Peon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]-1])
+                            llavus_maximous.append(True)
+
+                        #verifica que tiene  a la Derecha
+                        if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]+1] in Color_que_cambia:
+                            Movimientos_Peon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]+1])
+                            llavus_maximous.append(True)
+
+                        if True in llavus_maximous:
+                            llavus_maximous.clear()
+                            
+                            #algoritmo que activa el movimiento de la ficha si está en haque 
+                            Movimientos_permitidos_para_la_ficha = []
+                            if llave_del_jaque_maximous[0] == True:
+                                for o in range(len(Movimientos_Peon)):
+                                    if Movimientos_Peon[o] in Linea_del_ataque_hacia_el_rey:
+                                        Movimientos_permitidos_para_la_ficha.append( Movimientos_Peon[o])
+                                if len(Movimientos_permitidos_para_la_ficha) == 0:
+                                    print("La ficha no se puede mover el rey está en haque ")
+                                else:
+                                    Movimientos_Peon.clear()
+                                    for k in Movimientos_permitidos_para_la_ficha:
+                                        Movimientos_Peon.append(k)
+                                    break    
+                                    
+
+                            if llave_del_jaque_maximous[0] == False:
+                                break
                         else:
-                            print(Ficha2)
-                            # M[fila2][columna2]="."
-                            break
+                            print("La ficha esta bloqueada ")
                     
                     #si es una torre
                     if Ficha2 == B[1] or Ficha2 == N[1]:
@@ -1150,8 +1196,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         llave_imcomprensible.append(True)
                             break
 
+                       
                         #si sale mal solo colocas if llave_imcomprensible[0] == True   
-                        if llave_imcomprensible[1] == True:
+                        if len(llave_imcomprensible) > 1:
                             llave_imcomprensible.clear()
 
                             #algoritmo que activa el movimiento de la ficha si está en haque 
@@ -1449,9 +1496,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 Movimiento_Rey.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]-1])
                                 hola.append(True)
 
-                        #verifica si está en hakemate
-
-                        
                         if len(hola) > 1:
                             hola.clear()
                             break
@@ -1469,278 +1513,72 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 def Algoritmo(La_ficha,peon,torre,reina,caballo,rey,arfil):
                     #Ve que ficha es, y  apartir de eso empiezan los algoritmos
                     if La_ficha == peon:
-                        #peon 
-                        print("El peon esta en ")
+                                               
+                        Movimento_relativo.clear() 
+                        Movimento_relativo.append(Ubicacion_ficha[2])
+                        Movimento_relativo.append(Ubicacion_ficha[3])
+
+
+
+                        #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
+                        if Movimento_relativo[0] == 3:
+                            system("cls")
+                            LAS_fichas_del_cambio = [T1B,DB,C1B,A1B]
+                            while True:
+                                print("Has llegado a la ultima posicion ahora puedes cambiar el peon por la ficha que deses ")
+                                for i in range(len(LAS_fichas_del_cambio)):
+                                    print(f"{i+1} = {LAS_fichas_del_cambio[i]}.   ",end=" ")
+                                    print()
+                                while True:
+                                    try:    
+                                        Que_ficha = int(input("Por que fichas deseas remplasar el peon ingrese un numero "))
+
+                                        if Que_ficha == 1:
+                                            LFicha.pop(0)
+                                            LFicha.append(LAS_fichas_del_cambio[0])
+                                            break
+                                        elif Que_ficha == 2:
+                                            LFicha.pop(0)
+                                            LFicha.append(LAS_fichas_del_cambio[1])
+                                            break
+                                        elif Que_ficha == 3:
+                                            LFicha.pop(0)
+                                            LFicha.append(LAS_fichas_del_cambio[2])
+                                            break
+                                        elif Que_ficha == 4:
+                                            LFicha.pop(0)
+                                            LFicha.append(LAS_fichas_del_cambio[3])
+                                            break
+                                        else:
+                                            print("No sea pendejo este numero no existe")
+                                    except ValueError:
+                                        print("No sea bobo le pidieron un numero ")
+
+                                break
+                        #Peon
+                        print("El Peon está  ")
                         print(Ubicacion_ficha[0],Ubicacion_ficha[1])
-                        print("El Peon se mover a ")
+                        print("El Peon se va a mover a ")
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
-                        
-                        # #Movimientos Permitidos 
-                        # Movimientos_Permitidos = [[1],[1]]
-                        #que ficha es negra o blanca
-                        if Colorde_ficha == N:
+
+                        #los movimintos 
+                        #los movimientos 
+                        Movimento_relativo.clear()
+                        Movimento_relativo.append(Ubicacion_ficha[2])
+                        Movimento_relativo.append(Ubicacion_ficha[3])
+
+                        print(Movimientos_Peon)
+
+                        for i in range(len(Movimientos_Peon)):
+                            for j in range(1):
+                                if Movimento_relativo[0] == Movimientos_Peon[i][j] and  Movimento_relativo[1] == Movimientos_Peon[i][j+1]:
+                                    LLave_cambio_posicion.clear()
+                                    LLave_cambio_posicion.append(True)    
                             
-                            #ficha negra
-
-                            ##guarda las possiconoes de la ficcha 
-                            Posicion_Relativa.clear() 
-
-                            Posicion_Relativa.append(Ubicacion_ficha[0])
-                            Posicion_Relativa.append(Ubicacion_ficha[1])
-
-                            #limpia los moviemintos y luego los igresa
-                            Movimientos_Permitidos.clear()
-                            
-                            
-                            #si no se ha movido y esta en la pocicion inicial 2 de la casilla entonces permite hacer 2 movimientos 
-                            if Posicion_Relativa[0] == 9:
-                                print("El peon se encuentra en la primera casilla ")
-
-                                o = 1
-                                i = 0
-                                while i < 2:
-                                    if not M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in N or  M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in B:
-                                        if M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] == ".":
-                                            Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
-                                            Movimientos_Permitidos.append(Posicion_Relativa[1])
-                                        else:
-                                            print("Error el Peon no Puede saltar una Ficha")
-                                            break
-                                    o = o + 1
-                                    i = i + 1
-
-                            
-                            #verifica que tiene en frente
-                            if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
-
-                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                Movimientos_Permitidos.append(Posicion_Relativa[1])
-                                                                    
-                            #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
-                            # Verifica que tiene en la isquierda......
-                
-                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
-                            
-                            if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] in B :
-                                if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == ".":
-                                    if  not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "|":
-                                
-                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                        Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
-                            # verifica que tiene en la derecha .........
-                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
-
-                            if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] in B:
-                                if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == ".":
-                                    if  not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "|":
-                                    
-                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                        Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
-
-                            # aqui se verifican los movimientos  XD                        
-
-                            Movimento_relativo.clear()
-                            
-
-                            Movimento_relativo.append(Ubicacion_ficha[2])
-                            Movimento_relativo.append(Ubicacion_ficha[3])
-
-
-
-                            #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
-                            if Movimento_relativo[0] == 3:
-                                system("cls")
-                                LAS_fichas_del_cambio = [T1B,DB,C1B,A1B]
-                                while True:
-                                    print("Has llegado a la ultima posicion ahora puedes cambiar el peon por la ficha que deses ")
-                                    for i in range(len(LAS_fichas_del_cambio)):
-                                        print(f"{i+1} = {LAS_fichas_del_cambio[i]}.   ",end=" ")
-                                        print()
-                                    while True:
-                                        try:
-                                            
-                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon ingrese un numero "))
-
-                                            if Que_ficha == 1:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[0])
-                                                break
-                                            elif Que_ficha == 2:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[1])
-                                                break
-                                            elif Que_ficha == 3:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[2])
-                                                break
-                                            elif Que_ficha == 4:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[3])
-                                                break
-                                            else:
-                                                print("No sea pendejo este numero no existe")
-                                        except ValueError:
-                                            print("No sea bobo le pidieron un numero ")
-
-                                    break
-                            
-                            
-
-                            #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
-                            movi = 0
-                            cantidad = len(Movimientos_Permitidos) /2
-                            cantidad = math.trunc(cantidad)
-                            for i in range(cantidad):
-
-                                #si encuentra el movimiento igual al movimiento 
-                                if Movimientos_Permitidos[movi] == Movimento_relativo[0]:
-                                    if  Movimientos_Permitidos[movi+1] == Movimento_relativo[1] :
-    
-                                        #se activa toda la llave para hacer el cambio de ficha
-                                        LLave_cambio_posicion.pop(0)
-                                        LLave_cambio_posicion.append(True)
-                                else:
-                                    print("Movimiento Fuera de rango ")
-                                    #isquierda
-                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
-                                    #derecha
-                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
-                                    
-                                    print(Movimientos_Permitidos)
-                                movi = movi + 2
-                            
-                        elif Colorde_ficha == B:
-                            #ficha Blanca
-
-                            ##guarda las posiciones de la ficcha 
-                            Posicion_Relativa.clear()
-                          
-                            Posicion_Relativa.append(Ubicacion_ficha[0])
-                            Posicion_Relativa.append(Ubicacion_ficha[1])
-
-                            #limpia los moviemintos y luego los igresa
-                            Movimientos_Permitidos.clear()
-
-                             
-                            #si peon esta en el primer movimiento permite hacer ingresa los movimientos permitidos 
-                            if Posicion_Relativa[0] == 9:
-                                print("El peon se encuentra en la primera casilla ")
-
-                                o = 1
-                                i = 0
-                                while  i < 2:
-                                    if not M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in N or  M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] in B:
-                                        if M[Posicion_Relativa[0]-o][Posicion_Relativa[1]] == ".":
-                                            Movimientos_Permitidos.append(Posicion_Relativa[0]-o)
-                                            Movimientos_Permitidos.append(Posicion_Relativa[1])
-                                        else:
-                                            print("Error La ficha no se puede saltar ")
-                                            break
-
-                                    o = o + 1
-                                    i = i + 1
-                            
-
-
-
-                            
-                            #verifica que tiene en frente
-                            if M[Posicion_Relativa[0]-1][Posicion_Relativa[1]] == ".":
-
-                                Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                Movimientos_Permitidos.append(Posicion_Relativa[1])
 
                            
-                            #todo funciona OK :D        si la ficha no esta en los negros y no es igual a | y igual a un punto
-                            # Verifica que tiene en la isquierda......
-                            #isquierda
-
-                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
-                            if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] in N:
-                                if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] ==".": 
-                                    if not M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1] == "|":
-                                       
-                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                        Movimientos_Permitidos.append(Posicion_Relativa[1]-1)
                             
-                            print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
-                            #Derecha
-                            if  not  M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] in N:
-                                if not  M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == ".":
-                                    if not  M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1] == "|":
-                                       
-                                        Movimientos_Permitidos.append(Posicion_Relativa[0]-1)
-                                        Movimientos_Permitidos.append(Posicion_Relativa[1]+1)
-
-                            
-                            
-
-                            Movimento_relativo.clear()
                         
-
-                            Movimento_relativo.append(Ubicacion_ficha[2])
-                            Movimento_relativo.append(Ubicacion_ficha[3])
-
-                            
-                             #Si el peon llega a la ultima posicion entonces se le permite cambiar por una ficha
-                            if Movimento_relativo[0] == 3:
-                                system("cls")
-                                LAS_fichas_del_cambio = [T1N,DN,C1N,A1N]
-                                while True:
-                                    print("Has llegado a la ultima posicion ahora puedes cambiar el peon por la ficha que deses ")
-                                    for i in range(len(LAS_fichas_del_cambio)):
-                                        print(f"  {i+1} = {LAS_fichas_del_cambio[i]}      ",end=" ")
-                                        print()
-                                    while True:
-                                        try:
-                                            
-                                            Que_ficha = int(input("Por que fichas deseas remplasar el peon ingrese un numero "))
-
-                                            if Que_ficha == 1:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[0])
-                                                break
-                                            elif Que_ficha == 2:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[1])
-                                                break
-                                            elif Que_ficha == 3:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[2])
-                                                break
-                                            elif Que_ficha == 4:
-                                                LFicha.pop(0)
-                                                LFicha.append(LAS_fichas_del_cambio[3])
-                                                break
-                                            else:
-                                                print("No sea pendejo este numero no existe")
-                                        except ValueError:
-                                            print("No sea bobo le pidieron un numero ")
-
-                                    break
-
-
-                            
-                            #recorre el movimiento lo divide en dos y busca si con iguales con la eleccion 
-                            movi = 0
-                            cantidad = len(Movimientos_Permitidos) /2
-                            cantidad = math.trunc(cantidad)
-                           
-                            for i in range(cantidad):
-
-                                #si encuentra el movimiento igual al movimiento 
-                                if Movimientos_Permitidos[movi] == Movimento_relativo[0]:
-                                    if Movimientos_Permitidos[movi+1] == Movimento_relativo[1] :
-
-                                        LLave_cambio_posicion.pop(0)
-                                        LLave_cambio_posicion.append(True)
-                                else:
-                                    print("Movimiento Fuera de rango ")
-                                    print(Movimientos_Permitidos)
-                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]-1])
-                                    print(M[Posicion_Relativa[0]-1][Posicion_Relativa[1]+1])
-
-                                movi = movi + 2
                            
                     #EL algoritmo de la torre Torre 
                     elif La_ficha == torre:
