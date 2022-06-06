@@ -157,6 +157,12 @@ Movimientos_Peon = [[1],[1]]
 
 
 #Moviemintos en hake 
+LLave_enrosque = []
+primer_movimiento_1 = []
+Ubicacion_torre11111 = []
+Ubicacion_torre22222 = []
+
+LLave_enrosque1 = []
 
 #funcion de la operacion
 def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2,Color_Variable1,Color_Variable2):
@@ -287,7 +293,14 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
                                 
                                 if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] in Color_variable or M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] != ".":
-                                    break
+                                    El_REY_BLANCO = Color_Variable1[4]
+                                    El_REY_NEGRO = Color_Variable2[4]
+                                    
+                                    if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] == El_REY_BLANCO:
+                                       
+                                        Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
+                                    else:
+                                        break
                                 
                                 if not Fila_mas == 0:
                                     if Diagonal == +1:
@@ -315,7 +328,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
                                 
                                 if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] in Color_variable or M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] != ".":
-                                    break
+                                    El_REY_BLANCO = Color_Variable1[4]
+                                    El_REY_NEGRO = Color_Variable2[4]
+                                    
+                                    if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] == El_REY_BLANCO:
+                                       
+                                        Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
+                                    else:
+                                        break
+                                
                                 
                                 if not Fila_mas == 0:
                                     if Diagonal == +1:
@@ -356,11 +377,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         # L Abajo isquierda
                         Algoritmo_Deciciones_Caballo(Operador_positivo + Operador_positivo,Operador_negativo)
                     
-                        
- 
-
-
-
             #Las fichas de arriba 
             Algorimit_maximous(Color_Variable2,Color_Variable1,Ubicacion_Todas_fichas_Arriba,Todos_Los_posiblesAtaques_Arriba,+1,-1,True)
             #las fuchas de abajo
@@ -1453,9 +1469,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 break  
                         else:
                             print("La ficha está bloqueada")
-                    
-                    
-                    
+    
                     
                     #si es el rey
                     if Ficha2 == B[4] or Ficha2 == N[4]:
@@ -1577,6 +1591,66 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                 Movimiento_Rey.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]-1])
                                 hola.append(True)
+                        #esto es para hacer el enrosque
+                        
+                        #El primer Movimiento
+                        print("Este es el color para el enrosque")
+                        print(Color_Variable1[4])
+
+                        Primer_movimiento_rey = []
+                        Primer_movimiento_Torre1 = []
+                        Primer_movimiento_Torre2 = []
+
+                        #verifica si el rey ya se mobio
+                        if not Color_Variable1[4] == M[10][7]:
+                            primer_movimiento_1.append(True)
+                            Primer_movimiento_rey.append(True)
+
+                        #verifica si la torre de la isquierda ya se mobio
+                        if not  Color_Variable1[1] == M[10][3]:
+                            primer_movimiento_1.append(True)
+                            Primer_movimiento_Torre1.append(True)
+                        
+                        #verificca si la torre de la derecha ya se movió
+                        if not Color_Variable1[4] == M[10][10]:
+                            primer_movimiento_1.append(True)
+                            Primer_movimiento_Torre2.append(True)
+
+                        
+                        if len(primer_movimiento_1) == 0 :
+                            #verifica si el enroque a la derecha 
+                            if len(Primer_movimiento_Torre1) == 0 and len(Primer_movimiento_rey) == 0:
+                                Ubicacion_wachachaca=  [Ubicacion_ficha[0],Ubicacion_ficha[1]]
+                                Ubicacion_wachachaca1 = [Ubicacion_ficha[0],Ubicacion_ficha[1]+1]
+                                Ubicacion_wachachaca2 = [Ubicacion_ficha[0],Ubicacion_ficha[1]+2]
+
+                                if not Ubicacion_wachachaca in Todos_Los_posiblesAtaques_Arriba: 
+                                    if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == "." and not Ubicacion_wachachaca1 in Todos_Los_posiblesAtaques_Arriba:
+                                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+2] == "." and not Ubicacion_wachachaca2 in Todos_Los_posiblesAtaques_Arriba:
+                                            Movimiento_Rey.append([Ubicacion_ficha[0],Ubicacion_ficha[1]+2])
+                                            hola.append(True)
+                                            Ubicacion_torre22222.append([10,10])
+                                            
+
+
+                            #Si es en la idquierda
+
+                            if  len(Primer_movimiento_Torre2) == 0 and len(Primer_movimiento_rey) == 0:
+                                Ubicacion_wachachacat=  [Ubicacion_ficha[0],Ubicacion_ficha[1]]
+                                Ubicacion_wachachaca1t = [Ubicacion_ficha[0],Ubicacion_ficha[1]-1]
+                                Ubicacion_wachachaca2t = [Ubicacion_ficha[0],Ubicacion_ficha[1]-2]
+                                Ubicacion_wachachaca3t = [Ubicacion_ficha[0],Ubicacion_ficha[1]-3]
+
+
+                                if not Ubicacion_wachachacat in Todos_Los_posiblesAtaques_Arriba: 
+                                    if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == "." and not Ubicacion_wachachaca1t in Todos_Los_posiblesAtaques_Arriba:
+                                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-2] == "." and not Ubicacion_wachachaca2t in Todos_Los_posiblesAtaques_Arriba:
+                                            if  M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-3] == "." and not Ubicacion_wachachaca3t in Todos_Los_posiblesAtaques_Arriba:
+                                                Movimiento_Rey.append([Ubicacion_ficha[0],Ubicacion_ficha[1]-2])
+                                                hola.append(True)
+                                                Ubicacion_torre11111.append([10,10])
+
+
 
                         if len(hola) > 1:
                             hola.clear()
@@ -1742,6 +1816,17 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print("El rey se va a mover a ")
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
+                        #este ba a hacer el enrosque
+                        if Ubicacion_ficha[2] == Ubicacion_torre11111[0][0] and Ubicacion_ficha[3] == Ubicacion_torre11111[0][1]:
+                            
+                            M[10][8] = M[10][10]
+                            M[10][10] = "."
+                        if Ubicacion_ficha[2] == Ubicacion_torre22222[0][0] and Ubicacion_ficha[3] == Ubicacion_torre22222[0][1]:
+                            
+                            M[10][6] = M[10][3]
+                            M[10][3] = "."
+
+                        
                         #los movimintos 
                         #los movimientos 
                         Movimento_relativo.clear()
