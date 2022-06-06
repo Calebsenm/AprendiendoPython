@@ -75,38 +75,39 @@ DN = N[2]
 
 
 
-# M=[
-#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
-#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-#     ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
-#     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
-#     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
-#     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
-#     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
-#     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
-#     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
-#     ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
-#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
-#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-# ]
 M=[
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-    ["|","8","|",T1N,".",".",DN,RN,".",".",T2N,"|","8","|"],
-    ["|","7","|",".",".",".",".",".",".",".",".","|","7","|"],
+    ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
+    ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
-    ["|","2","|",".",".",".",".",".",".",".",".","|","2","|"],
-    ["|","1","|",".",".",".",".",RB,".",".",".","|","1","|"],
+    ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
+    ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-]
+ ]
+
+# M=[
+#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
+#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+#     ["|","8","|",T1N,".",".",DN,RN,".",".",".","|","8","|"],
+#     ["|","7","|",".",".",".",".",".",".",".",".","|","7","|"],
+#     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
+#     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
+#     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
+#     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
+#     ["|","2","|",".",".",".",".",".",".",".",T2N,"|","2","|"],
+#     ["|","1","|",".",".",".",".",RB,".",".",".","|","1","|"],
+#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
+# ]
 M.reverse()
 for a in range(14):
     M[a].reverse()
@@ -209,7 +210,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
             #este es un clico que va recorreindo todas las posiciones de las fichas de arriba 
             #fichas de arriba 
-            def Algorimit_maximous(Color_variable,Color_Opuesto,Ubicacion,Ataques,Operador_positivo,Operador_negativo):
+            def Algorimit_maximous(Color_variable,Color_Opuesto,Ubicacion,Ataques,Operador_positivo,Operador_negativo,The_Key):
                 for a in range(len(Ubicacion)):
 
                     # si son peones......
@@ -223,15 +224,18 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             Ataques.append([ Ubicacion[a][0]+Operador_positivo,Ubicacion[a][1]+Operador_positivo])
                     
                     # ##########################################################################################################################################
+                   
+                    #esta llave es para que no calcule el ataque del rey que se encuentra abajo para poder verificas el jake ya que esta activando las posibles fichas que pueden defender el kaqie 
                     #si es un rey 
-                    if M[Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[4]:
-                        #arriba
-                        def Algoritmo_deciciones_rey(Diagonal,Vertical):
-                            if M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] in Color_Opuesto or M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] == ".":
-                                Ataques.append([Ubicacion[a][0]+Diagonal,Ubicacion[a][1]+Vertical])
-                        #arriba                                              #abajo                                #Derecha                                       isquierda                                     #arriba Derecha                                                 #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
-                        Algoritmo_deciciones_rey(Operador_positivo,0),Algoritmo_deciciones_rey(Operador_negativo,0),Algoritmo_deciciones_rey(0,Operador_positivo),Algoritmo_deciciones_rey(0,Operador_negativo),Algoritmo_deciciones_rey(Operador_positivo,Operador_positivo),Algoritmo_deciciones_rey(Operador_positivo,Operador_negativo), Algoritmo_deciciones_rey(Operador_negativo,Operador_positivo),Algoritmo_deciciones_rey(Operador_negativo,Operador_negativo)
-                        
+                    if The_Key == True:
+                        if M[Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[4]:
+                            #arriba
+                            def Algoritmo_deciciones_rey(Diagonal,Vertical):
+                                if M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] in Color_Opuesto or M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] == ".":
+                                    Ataques.append([Ubicacion[a][0]+Diagonal,Ubicacion[a][1]+Vertical])
+                            #arriba                                              #abajo                                #Derecha                                       isquierda                                     #arriba Derecha                                                 #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
+                            Algoritmo_deciciones_rey(Operador_positivo,0),Algoritmo_deciciones_rey(Operador_negativo,0),Algoritmo_deciciones_rey(0,Operador_positivo),Algoritmo_deciciones_rey(0,Operador_negativo),Algoritmo_deciciones_rey(Operador_positivo,Operador_positivo),Algoritmo_deciciones_rey(Operador_positivo,Operador_negativo), Algoritmo_deciciones_rey(Operador_negativo,Operador_positivo),Algoritmo_deciciones_rey(Operador_negativo,Operador_negativo)
+                            
                     # ##########################################################################################################################################
                     ## ******************************************************************************************************************************************
                     #si es una reina
@@ -243,8 +247,18 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] in Color_Opuesto or M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] == ".":
                                     Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
                                 
+
                                 if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] in Color_variable or M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] != ".":
-                                    break
+                                    El_REY_BLANCO = Color_Variable1[4]
+                                    El_REY_NEGRO = Color_Variable2[4]
+                                    # print(f"{El_REY_BLANCO} {El_REY_NEGRO}")
+
+                                    if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] == El_REY_BLANCO:
+                                        # print("EL logaritmo")
+                                        Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
+                                    else:
+                                        # print(M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas])
+                                        break
                                 
                                 if not Fila_mas == 0:
                                     if Diagonal == +1:
@@ -348,9 +362,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
 
             #Las fichas de arriba 
-            Algorimit_maximous(Color_Variable2,Color_Variable1,Ubicacion_Todas_fichas_Arriba,Todos_Los_posiblesAtaques_Arriba,+1,-1)
+            Algorimit_maximous(Color_Variable2,Color_Variable1,Ubicacion_Todas_fichas_Arriba,Todos_Los_posiblesAtaques_Arriba,+1,-1,True)
             #las fuchas de abajo
-            Algorimit_maximous(Color_Variable1,Color_Variable2,Ubicacion_Todas_fichas_Abajo,Todos_Los_posiblesAtaques_Abajo,-1,+1)
+            Algorimit_maximous(Color_Variable1,Color_Variable2,Ubicacion_Todas_fichas_Abajo,Todos_Los_posiblesAtaques_Abajo,-1,+1,False)
         
 
             # print("Estos son todos los ataques de las fichas De arriba ")
@@ -507,6 +521,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         if POSICION_Abajo in Todos_Los_posiblesAtaques_Arriba   or not M[POSICION_Abajo[0]][POSICION_Abajo[1]] == ".":
                             La_llave_haquemate.append(True)
 
+
+
+                        print(Todos_Los_posiblesAtaques_Abajo)
+
                         for whachachaka in Linea_del_ataque_hacia_el_rey:
                             if whachachaka in Todos_Los_posiblesAtaques_Abajo:
                                 La_llave_haquemate12.append(True)
@@ -514,7 +532,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 La_llave_haquemate12.append(False)
 
                         if len(La_llave_haquemate) == 9 and  not True in La_llave_haquemate12:
+                            print(f"Ha ganado el equipo de las fichas {Color_Variable2}")
                             print("Jaque Mate ")
+                            exit()
 
 
 #______________________________________________________________________________________________________________________________________________________________
@@ -1781,9 +1801,9 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
     #condicional supermaestro
     #Se pasqa por parametros las occiones y una llave que activa la opcion de eleccion o la opcion de colocar fica 
     
-    Funcion_ingresaFicha("y La letra de la ficha >","Ingrese EL numero",True)
+    Funcion_ingresaFicha("Posicion de ficha >","Ingrese la ",True)
     
-    Funcion_ingresaFicha("Letra donde Desea mover la ficha > ","Numero y ",False)
+    Funcion_ingresaFicha("El movimiento de la ficha > ","Ingrese ",False)
     
 
 Contador_cambio = 2
