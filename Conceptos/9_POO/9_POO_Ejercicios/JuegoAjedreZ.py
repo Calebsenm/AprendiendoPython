@@ -35,7 +35,9 @@ dia 10/05/2022  el dia de ayer la mitad que hice no sirvio de mucho         1 ho
 2/06 /2022                                                                  1 hora          
 3/06/2022                                                                   1 hora
 4/06/2022        5:00 Pm     12:Am                                          7 horas
-5/06/2022        7:pm        11. pm 
+5/06/2022        7:pm        1:00 Am                                        6 horas 
+6/06/2022        estudiando teoria de python
+7/06/2022        2                                                          terminando el enrosque
 """
 
 

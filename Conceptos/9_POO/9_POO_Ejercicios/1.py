@@ -75,39 +75,39 @@ DN = N[2]
 
 
 
+# M=[
+#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
+#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+#     ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
+#     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
+#     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
+#     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
+#     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
+#     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
+#     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
+#     ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
+#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
+#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
+#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
+#  ]
+
 M=[
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-    ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
+    ["|","8","|",T1N,".",C1N,".",RN,".",".",T2N,"|","8","|"],
     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
-    ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
+    ["|","1","|",T1B,".",".",".",RB,".",C1B,T2B,"|","1","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
- ]
-
-# M=[
-#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
-#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-#     ["|","8","|",T1N,".",".",DN,RN,".",".",".","|","8","|"],
-#     ["|","7","|",".",".",".",".",".",".",".",".","|","7","|"],
-#     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
-#     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
-#     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
-#     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
-#     ["|","2","|",".",".",".",".",".",".",".",T2N,"|","2","|"],
-#     ["|","1","|",".",".",".",".",RB,".",".",".","|","1","|"],
-#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
-#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-# ]
+]
 M.reverse()
 for a in range(14):
     M[a].reverse()
@@ -158,9 +158,23 @@ Movimientos_Peon = [[1],[1]]
 
 #Moviemintos en hake 
 LLave_enrosque = []
+
 primer_movimiento_1 = []
+primer_movimiento_2 = []
+primer_movimiento_3 = []
+
+primer_movimiento_11 = []
+primer_movimiento_22 = []
+primer_movimiento_33 = []
+
+
+
 Ubicacion_torre11111 = []
 Ubicacion_torre22222 = []
+
+Ubicacion_torre33333 = []
+Ubicacion_torre44444 = []
+
 
 LLave_enrosque1 = []
 
@@ -1591,64 +1605,81 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                 Movimiento_Rey.append([Ubicacion_ficha[0]+1,Ubicacion_ficha[1]-1])
                                 hola.append(True)
-                        #esto es para hacer el enrosque
                         
-                        #El primer Movimiento
-                        print("Este es el color para el enrosque")
-                        print(Color_Variable1[4])
+                        def el_logaritmo_enrrosque(coloring,N_Rey,movi1,movi2,movi3,the_color1,the_color2,suma1,suma2,suma3,sum11,suma22,suma33,ubicator1,ubicator2):
 
-                        Primer_movimiento_rey = []
-                        Primer_movimiento_Torre1 = []
-                        Primer_movimiento_Torre2 = []
+                            #esto es para hacer el enrosque
+                            #El primer Movimiento
+                            print("Este es el color para el enrosque")
+                            print(coloring[4])
 
-                        #verifica si el rey ya se mobio
-                        if not Color_Variable1[4] == M[10][7]:
-                            primer_movimiento_1.append(True)
-                            Primer_movimiento_rey.append(True)
+                            Primer_movimiento_rey = []
+                            Primer_movimiento_Torre1 = []
+                            Primer_movimiento_Torre2 = []
 
-                        #verifica si la torre de la isquierda ya se mobio
-                        if not  Color_Variable1[1] == M[10][3]:
-                            primer_movimiento_1.append(True)
-                            Primer_movimiento_Torre1.append(True)
+                            #verifica si el rey ya se mobio
+                            if not coloring[4] == M[10][N_Rey]:
+                                movi1.append(True)
+                                Primer_movimiento_rey.append(True)
+
+                            #verifica si la torre de la isquierda ya se mobio
+                            if not  coloring[1] == M[10][3]:
+                                movi2.append(True)
+                                Primer_movimiento_Torre1.append(True)
+                            
+                            #verificca si la torre de la derecha ya se movió
+                            if not coloring[1] == M[10][10]:
+                                movi3.append(True)
+                                Primer_movimiento_Torre2.append(True)
+
+                            
+                            if len(movi1) == 0 and len(movi2) == 0 or len(movi1) == 0 and len(movi3) == 0 :
+
+                                #este hace que cambie el movimiento son las fichas de abajo son negras
+
+                                #verifica si el enroque a la derecha 
+                                if len(Primer_movimiento_Torre1) == 0 and len(Primer_movimiento_rey) == 0:
+                                    Ubicacion_wachachaca=  [Ubicacion_ficha[0],Ubicacion_ficha[1]]
+                                    Ubicacion_wachachaca1 = [Ubicacion_ficha[0],Ubicacion_ficha[1]+suma1]
+                                    Ubicacion_wachachaca2 = [Ubicacion_ficha[0],Ubicacion_ficha[1]+suma2]
+                                    Ubicacion_wachachaca3 = [Ubicacion_ficha[0],Ubicacion_ficha[1]+suma3]
+
+                                    if not Ubicacion_wachachaca in Todos_Los_posiblesAtaques_Arriba: 
+                                        if M[Ubicacion_wachachaca1[0]][Ubicacion_wachachaca1[1]] == "." and not Ubicacion_wachachaca1 in Todos_Los_posiblesAtaques_Arriba:
+                                            if M[Ubicacion_wachachaca2[0]][Ubicacion_wachachaca2[1]] == "." and not Ubicacion_wachachaca2 in Todos_Los_posiblesAtaques_Arriba:
+                                                if M[Ubicacion_wachachaca3[0]][Ubicacion_wachachaca3[1]] == "." and not Ubicacion_wachachaca3 in Todos_Los_posiblesAtaques_Arriba:
+                                                    Movimiento_Rey.append([Ubicacion_wachachaca2[0],Ubicacion_wachachaca2[1]]) 
+                                                    hola.append(True)
+                                                    the_color1.append([10,ubicator1])
+                                                    
+
+
+                                #Si es en la idquierda
+
+                                if  len(Primer_movimiento_Torre2) == 0 and len(Primer_movimiento_rey) == 0:
+                                    Ubicacion_wachachacat=  [Ubicacion_ficha[0],Ubicacion_ficha[1]]
+                                    Ubicacion_wachachaca1t = [Ubicacion_ficha[0],Ubicacion_ficha[1]+sum11]
+                                    Ubicacion_wachachaca2t = [Ubicacion_ficha[0],Ubicacion_ficha[1]+suma22]
+                                    Ubicacion_wachachaca3t = [Ubicacion_ficha[0],Ubicacion_ficha[1]+suma33]
+
+
+                                    if not Ubicacion_wachachacat in Todos_Los_posiblesAtaques_Arriba: 
+                                        if M[Ubicacion_wachachaca1t[0]][Ubicacion_wachachaca1t[1]] == "." and not Ubicacion_wachachaca1t in Todos_Los_posiblesAtaques_Arriba:
+                                            if M[Ubicacion_wachachaca2t[0]][Ubicacion_wachachaca2t[1]] == "." and not Ubicacion_wachachaca2t in Todos_Los_posiblesAtaques_Arriba:
+                                                if  M[Ubicacion_wachachaca3t[0]][Ubicacion_wachachaca3t[1]] == "." and not Ubicacion_wachachaca3t in Todos_Los_posiblesAtaques_Arriba:
+                                                    Movimiento_Rey.append([Ubicacion_wachachaca2t[0],Ubicacion_wachachaca2t[1]])
+                                                    hola.append(True)
+                                                    the_color2 .append([10,ubicator2])
                         
-                        #verificca si la torre de la derecha ya se movió
-                        if not Color_Variable1[4] == M[10][10]:
-                            primer_movimiento_1.append(True)
-                            Primer_movimiento_Torre2.append(True)
+                        #si le toca a las blancas
+                        if COLOR_ELEGIDO1 == Fichas_Negras:
+                            #este es para el rey de abajo
+                            el_logaritmo_enrrosque(Fichas_Blancas,7,primer_movimiento_1,primer_movimiento_2,primer_movimiento_3,Ubicacion_torre11111,Ubicacion_torre22222,+1,+2,+2,-1,-2,-3,10,3)
 
-                        
-                        if len(primer_movimiento_1) == 0 :
-                            #verifica si el enroque a la derecha 
-                            if len(Primer_movimiento_Torre1) == 0 and len(Primer_movimiento_rey) == 0:
-                                Ubicacion_wachachaca=  [Ubicacion_ficha[0],Ubicacion_ficha[1]]
-                                Ubicacion_wachachaca1 = [Ubicacion_ficha[0],Ubicacion_ficha[1]+1]
-                                Ubicacion_wachachaca2 = [Ubicacion_ficha[0],Ubicacion_ficha[1]+2]
-
-                                if not Ubicacion_wachachaca in Todos_Los_posiblesAtaques_Arriba: 
-                                    if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == "." and not Ubicacion_wachachaca1 in Todos_Los_posiblesAtaques_Arriba:
-                                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+2] == "." and not Ubicacion_wachachaca2 in Todos_Los_posiblesAtaques_Arriba:
-                                            Movimiento_Rey.append([Ubicacion_ficha[0],Ubicacion_ficha[1]+2])
-                                            hola.append(True)
-                                            Ubicacion_torre22222.append([10,10])
-                                            
-
-
-                            #Si es en la idquierda
-
-                            if  len(Primer_movimiento_Torre2) == 0 and len(Primer_movimiento_rey) == 0:
-                                Ubicacion_wachachacat=  [Ubicacion_ficha[0],Ubicacion_ficha[1]]
-                                Ubicacion_wachachaca1t = [Ubicacion_ficha[0],Ubicacion_ficha[1]-1]
-                                Ubicacion_wachachaca2t = [Ubicacion_ficha[0],Ubicacion_ficha[1]-2]
-                                Ubicacion_wachachaca3t = [Ubicacion_ficha[0],Ubicacion_ficha[1]-3]
-
-
-                                if not Ubicacion_wachachacat in Todos_Los_posiblesAtaques_Arriba: 
-                                    if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == "." and not Ubicacion_wachachaca1t in Todos_Los_posiblesAtaques_Arriba:
-                                        if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-2] == "." and not Ubicacion_wachachaca2t in Todos_Los_posiblesAtaques_Arriba:
-                                            if  M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-3] == "." and not Ubicacion_wachachaca3t in Todos_Los_posiblesAtaques_Arriba:
-                                                Movimiento_Rey.append([Ubicacion_ficha[0],Ubicacion_ficha[1]-2])
-                                                hola.append(True)
-                                                Ubicacion_torre11111.append([10,10])
+                        #si le toca a las negras
+                        if COLOR_ELEGIDO1 == Fichas_Blancas:
+                            #para el rey de arriba
+                            el_logaritmo_enrrosque(Fichas_Negras,6,primer_movimiento_11,primer_movimiento_22,primer_movimiento_33,Ubicacion_torre33333,Ubicacion_torre44444,+1,+2,+3,-1,-2,-2,3,10)
 
 
 
@@ -1817,16 +1848,32 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
                         #este ba a hacer el enrosque
-                        if Ubicacion_ficha[2] == Ubicacion_torre11111[0][0] and Ubicacion_ficha[3] == Ubicacion_torre11111[0][1]:
-                            
-                            M[10][8] = M[10][10]
-                            M[10][10] = "."
-                        if Ubicacion_ficha[2] == Ubicacion_torre22222[0][0] and Ubicacion_ficha[3] == Ubicacion_torre22222[0][1]:
-                            
-                            M[10][6] = M[10][3]
-                            M[10][3] = "."
 
+                        def deciciones_logicas(cor_1,cor_2,ubicacion1,ubicacion2):
+                            #esta es la derecha
+                            if Ubicacion_ficha[2] == 10  and Ubicacion_ficha[3] == cor_1:
+                                
+                                M[10][ubicacion1] = M[10][10]
+                                M[10][10] = "."
+                            #esta es la isquierda
+                            if Ubicacion_ficha[2] == 10 and Ubicacion_ficha[3] == cor_2:
+                                
+                                M[10][ubicacion2] = M[10][3]
+                                M[10][3] = "."
                         
+
+                        if Color_Variable1 == Fichas_Blancas:
+                            deciciones_logicas(9,5,8,6)
+
+                        if  Color_Variable1 == Fichas_Negras:
+                            deciciones_logicas(8,4,7,5)
+                        
+                        
+
+                        Ubicacion_torre11111.clear()
+                        Ubicacion_torre22222.clear()
+
+
                         #los movimintos 
                         #los movimientos 
                         Movimento_relativo.clear()
