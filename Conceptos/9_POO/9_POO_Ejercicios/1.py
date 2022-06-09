@@ -9,6 +9,8 @@ from time import process_time
 llave_del_jaque_maximous = [False]
 #todas las funciones importantes
 
+
+#estas son las fichas del ajedrez representadas en codigo 
 B = ["\u2659","\u2656","\u2655","\u2658","\u2654","\u2657"]
 N = ["\u265F","\u265C","\u265B","\u265E","\u265A","\u265D"]
 
@@ -73,41 +75,25 @@ RN = N[4]
 DN = N[2]
 
 
-
-
-# M=[
-#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
-#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-#     ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
-#     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
-#     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
-#     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
-#     ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
-#     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
-#     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
-#     ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
-#     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-#     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
-#     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-#  ]
+#El tablero 
 
 M=[
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
-    ["|","8","|",T1N,".",C1N,".",RN,".",".",T2N,"|","8","|"],
+    ["|","8","|",T1N,C1N,A1N,DN,RN,A2N,C2N,T2N,"|","8","|"],
     ["|","7","|",P1N,P2N,P3N,P4N,P5N,P6N,P1N,P8N,"|","7","|"],
     ["|","6","|",".",".",".",".",".",".",".",".","|","6","|"],
     ["|","5","|",".",".",".",".",".",".",".",".","|","5","|"],
-    ["|","4","|",".",".",".",".",".",".",".",".","|","4","|"],
+    ["|","4","|",".",".",".",P1N,".",".",".",".","|","4","|"],
     ["|","3","|",".",".",".",".",".",".",".",".","|","3","|"],
     ["|","2","|",P1B,P2B,P3B,P4B,P5B,P6B,P7B,P8B,"|","2","|"],
-    ["|","1","|",T1B,".",".",".",RB,".",C1B,T2B,"|","1","|"],
+    ["|","1","|",T1B,C1B,A1B,DB,RB,A2B,C2B,T2B,"|","1","|"],
     ["|","*","+","-","-","-","-","-","-","-","-","+","*","|"],
     ["|","*","*","A","B","C","D","E","F","G","H","*","*","|"],
     ["+","-","-","-","-","-","-","-","-","-","-","-","-","+"],
-]
+ ]
+
 M.reverse()
 for a in range(14):
     M[a].reverse()
@@ -159,6 +145,7 @@ Movimientos_Peon = [[1],[1]]
 #Moviemintos en hake 
 LLave_enrosque = []
 
+#hacen el movimeinto del enrosque almacenando un dato true
 primer_movimiento_1 = []
 primer_movimiento_2 = []
 primer_movimiento_3 = []
@@ -168,7 +155,7 @@ primer_movimiento_22 = []
 primer_movimiento_33 = []
 
 
-
+#este e para capturar al paso 
 Ubicacion_torre11111 = []
 Ubicacion_torre22222 = []
 
@@ -178,6 +165,11 @@ Ubicacion_torre44444 = []
 
 LLave_enrosque1 = []
 
+
+#la llave dela captura al paso
+lavus_maximous_capture = [1]
+
+#esta funcion pasa por parametros las posiciones para intercambiarlas por las letras y numeros dando la posicion exacta del mumero
 #funcion de la operacion
 def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Colorde_ficha,Colorde_ficha2,Color_Variable1,Color_Variable2):
     system("cls")
@@ -187,9 +179,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
     print(". ".join(N))
     print()
 
-
+    #se invierte para que se gire cuando le toquen a las fichas negras
     M.reverse()
-        
     for i in range(14):
             
         M[i].reverse()
@@ -214,19 +205,13 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             Todos_Los_posiblesAtaques_Abajo = []
             
 
-            #buscará las fichas 
+            #buscará las fichas  dentro del arreglo 
             for i in range(len(M)):
                 for j in range(len(M[i])):
                     if M[i][j] in Colorde_ficha:
                         Ubicacion_Todas_fichas_Arriba.append([i,j])
                     if M[i][j] in Colorde_ficha2:
                         Ubicacion_Todas_fichas_Abajo.append([i,j])
-
-            # print("Ubicacion de las fichas De Arriba arriba")
-            # print(Ubicacion_Todas_fichas_Arriba)
-            # print("Ubicacion de las fichas De abajo")
-            # print(Ubicacion_Todas_fichas_Abajo)
-
 
             #este es un clico que va recorreindo todas las posiciones de las fichas de arriba 
             #fichas de arriba 
@@ -259,6 +244,8 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     # ##########################################################################################################################################
                     ## ******************************************************************************************************************************************
                     #si es una reina
+                    #esta funcion va recorriendo las distintas posisiones   primerio va a buscar cada ficha en la ubiccion comparando cada posicion 
+
                     if M[Ubicacion[a][0]][Ubicacion[a][1]] == Color_variable[2]:
                         def Algoritmo_Deciciones_Reina(Diagonal,Vertical):
                             Fila_mas = Diagonal
@@ -267,7 +254,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                 if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] in Color_Opuesto or M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] == ".":
                                     Ataques.append([Ubicacion[a][0]+Fila_mas,Ubicacion[a][1]+Columna_mas])
                                 
-
                                 if M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] in Color_variable or M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas] != ".":
                                     El_REY_BLANCO = Color_Variable1[4]
                                     El_REY_NEGRO = Color_Variable2[4]
@@ -280,6 +266,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                         # print(M[Ubicacion[a][0]+Fila_mas][Ubicacion[a][1]+Columna_mas])
                                         break
                                 
+                                #este es para que cuando cambie de posicion vaya retrocediendo o disminullendo
                                 if not Fila_mas == 0:
                                     if Diagonal == +1:
                                         Fila_mas = Fila_mas + 1
@@ -374,7 +361,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             if M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] in Color_Opuesto or M[Ubicacion[a][0]+Diagonal][Ubicacion[a][1]+Vertical] == ".":
                                 Ataques.append([Ubicacion[a][0]+Diagonal,Ubicacion[a][1]+Vertical])
                             
-                        # L arriba Derecha                                                                                                                                           #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
+                        # L arriba Derecha           #Aui se pasan numeros si son -2 o +2 y 1 o -1                                                                                                                                #arriba isquierda                                              #abajo dercha                                                 #abajo isquierda 
                         Algoritmo_Deciciones_Caballo(Operador_negativo + Operador_negativo,Operador_positivo)
                         # L arriba isquierda
                         Algoritmo_Deciciones_Caballo(Operador_negativo + Operador_negativo,Operador_negativo)
@@ -397,11 +384,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
             Algorimit_maximous(Color_Variable1,Color_Variable2,Ubicacion_Todas_fichas_Abajo,Todos_Los_posiblesAtaques_Abajo,-1,+1,False)
         
 
-            # print("Estos son todos los ataques de las fichas De arriba ")
-            # print(Todos_Los_posiblesAtaques_Arriba)
-            
-            # print("Estos son todos los ataques de las fichas De abajo ")
-            # print(Todos_Los_posiblesAtaques_Abajo)
+           #Esta funcion va a verificar si el rey esta en haque y si lo está va a corroborar si esta en haquemate 
             
             Linea_del_ataque_hacia_el_rey = []
             Las_fichas_que_estan_atacando_al_rey = []
@@ -424,6 +407,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             while True:
 
                                 
+                                #busca que tipo de haque es si es de una reina torre  arfil fichas de largo alxance 
                                 if M[POSICION[0]+Iterador1][POSICION[1]+Iterador2] == ".":
                                     logaritmo_del_cambio.append([POSICION[0]+Iterador1,POSICION[1]+Iterador2])
 
@@ -518,6 +502,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         
                         print(Linea_del_ataque_hacia_el_rey)
 
+                        #variables de de ubicacion del rey y a la redonda
                         POSICION_actual = [Ubicacion_Todas_fichas_Abajo[a][0],Ubicacion_Todas_fichas_Abajo[a][1]] 
                         POSICION_Arriba = [Ubicacion_Todas_fichas_Abajo[a][0]-1,Ubicacion_Todas_fichas_Abajo[a][1]] 
                         POSICION_Arriba_Derecha = [Ubicacion_Todas_fichas_Abajo[a][0]-1,Ubicacion_Todas_fichas_Abajo[a][1]+1] 
@@ -528,6 +513,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         POSICION_Abajo_Isquierda = [Ubicacion_Todas_fichas_Abajo[a][0]+1,Ubicacion_Todas_fichas_Abajo[a][1]-1] 
                         POSICION_Abajo = [Ubicacion_Todas_fichas_Abajo[a][0]+1,Ubicacion_Todas_fichas_Abajo[a][1]] 
 
+                        #compara si las posiciones estan libre o si estan siendo atacadas
                         La_llave_haquemate = []
                         La_llave_haquemate12 = []
 
@@ -552,9 +538,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             La_llave_haquemate.append(True)
 
 
-
-                        print(Todos_Los_posiblesAtaques_Abajo)
-
+                        #Verifica si todad las posiciones estan siendo atacadas  y si puede haver una posible ficha para defender
                         for whachachaka in Linea_del_ataque_hacia_el_rey:
                             if whachachaka in Todos_Los_posiblesAtaques_Abajo:
                                 La_llave_haquemate12.append(True)
@@ -566,12 +550,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             print("Jaque Mate ")
                             exit()
 
-
-#______________________________________________________________________________________________________________________________________________________________
-
-            #ESTE ES EL HAQUEMATE 
-
-#______________________________________________________________________________________________________________________________________________________________
             #Pide la entrada modificada
 
             while True:
@@ -598,8 +576,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
             #la convierte en mayuscula si es minuscula 
             Letra_columna2 = Letra_columna2.upper()
-            
-            
             
             #Funcion que cambia las opciones
             
@@ -643,9 +619,7 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 print("Error")
         
             #GUARDARÁ LA POSICION DE LA FICHA PASANDO COMO LLAVE TRUE O FALSE
-        
             #esta llave activa si se puede hacer el movimiento o no 
-
 
             LLave1 = LLave
                        
@@ -663,7 +637,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 Ubicacion_ficha.append(0)
                 Ubicacion_ficha.pop(2)
                 Ubicacion_ficha.pop(2)
-              
 
                 #guarda donde se moverá
                 Ubicacion_ficha.append(fila2)
@@ -676,7 +649,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
             else:
                 print("Nada por aqui nada por allá")
-
             
             if LLave1 == True:
             
@@ -697,27 +669,16 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                 if Ficha2 ==".":
                     print("La ficha no existe")
                 
-
-
                 #verifica si ha ingresado una ficha contraria
                 elif Ficha2 == Colorde_ficha[0] or Ficha2 == Colorde_ficha[1] or Ficha2 == Colorde_ficha[2] or Ficha2 == Colorde_ficha[3] or Ficha2 == Colorde_ficha[4] or Ficha2 == Colorde_ficha[5]:
                     print("Error de turno")
                 #coloca el punto de la posisicon donde se movia
                 else:
                     print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
-                    
-                    #Este es el algoritmo Super ultra  maestro 100% hacker Pro mil quitasueño
-                    # Sirve para Verificar si está en haque o Haquemate 
-                    #-----------------------------------------------------------------------------------------------------
-                    # ____________________________________________________________________________________________________ 
-
-                    #si se bloquea con las otras fichas debes modificar para se ejecute si solo es un peon es un peon
-                   
-                   
+                                       
                     #SI es un peon   permite identificar que ficha tiene en frente y a sus lads para ver si el peon está bloqueado 
                     if Ficha2 == B[0] or Ficha2 ==N[0]:
                         Movimientos_Peon.clear()
-                        print("Esto esun Peon")
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         #Posicion actual
@@ -748,6 +709,19 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                     break
                                 o = o + 1
                                 i = i + 1
+                        #verifica si tiene una captura 
+                        if lavus_maximous_capture[0] == True:
+                            if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] == Color_Variable2[0]:
+                                llavus_maximous.append(True)
+                                Movimientos_Peon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]+1])
+                                M[Ubicacion_ficha[0]][Ubicacion_ficha[1]+1] = "."
+                            
+                            if M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] == Color_Variable2[0]:
+                                llavus_maximous.append(True)
+                                Movimientos_Peon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]-1])
+                                M[Ubicacion_ficha[0]][Ubicacion_ficha[1]-1] = "."
+
+
                         # Verifica que tiene en el frente
                         if M[Ubicacion_ficha[0]-1][Ubicacion_ficha[1]] == ".":
                             Movimientos_Peon.append([Ubicacion_ficha[0]-1,Ubicacion_ficha[1]])
@@ -789,7 +763,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #si es una torre
                     if Ficha2 == B[1] or Ficha2 == N[1]:
                         Movimientos_Torre.clear()
-                        print("Es la torre")
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
                         
                         #Color de la ficha elegida 
@@ -860,7 +833,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                                 i = i + 1
 
-                           
 
                        #Verifica si está bloqueada a su alrededor 
                         #arriba 
@@ -944,19 +916,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         else:
                             print("La ficha está bloqueada")
                         
-                    # else:
-                    #     print(Ficha2)
-                    #     # M[fila2][columna2]="."
-                    #     break
-
-                       
-
-
+                  
                     #Algoritmo de reina posiciones permitidas 
                     if Ficha2 == B[2] or Ficha2 == N[2]:
                         Movimientos_permitidos_Reina.clear()
-
-                        print("Es una reina")
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         #color de la ficha elegida
@@ -968,9 +931,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[2]:
                             #es una ficha negra 
                             COLOR_ELEGIDO1 = Fichas_Negras
-
-                        #Posicion actual
-                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         #ALgoritmo ficha
                         def Super_Algoritmo():
@@ -1230,7 +1190,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     if Ficha2 == B[3] or Ficha2 == N[3]:
                         
                         Movimiento_caballo.clear()
-                        print("Esto es un caballo")
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         Color_ficha_elegida  = 0
@@ -1241,9 +1200,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[3]:
                             #es una ficha negra 
                             Color_ficha_elegida = Fichas_Negras
-
-                        #Posicion actual
-                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         #la llave incomprensible
                         llave_imcomprensible = [False]
@@ -1337,8 +1293,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #Esto es para el arfil 
                     if Ficha2 == B[5] or Ficha2 == N[5]:
                         Movimiento_Arfil.clear()
-
-                        print("Esto es un arfil")
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         Color_ficha_elegida  = 0
@@ -1349,9 +1303,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[5]:
                             #es una ficha negra 
                             Color_ficha_elegida = Fichas_Negras
-
-                        #Posicion actual
-                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         def Algorito_Arfil():
                             #el algoritmo que busca hacia arriba derecha
@@ -1488,8 +1439,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     #si es el rey
                     if Ficha2 == B[4] or Ficha2 == N[4]:
                         Movimiento_Rey.clear()
-
-                        print("La ficha es el rey")
                         print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
 
                         COLOR_ELEGIDO1  = 0
@@ -1500,11 +1449,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         elif M[Ubicacion_ficha[0]][Ubicacion_ficha[1]] == Fichas_Negras[4]:
                             #es una ficha negra 
                             COLOR_ELEGIDO1 = Fichas_Blancas 
-
-                        #Posicion actual
-                        print(M[Ubicacion_ficha[0]][Ubicacion_ficha[1]])
-
-
 
                         #Llava incomprensible 
                         hola = [False]
@@ -1610,8 +1554,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                             #esto es para hacer el enrosque
                             #El primer Movimiento
-                            print("Este es el color para el enrosque")
-                            print(coloring[4])
 
                             Primer_movimiento_rey = []
                             Primer_movimiento_Torre1 = []
@@ -1748,6 +1690,15 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                         print("El Peon se va a mover a ")
                         print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
+                        #esto es para hacer la captura al paso 
+                        if Ubicacion_ficha[0] == 9:
+                            if Ubicacion_ficha[2]== 7:
+                                print()
+                                if M[7][Ubicacion_ficha[3]-1 ]== Color_Variable2[0]  or  M[7][Ubicacion_ficha[3]+1] == Color_Variable2[0]:
+                                    lavus_maximous_capture.clear()
+                                    lavus_maximous_capture.append(True)
+
+
                         #los movimintos 
                         #los movimientos 
                         Movimento_relativo.clear()
@@ -1792,11 +1743,11 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                         
                     elif La_ficha == reina:
-                        #Reina
-                        print("El la Reina esta en ")
-                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
-                        print("La reina se va a mover a ")
-                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+                        # #Reina
+                        # print("El la Reina esta en ")
+                        # print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        # print("La reina se va a mover a ")
+                        # print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
                         #los movimientos 
                         Movimento_relativo.clear()
@@ -1816,11 +1767,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                                    
                         
                     elif La_ficha == caballo:
-                        #caballo
-                        print("El el caballo ")
-                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
-                        print("La Torre se va a mover a ")
-                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
                         
                         #los movimintos 
@@ -1841,11 +1787,11 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
 
                         
                     elif La_ficha == rey:
-                        #Rey
-                        print("El rey Está ")
-                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
-                        print("El rey se va a mover a ")
-                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+                        # #Rey
+                        # print("El rey Está ")
+                        # print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        # print("El rey se va a mover a ")
+                        # print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
                         #este ba a hacer el enrosque
 
@@ -1869,7 +1815,6 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                             deciciones_logicas(8,4,7,5)
                         
                         
-
                         Ubicacion_torre11111.clear()
                         Ubicacion_torre22222.clear()
 
@@ -1891,10 +1836,10 @@ def Accion(jugador,n1,n2,n3,n4,n5,n6,n7,n8,n11,n12,n13,n14,n15,n16,n17,n18,Color
                     elif La_ficha == arfil:
                         #Arfil 
                         #imprime las posiciones 
-                        print("El la Torre esta en ")
-                        print(Ubicacion_ficha[0],Ubicacion_ficha[1])
-                        print("La Torre se va a mover a ")
-                        print(Ubicacion_ficha[2],Ubicacion_ficha[3])
+                        # print("El la Torre esta en ")
+                        # print(Ubicacion_ficha[0],Ubicacion_ficha[1])
+                        # print("La Torre se va a mover a ")
+                        # print(Ubicacion_ficha[2],Ubicacion_ficha[3])
 
                         #los movimintos 
                         #los movimientos 
@@ -1947,12 +1892,8 @@ while True:
         # y el Color de ficha que verifica si le corresponde el juego 
         Accion("Jugador1",3,4,5,6,7,8,9,10,3,4,5,6,7,8,9,10,N,B,Fichas_Blancas,Fichas_Negras)
 
-#
     else:
         Accion("Jugador2",10,9,8,7,6,5,4,3,10,9,8,7,6,5,4,3,B,N,Fichas_Negras,Fichas_Blancas)
         #limpia La ubicacion del rey
        
-
     Contador_cambio = Contador_cambio + 1
-
-
