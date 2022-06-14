@@ -25,6 +25,6 @@ for a in notes:
         lol.remove(a)
 
 for b in range(len(lol)) :
-    print(f"Usted debe repetir {notes[b][0]} Your nota {notes[b][1]}")
-    print("Esto es espanglish")
+    print(f"Usted debe repetir {lol[b][0]} Your nota {lol[b][1]}")
+print("Esto es espanglish")
     
