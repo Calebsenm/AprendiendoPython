@@ -21,9 +21,13 @@ str = "Pasta, pollo, jugo, leche"
 ['Pasta', 'pollo', 'jugo', 'leche']
 
 #intente hacer proyectos sin ver cursos pero nesecito teoria primero es mala practixa XD 
+# moraleja depues de crear el juego de agedrez debes estructurar u pensar pirmero antes de crear el proyevcto o si no vas
+# a tener muchos problemas la verdad nunca pensé terminar el juego pero lo Terminé
 
 
-# despues de acabar este juego vas a terminar los ejercicios de  la pagina de python y
+ 
+# despues de acabar este juego vas a terminar los ejercicios de  la pagina de python.
+ y
 lueego directo al curso de java  de ernerto no digas nada son  decciciones de caleb del pasado  XD
 y luego terminar el contenido de min tic java luego practicar algoritmia y estructutra de datos super
 avanzada Proo ya cuando hayas creado un proyecto bien tocho. 
