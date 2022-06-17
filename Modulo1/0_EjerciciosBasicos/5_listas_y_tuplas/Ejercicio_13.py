@@ -10,8 +10,6 @@ típica.
 """
 
 
-from tkinter import N
-
 
 Conjunto = []
 Los_numeros = input("Ingrese una lista de numeros separados por coma > ")
@@ -35,3 +33,6 @@ mean = sum/b
 
 stdev = (sumasq/b-mean**2)**(1/2)
 print(f"La media es {mean} y la desviacion tipica es {stdev}")
+
+
+
