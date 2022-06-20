@@ -19,6 +19,27 @@ diccionario debe dejarla sin traducir.
 """
 
 dic = {}
-palabra = input("Ingresa una plabra y su ytaduccion al ingles separados por : ")
-dic[palabra[:":"]] = palabra[":":]
-print(dic)
+
+while True:
+    palabra = input("Ingresa una plabra y su ytaduccion al ingles separados por : ")
+    dic[palabra[:palabra.find(":")]] = palabra[palabra.find(":")+1:]
+    print(dic)
+
+    lol = input("Deseas gurdar palabras ingrese cualquier ficha de lo contrario ingresa no -> ")
+    if lol == "no":
+        break
+la_frace = input("Ingresa la frace que deseas traducir -> ")
+palabras = la_frace.split(" ")
+Palabras2 = {}
+
+o = 0
+for i in palabras:
+    if i in dic:
+        Palabras2[o] = dic[i]
+    else:
+        Palabras2[o] = i
+
+    o += 1
+
+for i in Palabras2:
+    print(Palabras2[i],end = " ")
