@@ -17,7 +17,8 @@ traducirla palabra a palabra.
 Si una palabra no está en el
 diccionario debe dejarla sin traducir.
 """
-
+#19/06/2022
+#9:43 pm
 dic = {}
 
 while True:
