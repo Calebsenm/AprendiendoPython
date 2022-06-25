@@ -45,34 +45,37 @@
 #       'teléfono': '667677855', 
 #       'descuento': 15.7}}
 
-Dicionario = {}
-Dato = "nif;nombre;email;teléfono;descuento\n01234567L;Luis González;luisgonzalez@mail.com;656343576;12.5\n71476342J;Macarena Ramírez;macarena@mail.com;692839321;8\n63823376M;Juan José Martínez;juanjo@mail.com;664888233;5.2\n98376547F;Carmen Sánchez;carmen@mail.com;667677855;15.7"
 
-Base = Dato.split("\n")
+#fin xd estubo templado
+
+Dicionario = {}
+# Dato1 = "nif;nombre;email;teléfono;descuento\n01234567L;Luis González;luisgonzalez@mail.com;656343576;12.5\n71476342J;Macarena Ramírez;macarena@mail.com;692839321;8\n63823376M;Juan José Martínez;juanjo@mail.com;664888233;5.2\n98376547F;Carmen Sánchez;carmen@mail.com;667677855;15.7"
+Dato = input("Ingrese la cadena .-_-_-_-> ")
+#separa las objetos de la cadena
+Base = Dato.split("\\n")
 Base2 = Base[0].split(";")
-print()
+Base.pop(0)
+Base2.pop(0)
+
+#recorre la lista y separa la lista
 for i in range(len(Base)):
     Base[i]=Base[i].split(";")
+    Dicionario[Base[i][0]]= { }
 
-for i in Base[1:]:
-    for j in i:
-        for l in Base2[1:]:
-            Dicionario[j] = {l:j}
+#Crea y llena el diccionario
+for p in range(len(Base)):
+    i = 0
+    for n in range(len(Base[p])-1):
+        Dicionario[Base[p][0]][Base2[i]] = Base[p][n+1]
+        i += 1
+      
 
-
-        
-print()
-print(Base)
-print()
-print(Base2)
-
-# for a in Base[1:]:
-#    Dicionario[a[0]] = {}
-  
-
-        
-
-     
-    
-
-print(Dicionario)
+#imprime el diccionario
+ab = 0
+for a,b in Dicionario.items():
+    print(f"{ab+1} --> {a}")
+    bc = 0
+    for A,B in b.items():
+        print(f"     {bc +1} --> {A}:{B}")
+        bc += 1
+    ab += 1 
