@@ -131,3 +131,66 @@
 # dict_from_list = {key_list[i]: value_list[i] for i in range(len(key_list))}
 # print(dict_from_list)
 
+##################################################
+
+# print(pow(10,0.5))
+
+##################
+# para ordenar y luego invertir
+
+
+#recurisvidad
+
+# hola = [2,23,53,676,3,64,754,854,3,40,222,43,23,34,33,6]
+# hola2 = [2,5,3,1,212,2,3,1,40,4,3,224,8,6]
+# hola.sort()
+# hola2.sort()
+
+
+# print(hola)
+
+# def recursivo(a,b = hola):
+
+#     if b[a-1] in hola2:
+#         print(b[a-1])
+#         return 1
+#     if a == 0 or a == 1:
+#         return 1
+#     return recursivo(a-1)
+    
+
+# recursivo(len(hola))
+
+
+#######################################################
+
+## Bucle recursivo JAJJAJAJAJJa
+# hola = [1,2]
+
+
+# def mimi(A,B,C = 0):
+#     print(C)
+#     if A == 0 or A == 1:
+#         return 1
+#     return mimi(A-1,B,C+1)
+
+# mimi(len(hola),hola)
+
+
+
+# def A(a=1):
+#     print(a)
+#     return A(a+1) 
+# A()
+
+##############################
+
+
+# l = "123432345432"
+
+# for i in l:
+#     print(i)
+
+hola = { "a": 1 }
+p = tuple(zip(hola.keys(),hola.values()))
+print(p)
