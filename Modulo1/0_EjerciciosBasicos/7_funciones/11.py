@@ -8,6 +8,11 @@
 # devuelva una tupla con la palabra más 
 # repetida y su frecuencia.
 
+#estubo interesante y entretenido 
+#con la opsicion de mis padres terminer JAJAJAJAJJA
+
+#fin  11:17 PM El dia 25/06/2022
+#
 def Palabras(palabras):
     lista = palabras.split(" ")
     Diccionario = {}
