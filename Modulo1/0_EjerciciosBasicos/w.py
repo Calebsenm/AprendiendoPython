@@ -191,6 +191,82 @@
 # for i in l:
 #     print(i)
 
-hola = { "a": 1 }
-p = tuple(zip(hola.keys(),hola.values()))
-print(p)
+# hola = { "a": 1 }
+# p = tuple(zip(hola.keys(),hola.values()))
+# print(p)
+
+
+# hola = {1:345}
+# print(hola[1])
+
+
+
+#26/06/2022 
+
+# ##un bug tremendo que 
+# from math import sin, cos, tan, exp, log
+
+# Valores = {}
+
+# def ciclo(A,B):
+#     for i in range(B):
+#         Valores[i+1] = A(i+1)
+    
+
+# def seno(numero):
+
+#     ciclo(sin,numero)
+   
+
+# def coseno(numero1):
+#     ciclo(cos,numero1)
+  
+
+# def tangente(numero2):
+#     ciclo(tan,numero2)
+    
+
+# def exponencial(numero3):
+#     ciclo(exp,numero3)
+    
+
+# def nerperiano(numero4):
+#     ciclo(log,numero4)
+    
+
+# def opcion(a,b):
+#     opciones = [seno(b),coseno(b),tangente(b),exponencial(b),nerperiano(b)]
+#     return opciones[b-1]
+
+# opciones = {1:"seno",2:"coceno",3:"tangente",4:"exponencial",5:"logaritmo nerperiano"}
+# for i,j in opciones.items():
+#     print(i,j)
+# operacion = int(input("Ingresa el numero dela opcion -> "))
+# numero = int(input("Ingresa el numero -> "))
+
+
+# opcion(operacion,numero)
+
+# for i,j in Valores.items():
+#     print(i,"->",j)
+
+
+
+
+
+def a():
+    print("A")
+
+def b():
+    print("B")
+
+horas_del_dia = int(input("Ingresa tu hora: ") )
+def lista(hola):
+    horas = {
+    1:a(),
+    2:b(),
+    
+    }  
+    return horas.get(hola,"Que te pasa no ves que debes ingresar un numero solo dentro del rango")
+hola = horas_del_dia
+print(lista(hola))
