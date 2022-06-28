@@ -8,6 +8,7 @@
 # obtiene restando la media y dividiendo 
 # por la desviación típica de la muestra.
 
+#6:00 pm 27/06/2022
 
 def Funcion(A):
     Valores_atipicos = []
