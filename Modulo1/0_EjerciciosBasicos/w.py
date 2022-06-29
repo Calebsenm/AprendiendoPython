@@ -270,3 +270,21 @@
 #     return horas.get(hola,"Que te pasa no ves que debes ingresar un numero solo dentro del rango")
 # hola = horas_del_dia
 # print(lista(hola))
+
+
+
+
+# A = ["A","B"]
+# B = "".join(A)
+# print(B)
+
+
+
+
+io = input("Ingrese el nombre del archivo -> ")
+iop = 1
+while True:
+    A = open(f"io.py","a")
+    A.write(input(f"{iop}-   "))
+    A.write("\n")
+    iop += 1

@@ -18,3 +18,7 @@ Hello(7,2)
 """
 4 X 7 = 28
 """
+
+
+Me gusta la programacion funfional y me gusta proegramar a bajo nivel
+
