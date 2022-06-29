@@ -254,19 +254,19 @@
 
 
 
-def a():
-    print("A")
+# def a():
+#     print("A")
 
-def b():
-    print("B")
+# def b():
+#     print("B")
 
-horas_del_dia = int(input("Ingresa tu hora: ") )
-def lista(hola):
-    horas = {
-    1:a(),
-    2:b(),
+# horas_del_dia = int(input("Ingresa tu hora: ") )
+# def lista(hola):
+#     horas = {
+#     1:a(),
+#     2:b(),
     
-    }  
-    return horas.get(hola,"Que te pasa no ves que debes ingresar un numero solo dentro del rango")
-hola = horas_del_dia
-print(lista(hola))
+#     }  
+#     return horas.get(hola,"Que te pasa no ves que debes ingresar un numero solo dentro del rango")
+# hola = horas_del_dia
+# print(lista(hola))

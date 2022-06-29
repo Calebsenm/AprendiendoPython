@@ -7,12 +7,16 @@
 
 def Numero(A,B = 1):
     
-    with open(f"1","a") as f:
+    with open(f"9_ficheros/{A}.txt","a") as f:
         f.write(f"{B} X {A} = {B*A}\n")
    
     if B == 10:
+        with open(f"9_ficheros/{A}.txt","a") as f:
+            f.write("\n")
         return 
     
     return Numero(A,B+1)
 
-Numero(int(input("Ingresa un numro -> ")))
+
+Numero(int(input("Ingresa un numero -> ")))
+
