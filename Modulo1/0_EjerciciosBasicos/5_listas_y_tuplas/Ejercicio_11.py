@@ -7,9 +7,8 @@ pantalla su producto escalar.
 Easy  3:43PM 
 13/06/2022
 """
-
-A = (1,2,3)
-B = (-1,0,2)
+A = (1, 2, 3)
+B = (4, 5, 6)
 
 
 Resultado = 0
