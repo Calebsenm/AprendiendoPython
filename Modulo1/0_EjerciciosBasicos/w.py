@@ -281,10 +281,39 @@
 
 
 
-io = input("Ingrese el nombre del archivo -> ")
-iop = 1
-while True:
-    A = open(f"io.py","a")
-    A.write(input(f"{iop}-   "))
-    A.write("\n")
-    iop += 1
+# io = input("Ingrese el nombre del archivo -> ")
+# iop = 1
+# while True:
+#     A = open(f"io.py","a")
+#     A.write(input(f"{iop}-   "))
+#     A.write("\n")
+#     iop += 1
+
+
+
+
+import pandas as pd 
+import matplotlib.pyplot as plt 
+
+def diagrama_caja_notas(notas):
+    '''Función que construye un diagrama de cajas con las notas de los alumnos de un curso.
+    
+    Parámetros:
+        - notas: Es una serie de Pandas con las notas de los alumnos.
+    '''
+    # Definimos la figura y los ejes del gráfico con Matplotlib
+    fig, ax = plt.subplots()
+    # Dibujamos los sectores con las verntas a partir de la serie
+    notas.plot(kind = 'box', ax = ax)
+    # Eliminamos las marcas del eje x 
+    plt.xticks([])
+    # 
+    # Añadimos el título
+    plt.title('Distribución de notas')
+    # Devolvemos el objeto con los ejes y el gráfico que contienten
+    return ax
+
+notas = [2,4,6,4,2,7,0,3,7,3,7,9,3,5,7,4]
+s_notas = pd.Series(notas)
+diagrama_caja_notas(s_notas)
+plt.show()
