@@ -1,7 +1,7 @@
 #ultimo respaldo de seguridad
 
 """
-Será que se puede crear el jeugo del agedrez en pyton con la consola..  yo no lo sé solo quiero intentarlo.... ajajajjajaja
+Será que se puede crear el juego del agedrez en python con la consola..  yo no lo sé solo quiero intentarlo.... ajajajjajaja
 Se inició este proyecto el dia 29/04/2022
 fue finikitado el dia          8/06/2022 a las 10:40 pm   pense muchas veces que no lo iba a lograr 
 """
